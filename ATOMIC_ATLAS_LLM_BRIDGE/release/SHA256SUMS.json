@@ -1,0 +1,18 @@
+{
+  ".github/workflows/tests.yml": "493df488e8926b736e6d100af85971d81a92d96c8e72c925330fef326f1b7c5c",
+  ".gitignore": "0fa6b906255a6bfa44c00430802e1ce17df0a256794626a90103b177ea5816f7",
+  "README.md": "9407e5fe4bc826a4e51cc6848a8cf72a1e750c55a10ef2d079e6c33101f91892",
+  "SECURITY.md": "e2c3470d13134d64d2441f802f00c57e23d312b064f0f3bd5df08caf16f43f3c",
+  "atlas_store.py": "954ac7117b918db56da69fb2f75adfffd33a22602994aacc4f655e80a02ea0fc",
+  "bridge.py": "17ea14018a0e48107d5e3a6b59263ee9cb5faf51105f845d31ed52b20b0e0acb",
+  "demo.py": "d55393bd839347b798c5c765552604799642890bf2e25c5957a144032cbfc8c3",
+  "docs/BRIDGE_002.md": "1f6c19e52a2fc8e58bc16bd7d074e070419092f7d0a84d98a7b97d582a893f72",
+  "docs/history/PERSISTENCE_001.md": "978934fe36be2e8c0584a5e93a7e8dcd2265d8bbb97dd946aa5c997b981ca667",
+  "release/DEMO_RECEIPT.json": "5aa5f27dba7f4c0ca0b7dbc641b23128d16fd7c65c8d5bc2a73e29036941a0fe",
+  "release/RUN_RECEIPT.json": "7c97053ea002b0ad06804711cdbb19d9ad67c8f33a70bc9a414cf5e1f536e92c",
+  "release/SOURCE_PROVENANCE.json": "a3787bb1f61758c32d79bcb23a911772cd43969b1d051f416c51ed21090e309d",
+  "release/TEST_OUTPUT.txt": "cffff10d3c9a9564efe7250b56673295ed7480d3abcbb51c7798adb8b0d11314",
+  "seed.py": "619aeaffe0c58ef51f2469ac4f67c5c203b6ccfe32a2a63a29cc917721725250",
+  "test_bridge.py": "bbf0e60acce9603f64b9932c31b7dfadfac14e3e508fe62ac5a748e4b8c8a5a8",
+  "test_store.py": "f0a8a16d814c16c01080ef084054a9d8ddb60388d37cfe30e818a01d45643c4f"
+}

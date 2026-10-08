@@ -1,0 +1,16 @@
+{
+  "generated_utc": "2026-10-08T23:17:47.668148+00:00",
+  "python": "3.12.14",
+  "platform": "Linux",
+  "tests_passed": 23,
+  "tests_failed": 0,
+  "fresh_process_demo": "PASS",
+  "native_windows": "UNTESTED",
+  "github_actions": "CONFIGURED_NOT_RUN",
+  "actual_llm_calls": 0,
+  "semantic_accuracy": "UNTESTED",
+  "security_hardening": "NOT_ESTABLISHED",
+  "license": "OWNER_DECISION_PENDING",
+  "repository_uploaded": false,
+  "private_conversation_or_character_material_in_release": false
+}

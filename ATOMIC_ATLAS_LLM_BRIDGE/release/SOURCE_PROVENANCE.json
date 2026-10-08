@@ -1,0 +1,19 @@
+{
+  "source_archive": {
+    "name": "ATOMIC_ATLAS_LLM_BRIDGE.zip",
+    "sha256": "4d2cdd6dc7d5ab3493f71b8c79bd277cbf92c9fad7240813d0b9b41c13cf25b2"
+  },
+  "components": [
+    {
+      "name": "ATOMIC_ATLAS_LLM_BRIDGE_002.zip",
+      "sha256": "d74a674f7b46c9ffaf827acd444db38e4aaaa6b84b7ef8d46e82283c43e0ce5d"
+    },
+    {
+      "name": "ATOMIC_ATLAS_PERSISTENCE_001.zip",
+      "sha256": "e1b54ae9efed227086dbef703272d912e00b428e48725695c3b8c2db924b4ab6"
+    }
+  ],
+  "consolidation": "Persistence store, demo and tests are byte-identical in both source components; retained once.",
+  "runtime_code_changed": false,
+  "excluded": "Generated example.sqlite, context packet, stale source manifests and duplicated implementation trees. Originals remain unchanged."
+}

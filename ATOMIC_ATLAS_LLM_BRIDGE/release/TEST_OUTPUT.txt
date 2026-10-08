@@ -1,0 +1,28 @@
+test_append_only (test_store.Tests.test_append_only) ... ok
+test_conflicting_id (test_store.Tests.test_conflicting_id) ... ok
+test_duplicate (test_store.Tests.test_duplicate) ... ok
+test_fresh_process (test_store.Tests.test_fresh_process) ... ok
+test_hypothesis_preserved (test_store.Tests.test_hypothesis_preserved) ... ok
+test_missing_source (test_store.Tests.test_missing_source) ... ok
+test_nonfinite_rejected (test_store.Tests.test_nonfinite_rejected) ... ok
+test_replay_order (test_store.Tests.test_replay_order) ... ok
+test_stale_writer (test_store.Tests.test_stale_writer) ... ok
+test_tamper_detected (test_store.Tests.test_tamper_detected) ... ok
+test_unknown_entity (test_store.Tests.test_unknown_entity) ... ok
+test_unknown_version (test_store.Tests.test_unknown_version) ... ok
+test_budget (test_bridge.BridgeTests.test_budget) ... ok
+test_citations (test_bridge.BridgeTests.test_citations) ... ok
+test_classification_and_injection_preserved (test_bridge.BridgeTests.test_classification_and_injection_preserved) ... ok
+test_deterministic (test_bridge.BridgeTests.test_deterministic) ... ok
+test_fake_citation (test_bridge.BridgeTests.test_fake_citation) ... ok
+test_fresh_process_packet (test_bridge.BridgeTests.test_fresh_process_packet) ... ok
+test_latest (test_bridge.BridgeTests.test_latest) ... ok
+test_missing (test_bridge.BridgeTests.test_missing) ... ok
+test_not_semantic_verification (test_bridge.BridgeTests.test_not_semantic_verification) ... ok
+test_packet_tamper (test_bridge.BridgeTests.test_packet_tamper) ... ok
+test_read_only (test_bridge.BridgeTests.test_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.089s
+
+OK
