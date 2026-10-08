@@ -1,0 +1,107 @@
+{
+  "source_name": "hermesless.png",
+  "source_library_id": "source-ref-0410eed0ce8e",
+  "sha256": "0b354aae9abd487f956af5199c54f12d260dc18605c07bac7c8255fa2b9f94b9",
+  "dimensions": [
+    2047,
+    1146
+  ],
+  "visually_inspected_on": "2026-10-08",
+  "source_creation_date": "unknown; upload metadata is not historical code date",
+  "inventory_status": "visible function names; screenshot is not original executable source",
+  "panels": [
+    {
+      "class": "CLCEEngine",
+      "crop_xyxy": [
+        0,
+        0,
+        348,
+        1146
+      ],
+      "visible_functions": [
+        "__init__",
+        "compute_graph_properties",
+        "run_flow"
+      ],
+      "summary": "Graph density, degree>=3 branch nodes and trace(A^3)/6 triangle count; run_flow uses a seeded random graph and heuristic modifiers/thresholds."
+    },
+    {
+      "class": "PhysicalCLCEEngine",
+      "crop_xyxy": [
+        347,
+        0,
+        665,
+        1146
+      ],
+      "visible_functions": [
+        "__init__",
+        "generate_coordinates",
+        "analyze_topology"
+      ],
+      "summary": "Geometric coordinate construction, displacement, distance matrix and ratio score. Not a calibrated energy model."
+    },
+    {
+      "class": "StructuralTopologyEngine",
+      "crop_xyxy": [
+        696,
+        0,
+        1044,
+        1146
+      ],
+      "visible_functions": [
+        "__init__",
+        "compute_3d_topology"
+      ],
+      "summary": "Central-atom geometry vectors, radius-based proposed lengths, perturbation and quadratic strain score; constants and interpretation need review."
+    },
+    {
+      "class": "GlobalTopologyCLCEEngine",
+      "crop_xyxy": [
+        1084,
+        0,
+        1443,
+        1146
+      ],
+      "visible_functions": [
+        "__init__",
+        "resolve_network_coordinates",
+        "analyze_spectral_invariance"
+      ],
+      "summary": "Sequential coordinate construction, distance-based weights, Laplacian eigenvalues and Fiedler-derived score. Construction depends on atom iteration order; invariance claims need tests."
+    },
+    {
+      "class": "QuantumCoherenceCLCEEngine",
+      "crop_xyxy": [
+        1565,
+        0,
+        1955,
+        1146
+      ],
+      "visible_functions": [
+        "__init__",
+        "relax_3d_geometry",
+        "compute_quantum_phase_coherence"
+      ],
+      "summary": "Seeded random initialization, spring/repulsion relaxation, complex phase matrix, dominant eigenvector and off-diagonal density sum. This is a toy phase model, not verified quantum chemistry."
+    }
+  ],
+  "review_notes": [
+    "First panel rings metric counts triangles, not arbitrary rings. LightBench independent cycle rank remains separate.",
+    "No Kelvin/temperature derivation is visible in this code. Thermal reservoir controls are separate new implementation.",
+    "Physical/quantum labels and comments are hypotheses or design assertions, not measurements.",
+    "Numerical coefficients, thresholds, model units and exact full source require review before faithful execution.",
+    "The two score-formula graphics from checkpoint004 remain OCR-only; this different code screenshot does not verify their equations."
+  ],
+  "implemented_from_this_source": [
+    "graph density",
+    "degree-based branch count already present",
+    "triangle count"
+  ],
+  "not_ported": [
+    "seeded random graph generation and heuristic coherence",
+    "3D coordinate solvers",
+    "strain-energy score",
+    "weighted Fiedler spectral score",
+    "phase-matrix coherence"
+  ]
+}

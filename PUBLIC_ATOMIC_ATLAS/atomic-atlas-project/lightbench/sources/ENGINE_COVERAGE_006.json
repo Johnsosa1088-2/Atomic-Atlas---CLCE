@@ -1,0 +1,13 @@
+{
+  "checkpoint": "006",
+  "supersedes_implementation_status_of": "HERMES_CODE_INVENTORY.json (checkpoint 005)",
+  "source": "hermesless.png",
+  "implemented_classes": ["CLCEEngine", "PhysicalCLCEEngine", "StructuralTopologyEngine", "GlobalTopologyCLCEEngine", "QuantumCoherenceCLCEEngine"],
+  "implemented_methods": ["compute_graph_properties", "run_flow", "generate_coordinates", "analyze_topology", "compute_3d_topology", "resolve_network_coordinates", "analyze_spectral_invariance", "relax_3d_geometry", "compute_quantum_phase_coherence"],
+  "implementation_status": "Source-informed browser adaptations; all visible named methods callable; not a complete exact original-source replay",
+  "unresolved": ["Stage-1 full coherence formula clipped", "Complete original executable files unavailable", "NumPy random sequence not reproduced", "Physical calibration and uncertainty definitions absent", "Scientific invariance claims unproven", "All browser interactions unverified"],
+  "explicit_deviations": ["Symmetric unordered noise flips", "Reject unknown elements and excess peripherals", "Real-block Jacobi eigensolver", "Explicit lower-triangle Hermitian convention for phase matrix"],
+  "source_defects_preserved_or_reported": ["Linear peripheral vectors coincide", "Geometry engine includes nonbonded pairs", "Global geometry construction is iteration-order dependent", "Source phase matrix as written is not Hermitian", "Degenerate eigenvectors may give nonunique phase scores"],
+  "independent_reference_coverage": "Four NumPy comparisons on a declared nondegenerate four-node fixture; broader cases untested",
+  "scientific_status": "Experimental calculations; not observations of physical or quantum coherence"
+}

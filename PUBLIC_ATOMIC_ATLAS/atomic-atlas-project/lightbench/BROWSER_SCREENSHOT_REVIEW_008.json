@@ -1,0 +1,33 @@
+{
+  "checkpoint": "008",
+  "evidence": [
+    {
+      "name": "image(20261008-214047).png",
+      "library_id": "source-ref-7b273438449b",
+      "sha256": "e7e03ce21f0d0a4ef9a7aaacf01552af653994a64d375bca2aebf413cff7273a",
+      "inspection": "visual screenshot inspection; image bytes not bundled"
+    },
+    {
+      "name": "image(20261008-214106).png",
+      "library_id": "source-ref-8dd28144bbe7",
+      "sha256": "17093721a6cbb549dcf9333deb0784c9050e381bf45406dab09d78b2df7f1327",
+      "inspection": "visual screenshot inspection; image bytes not bundled"
+    }
+  ],
+  "observed": [
+    "Water-pair scene rendered with six atoms, four bonds and one hydrogen-bond candidate",
+    "Live energy totals rendered at time 2.00s",
+    "Historical calculator result rendered",
+    "Fusion budget result rendered"
+  ],
+  "scope": "User-supplied screenshots; not independent browser interaction or cross-browser conformance",
+  "found_issue": "Historical comparison live budget total was stale at zero while main panel showed 0.04J",
+  "change": "refreshComparison now updates current light total from render; proposal remains last explicit calculation",
+  "not_verified": [
+    "click/drag/remove/undo behavior",
+    "scene export/import",
+    "all engine selectors",
+    "phase panel controls",
+    "browser execution after this patch"
+  ]
+}

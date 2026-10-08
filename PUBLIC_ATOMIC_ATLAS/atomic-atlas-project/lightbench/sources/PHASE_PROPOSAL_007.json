@@ -1,0 +1,12 @@
+{
+  "source": "Current conversation user code proposal, 2026-10-08; original message ID/time unavailable",
+  "source_date_precision": "day",
+  "exact_source_formula_lines": ["angles = angles - angles.T", "phase_matrix = np.exp(1j * angles)", "is_hermitian = np.allclose(phase_matrix, phase_matrix.conj().T)"],
+  "normalized_formulas": ["theta_{ji}=-theta_{ij}", "P_{ij}=exp(i theta_{ij})", "P=P^dagger"],
+  "assistant_proposed_baseline": "theta_ij=phi_i-phi_j; P_ij=exp(i theta_ij)",
+  "authorized_scope": "Implement and add both constructions, reproducible seeds and diagnostics",
+  "implementation": "phases.js, separate from the historical Stage5 engine",
+  "adaptations": ["LCG32 replaces NumPy RNG", "1–24 current scene atoms replace fixed eight nodes", "optional symmetric solid-bond adjacency mask", "real-block eigenvalue and fundamental-cycle checks"],
+  "units": "phase angles in radians; dimensionless matrix entries",
+  "scientific_status": "Simulated mathematical phase construction, not measured quantum coherence"
+}

@@ -1,0 +1,89 @@
+model
+PASS neutral water electron count
+PASS formal charge changes electrons
+PASS independent cycle count
+PASS branch count
+PASS hydrogen motif responds to geometry
+PASS covalent bond is not H candidate
+PASS duplicate bond rejected
+PASS removed atom removes bonds
+PASS budget conserves energy over 10000 steps
+PASS all-light budget produces no heat
+PASS zero power yields no invented photons
+PASS 550nm photon conversion
+PASS fresh process snapshot recovery
+PASS malicious settings rejected
+PASS tampered energy rejected
+PASS bad graph rejected
+PASS edit journal monotonic
+PASS remove bond preserves atoms
+PASS historical rupture rule
+PASS historical negative energy clamp
+PASS undo redo restores graph and keeps journal
+PASS undo never reuses an atom ID
+PASS edit after undo invalidates redo
+PASS history restores conserved thermal snapshot
+PASS double disulfide connects both chains
+PASS fusion conservation and nuclear counts
+PASS fusion zero and invalid input
+PASS Hermes worst attack and coverage
+PASS Hermes no attacks remains untested
+PASS Hermes counterexample independent of score
+PASS Hermes rejects zero normalization
+PASS weighted objective distinct from resistance
+PASS thermal reset sets Kelvin and preserves balance
+PASS graph triangle is not a six-member ring
+PASS graph metrics invariant to array ordering
+PASS methane star preset electron count and branches
+PASS single water preset electron count
+37 model checks passed
+
+engines
+PASS graph triangle count
+PASS synthetic graph deterministic and symmetric
+PASS invalid graph controls rejected
+PASS geometry pair radius length
+PASS geometry displacement changes score
+PASS tetrahedral vectors give expected angle
+PASS strain perturbation changes score
+PASS source linear overlap is retained explicitly
+PASS excess peripherals rejected rather than left at origin
+PASS symmetric eigensolver analytic result
+PASS spectral ideal pair Fiedler two
+PASS disconnected spectrum is not proof of coherence
+PASS connected graph eigenvalues nonnegative
+PASS relaxation reproducible
+PASS phase density trace one and bounded score
+PASS phase dominant degeneracy reported
+PASS asymmetric input rejected
+PASS all experiments leave thermal scene intact
+PASS 24 atom guard
+19 engine checks passed
+
+phases
+PASS both modes are Hermitian
+PASS node matrix PSD rank one and trace eight
+PASS pairwise seed has negative eigenvalue and frustrated loops
+PASS node phases close every full matrix cycle
+PASS six-member ring loop included
+PASS tree has no loop evidence
+PASS mask preserves conjugate symmetry and zero diagonal
+PASS seed reproducible
+PASS seed changes phases
+PASS single node boundary
+PASS bad mode, count, seed, mask rejected
+PASS export-like JSON recovers literal matrix
+12 phase checks passed
+
+independent_numpy
+test_complex_phase_dominant_eigenvalue (__main__.ReferenceTests.test_complex_phase_dominant_eigenvalue) ... ok
+test_density_magnitude_and_score (__main__.ReferenceTests.test_density_magnitude_and_score) ... ok
+test_laplacian_eigenvalues (__main__.ReferenceTests.test_laplacian_eigenvalues) ... ok
+test_masked_phase_lab_spectrum (__main__.ReferenceTests.test_masked_phase_lab_spectrum) ... ok
+test_phase_lab_spectra (__main__.ReferenceTests.test_phase_lab_spectra) ... ok
+test_weights_from_distances (__main__.ReferenceTests.test_weights_from_distances) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.196s
+
+OK

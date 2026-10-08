@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),P=require('./phases'),M=require('./model'),X=require('./engines');let count=0;function test(name,fn){fn();count++;console.log('PASS '+name);}const close=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t);
+test('both modes are Hermitian',()=>{for(const mode of ['node','pairwise'])assert.equal(P.build(8,mode,42).diagnostics.hermitian,true);});
+test('node matrix PSD rank one and trace eight',()=>{const d=P.build(8,'node',42).diagnostics;assert.equal(d.positiveSemidefinite,true);assert.equal(d.rank,1);close(d.trace,8);close(d.eigenvalues.at(-1),8);});
+test('pairwise seed has negative eigenvalue and frustrated loops',()=>{const d=P.build(8,'pairwise',42).diagnostics;assert.equal(d.positiveSemidefinite,false);assert.equal(d.loopConsistency,'FRUSTRATED');});
+test('node phases close every full matrix cycle',()=>{const d=P.build(8,'node',42).diagnostics;assert.equal(d.independentCycles,21);assert.equal(d.loopConsistency,'CONSISTENT');close(d.maxLoopClosureRadians,0);});
+test('six-member ring loop included',()=>{const A=X.adjacency(M.preset('ring'));assert.equal(P.build(6,'node',42,A).diagnostics.independentCycles,1);assert.equal(P.build(6,'node',42,A).diagnostics.loopConsistency,'CONSISTENT');assert.equal(P.build(6,'pairwise',42,A).diagnostics.loopConsistency,'FRUSTRATED');});
+test('tree has no loop evidence',()=>{const A=[[0,1,0],[1,0,1],[0,1,0]];assert.equal(P.build(3,'pairwise',42,A).diagnostics.loopConsistency,'NO_LOOPS_TO_TEST');});
+test('mask preserves conjugate symmetry and zero diagonal',()=>{const r=P.build(2,'node',42,[[0,1],[1,0]]);assert.equal(r.diagnostics.hermitian,true);close(r.diagnostics.trace,0);assert.equal(r.diagnostics.positiveSemidefinite,false);close(r.diagnostics.minEigenvalue,-1);});
+test('seed reproducible',()=>assert.deepEqual(P.build(8,'pairwise',123),P.build(8,'pairwise',123)));
+test('seed changes phases',()=>assert.notDeepEqual(P.build(8,'node',42).angles,P.build(8,'node',43).angles));
+test('single node boundary',()=>{const r=P.build(1);assert.equal(r.diagnostics.rank,1);close(r.diagnostics.trace,1);});
+test('bad mode, count, seed, mask rejected',()=>{assert.throws(()=>P.build(0));assert.throws(()=>P.build(25));assert.throws(()=>P.build(8,'bad'));assert.throws(()=>P.build(8,'node',-1));assert.throws(()=>P.build(2,'node',42,[[0,1],[0,0]]));});
+test('export-like JSON recovers literal matrix',()=>{const r=P.build(8,'pairwise',42);assert.deepEqual(JSON.parse(JSON.stringify(r)),r);});
+console.log(`${count} phase checks passed`);

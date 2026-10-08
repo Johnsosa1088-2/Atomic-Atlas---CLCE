@@ -1,0 +1,11 @@
+{
+  "retrieved_on": "2026-10-08",
+  "access": "extracted text only; native image pixels unavailable",
+  "sources": [
+    {"name": "Aurelia Presents the Hermes Loss Framework.png", "library_id": "source-ref-79fd484c42be", "created_at": "2026-09-12T08:22:40.086617Z"},
+    {"name": "Cosmic Observatory of Unbribable Knowledge.png", "library_id": "source-ref-d982a8c42be6", "created_at": "2026-09-15T02:58:52.159971Z"}
+  ],
+  "formula_status": "Proposed transcriptions from search descriptions and incomplete OCR; not exact visually verified AS_RENDERED formulas",
+  "implemented": ["declared delta input", "magnitude normalization", "sensitivity normalization", "worst damage", "inverse resistance", "family coverage", "counterexample report", "separate weighted objective", "worksheet export"],
+  "missing": ["complete historical executable source", "pixel equation verification and crop coordinates", "original image byte hashes", "source definitions of distance, sensitivity and uncertainty", "automatic attack execution", "validated Atomic Atlas core provenance integration"]
+}

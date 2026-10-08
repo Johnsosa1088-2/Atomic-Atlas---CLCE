@@ -1,0 +1,69 @@
+{
+  "version": "LIGHTBENCH/0.1.0",
+  "date_utc": "2026-10-08T21:42:33.266324+00:00",
+  "model_tests": {
+    "count": 37,
+    "exit_code": 0,
+    "output": "TEST_OUTPUT.txt"
+  },
+  "browser_tests": {
+    "status": "UNTESTED",
+    "reason": "Playwright is installed but no Chromium executable is available. test_browser.js supplied but did not reach the page.",
+    "other_browsers": "untested"
+  },
+  "fresh_process_recovery": "PASS deterministic JSON model recovery; not LLM recall",
+  "prior_source_anchor": {
+    "path": "public_atomic_atlas_014/examples/c_closed_loop_budget/model.js",
+    "sha256": "317e8716557013e0d689a9846c0d30668d7deade0591ff235fd323819909a654"
+  },
+  "source_graphics": "Two supplied images visually inspected; source byte hashes in manifest.json",
+  "core_integration": "not implemented",
+  "coverage": "new graph editor and SI energy budget; historical CLCE motif adaptation only",
+  "checkpoint": "008",
+  "changes": [
+    "fix stale live light total in historical comparison",
+    "record partial user screenshot browser evidence"
+  ],
+  "javascript_syntax": "PASS embedded scripts",
+  "browser_verification": "Partial user screenshot rendering evidence; updated interaction still unverified",
+  "hermes_source_status": "Code screenshot visually inspected; full executable source unavailable; earlier score graphics still OCR-only",
+  "engine_tests": {
+    "count": 19,
+    "exit_code": 0
+  },
+  "independent_numpy": {
+    "count": 6,
+    "exit_code": 0,
+    "version": "2.3.5",
+    "scope": "selected numerical fixtures"
+  },
+  "total_checks": 74,
+  "source_fidelity": "Stage1 full coherence expression clipped; random sequences and explicit edge/eigen conventions adapted; no exact replay claim",
+  "suites": [
+    {
+      "suite": "model",
+      "checks": 37,
+      "exit_code": 0
+    },
+    {
+      "suite": "engines",
+      "checks": 19,
+      "exit_code": 0
+    },
+    {
+      "suite": "phases",
+      "checks": 12,
+      "exit_code": 0
+    },
+    {
+      "suite": "independent_numpy",
+      "checks": 6,
+      "exit_code": 0
+    }
+  ],
+  "phase_tests": {
+    "count": 12,
+    "exit_code": 0
+  },
+  "current_verification": "Embedded JS syntax PASS; numerical kernels unchanged; prior74 checks not rerun"
+}

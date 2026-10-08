@@ -1,0 +1,18 @@
+/* User-proposed Hermitian phase constructions; educational matrix diagnostics. */
+(function(root){'use strict';
+const wrap=x=>Math.atan2(Math.sin(x),Math.cos(x));
+function random(seed){let s=seed>>>0;return ()=>{s=(1664525*s+1013904223)>>>0;return (s+.5)/4294967296;};}
+function loopCheck(angles,A){const n=A.length,potential=Array(n).fill(null),tree=new Set();let components=0;
+ function visit(i){for(let j=0;j<n;j++)if(A[i][j]&&potential[j]===null){potential[j]=potential[i]-angles[i][j];tree.add([i,j].sort((a,b)=>a-b).join(':'));visit(j);}}
+ for(let i=0;i<n;i++)if(potential[i]===null){components++;potential[i]=0;visit(i);}
+ const cycles=[];let edges=0;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)if(A[i][j]){edges++;if(!tree.has(i+':'+j))cycles.push({edge:[i,j],closureRadians:wrap(angles[i][j]-potential[i]+potential[j])});}
+ return {components,independentCycles:edges-n+components,cycles,maxLoopClosureRadians:cycles.length?Math.max(...cycles.map(c=>Math.abs(c.closureRadians))):0,loopConsistency:cycles.length?(cycles.every(c=>Math.abs(c.closureRadians)<1e-9)?'CONSISTENT':'FRUSTRATED'):'NO_LOOPS_TO_TEST'};
+}
+function build(count,mode='node',seed=42,adjacency=null){if(!Number.isInteger(count)||count<1||count>24||!['node','pairwise'].includes(mode)||!Number.isInteger(seed)||seed<0||seed>4294967295)throw Error('Use 1–24 nodes, a valid mode and a 32-bit unsigned seed');if(adjacency&&(adjacency.length!==count||adjacency.some((row,i)=>row.length!==count||row.some((v,j)=>![0,1].includes(v)||v!==adjacency[j]?.[i]||(i===j&&v!==0)))))throw Error('Adjacency must be symmetric binary with zero diagonal');const r=random(seed),phases=mode==='node'?Array.from({length:count},()=>r()*2*Math.PI-Math.PI):null,angles=Array.from({length:count},()=>Array(count).fill(0));for(let i=0;i<count;i++)for(let j=i+1;j<count;j++){angles[i][j]=mode==='node'?phases[i]-phases[j]:r()*2*Math.PI-Math.PI;angles[j][i]=-angles[i][j];}
+ const A=adjacency||angles.map((row,i)=>row.map((_,j)=>i===j?0:1)),matrix=angles.map((row,i)=>row.map((a,j)=>{const w=adjacency?A[i][j]:1;return {re:w*Math.cos(a),im:w*Math.sin(a)};}));
+ const block=Array.from({length:count*2},()=>Array(count*2).fill(0));let residual=0;for(let i=0;i<count;i++)for(let j=0;j<count;j++){const v=matrix[i][j],u=matrix[j][i];residual=Math.max(residual,Math.hypot(v.re-u.re,v.im+u.im));block[i][j]=v.re;block[i][j+count]=-v.im;block[i+count][j]=v.im;block[i+count][j+count]=v.re;}
+ const X=root.CLCEExperimental||(typeof require!=='undefined'?require('./engines'):null),e=X.eigensystem(block).values,eigenvalues=Array.from({length:count},(_,i)=>(e[2*i]+e[2*i+1])/2),tolerance=1e-9*Math.max(1,count),minimum=eigenvalues[0],trace=matrix.reduce((sum,row,i)=>sum+row[i].re,0);
+ return {version:'HERMITIAN-PHASE-LAB/1',mode,seed,count,mask:adjacency?'BOND_ONLY_ZERO_DIAGONAL':'COMPLETE_UNIT_DIAGONAL',randomGenerator:'LCG32; reproducible here, not NumPy RNG',nodePhases:phases,angles,matrix,diagnostics:{hermitian:residual<1e-10,hermitianResidual:residual,eigenvalues,minEigenvalue:minimum,positiveSemidefinite:minimum>=-tolerance,rank:eigenvalues.filter(v=>Math.abs(v)>tolerance).length,trace,unitTracePSDNormalizationPossible:trace>0&&minimum>=-tolerance,...loopCheck(angles,A)},interpretation:adjacency?'Masked coupling matrix; zero diagonal. PSD is not assumed.':mode==='node'?'Consistent node-derived rank-one phase matrix; dividing by node count gives trace one. Mathematical construction only.':'Independent antisymmetric pairwise phases; Hermitian but PSD and loop consistency are not guaranteed.'};
+}
+const api={build,loopCheck,wrap};if(typeof module!=='undefined')module.exports=api;root.HermitianPhases=api;
+})(globalThis);
