@@ -1,0 +1,157 @@
+{
+  "domains": [
+    {
+      "domain": "reservoir",
+      "entities": 5,
+      "relations": 5,
+      "regions": 2,
+      "unlabeled_degree_signature": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "route_nodes": 5,
+      "fixture_sha256": "00ea4c16dbf0c700ebab6176e2b4ce1e3f506a848e543dbcc078b5ce63217d2b",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "chair",
+      "entities": 3,
+      "relations": 2,
+      "regions": 1,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        2
+      ],
+      "route_nodes": 3,
+      "fixture_sha256": "19f0d05cf6ed704af497b1ae43067ce229b3387d61f1ada5a3d9e89704eed200",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "lamp",
+      "entities": 4,
+      "relations": 3,
+      "regions": 1,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "route_nodes": 3,
+      "fixture_sha256": "3757d8cbcfdf92ea6ff1569f182278a687d3e98f180170607e0a23a08b0ca2be",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "vehicle",
+      "entities": 5,
+      "relations": 4,
+      "regions": 2,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "route_nodes": 5,
+      "fixture_sha256": "f2cbee90555590be4deabeccd2342553493ba325075e0a227d36f339f77f4d64",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "garment",
+      "entities": 4,
+      "relations": 3,
+      "regions": 1,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "route_nodes": 3,
+      "fixture_sha256": "446db9748e8e037a85b614421a668b3ff8c8f8b463da50b57e20840ecb4dbc0b",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "mechanical_assembly",
+      "entities": 6,
+      "relations": 6,
+      "regions": 3,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "route_nodes": 5,
+      "fixture_sha256": "14f16517506f30dd3fddf7b7c4580fa7f4dafbe93ddcd92710940ea4aef10b06",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "abstract_workflow",
+      "entities": 5,
+      "relations": 4,
+      "regions": 1,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        1,
+        2,
+        3
+      ],
+      "route_nodes": 4,
+      "fixture_sha256": "b1defdbb014af216986465b60d61cef5cd2d09682dd31a68c9ed9958bc19b28e",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    },
+    {
+      "domain": "abstract_character_rig",
+      "entities": 5,
+      "relations": 4,
+      "regions": 2,
+      "unlabeled_degree_signature": [
+        1,
+        1,
+        1,
+        1,
+        4
+      ],
+      "route_nodes": 3,
+      "fixture_sha256": "c8edc535d0808d4d9e5ea08be22b8eeb2653b9a06a91107ce68316e0ab15ad6e",
+      "same_eight_test_groups": "PASS",
+      "fresh_process_recovery": "PASS",
+      "name_neutralization": "PASS",
+      "physical_behavior": "NOT_TESTED"
+    }
+  ],
+  "parameterized_cases": 64,
+  "graph_diversity_check": 1,
+  "implementation_changes": 0,
+  "limits": "Synthetic declared graph/state/review contracts; no domain physics, automatic extraction, or universal conformance."
+}

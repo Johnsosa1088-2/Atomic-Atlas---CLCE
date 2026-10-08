@@ -1,0 +1,18 @@
+from __future__ import annotations
+import hashlib
+import json
+from typing import Any
+from .validation import _json_values
+
+
+def canonical_json_bytes(value: Any) -> bytes:
+    _json_values(value)
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False).encode("utf-8")
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def sha256_json(value: Any) -> str:
+    return sha256_bytes(canonical_json_bytes(value))

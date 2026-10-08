@@ -1,0 +1,17 @@
+{
+  "status": "LOCAL_CHECKS_PASS_RELEASE_GATES_OPEN",
+  "resolved": [
+    "D10-01 missing Step 9 register and inconsistent assembly labels",
+    "D10-02 complete inventory now covers guides; aspirational ZIP excluded"
+  ],
+  "open": [
+    "Windows",
+    "Real browser",
+    "Independent external review",
+    "Example/asset license scope",
+    "Owner-selected attribution/citation",
+    "Release version decision"
+  ],
+  "publication": "NOT_AUTHORIZED",
+  "README": "DEFERRED"
+}

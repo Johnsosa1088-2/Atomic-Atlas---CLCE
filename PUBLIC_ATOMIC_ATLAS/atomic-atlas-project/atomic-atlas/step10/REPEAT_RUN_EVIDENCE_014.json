@@ -1,0 +1,13 @@
+{
+  "environment": "Linux; compatible pinned audit environment and Node",
+  "test": "Two sequential full verify_candidate.py runs against the same source directory",
+  "first_exit_code": 0,
+  "second_exit_code": 0,
+  "source_inventory_and_hashes_after_each_run": "PASS",
+  "full_suite_after_each_run": "PASS",
+  "original_43_protected_source_hashes": "PASS",
+  "separate_run_directories": true,
+  "native_windows": "PENDING",
+  "real_browser": "UNTESTED",
+  "limits": "Preservation demonstrated for included suites; not filesystem write prevention for arbitrary hostile code."
+}

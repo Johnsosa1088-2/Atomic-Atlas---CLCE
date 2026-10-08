@@ -1,0 +1,15 @@
+{
+  "step9": "COMPLETE_FOR_CURRENT_DOCUMENTED_SCOPE",
+  "step10": "PENDING",
+  "step11_readme": "DEFERRED",
+  "open": [
+    "Independent external package inspection",
+    "Fresh environment and clean installation review",
+    "Windows",
+    "Real browser",
+    "Example and asset licenses",
+    "Citation metadata",
+    "Release version decision"
+  ],
+  "publication": "NOT_AUTHORIZED_BY_THIS_CHECKPOINT"
+}

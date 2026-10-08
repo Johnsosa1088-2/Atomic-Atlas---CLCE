@@ -1,0 +1,1158 @@
+[
+  {
+    "id": "reservoir",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-reservoir",
+      "regions": [
+        {
+          "id": "reservoir:region0"
+        },
+        {
+          "id": "reservoir:region1"
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir:inlet",
+          "region_id": "reservoir:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "inlet",
+            "measurement": null
+          }
+        },
+        {
+          "id": "reservoir:buffer",
+          "region_id": "reservoir:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "buffer",
+            "measurement": null
+          }
+        },
+        {
+          "id": "reservoir:valve",
+          "region_id": "reservoir:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "valve",
+            "measurement": null
+          }
+        },
+        {
+          "id": "reservoir:outlet",
+          "region_id": "reservoir:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "outlet",
+            "measurement": null
+          }
+        },
+        {
+          "id": "reservoir:return",
+          "region_id": "reservoir:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "return",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir:inlet",
+          "target": "reservoir:buffer",
+          "type": "declared_feed",
+          "directed": true
+        },
+        {
+          "source": "reservoir:buffer",
+          "target": "reservoir:valve",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "reservoir:valve",
+          "target": "reservoir:outlet",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "reservoir:outlet",
+          "target": "reservoir:return",
+          "type": "declared_return",
+          "directed": true
+        },
+        {
+          "source": "reservoir:return",
+          "target": "reservoir:inlet",
+          "type": "declared_return",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "reservoir:route",
+          "entity_ids": [
+            "reservoir:inlet",
+            "reservoir:buffer",
+            "reservoir:valve",
+            "reservoir:outlet",
+            "reservoir:return"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/reservoir",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "reservoir:profile",
+      "possible": [
+        "reservoir:return"
+      ],
+      "preferred": [
+        "reservoir:inlet"
+      ],
+      "required": [
+        "reservoir:buffer"
+      ],
+      "semantics": {
+        "domain_label": "reservoir",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "reservoir:route",
+    "candidate_id": "reservoir:candidate",
+    "review_key": "reservoir.declared_mode",
+    "unit": "declared_mass",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "chair",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-chair",
+      "regions": [
+        {
+          "id": "chair:region0"
+        }
+      ],
+      "entities": [
+        {
+          "id": "chair:seat",
+          "region_id": "chair:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "seat",
+            "measurement": null
+          }
+        },
+        {
+          "id": "chair:leg",
+          "region_id": "chair:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "leg",
+            "measurement": null
+          }
+        },
+        {
+          "id": "chair:floor",
+          "region_id": "chair:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "floor",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "chair:seat",
+          "target": "chair:leg",
+          "type": "declared_attachment",
+          "directed": false
+        },
+        {
+          "source": "chair:leg",
+          "target": "chair:floor",
+          "type": "declared_contact",
+          "directed": false
+        }
+      ],
+      "routes": [
+        {
+          "id": "chair:route",
+          "entity_ids": [
+            "chair:seat",
+            "chair:leg",
+            "chair:floor"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/chair",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "chair:profile",
+      "possible": [
+        "chair:floor"
+      ],
+      "preferred": [
+        "chair:seat"
+      ],
+      "required": [
+        "chair:leg"
+      ],
+      "semantics": {
+        "domain_label": "chair",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "chair:route",
+    "candidate_id": "chair:candidate",
+    "review_key": "chair.declared_mode",
+    "unit": "declared_load",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "lamp",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-lamp",
+      "regions": [
+        {
+          "id": "lamp:region0"
+        }
+      ],
+      "entities": [
+        {
+          "id": "lamp:power",
+          "region_id": "lamp:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "power",
+            "measurement": null
+          }
+        },
+        {
+          "id": "lamp:switch",
+          "region_id": "lamp:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "switch",
+            "measurement": null
+          }
+        },
+        {
+          "id": "lamp:bulb",
+          "region_id": "lamp:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "bulb",
+            "measurement": null
+          }
+        },
+        {
+          "id": "lamp:housing",
+          "region_id": "lamp:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "housing",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "lamp:power",
+          "target": "lamp:switch",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "lamp:switch",
+          "target": "lamp:bulb",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "lamp:bulb",
+          "target": "lamp:housing",
+          "type": "declared_attachment",
+          "directed": false
+        }
+      ],
+      "routes": [
+        {
+          "id": "lamp:route",
+          "entity_ids": [
+            "lamp:power",
+            "lamp:switch",
+            "lamp:bulb"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/lamp",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "lamp:profile",
+      "possible": [
+        "lamp:housing"
+      ],
+      "preferred": [
+        "lamp:power"
+      ],
+      "required": [
+        "lamp:switch"
+      ],
+      "semantics": {
+        "domain_label": "lamp",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "lamp:route",
+    "candidate_id": "lamp:candidate",
+    "review_key": "lamp.declared_mode",
+    "unit": "declared_energy",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "vehicle",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-vehicle",
+      "regions": [
+        {
+          "id": "vehicle:region0"
+        },
+        {
+          "id": "vehicle:region1"
+        }
+      ],
+      "entities": [
+        {
+          "id": "vehicle:battery",
+          "region_id": "vehicle:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "battery",
+            "measurement": null
+          }
+        },
+        {
+          "id": "vehicle:controller",
+          "region_id": "vehicle:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "controller",
+            "measurement": null
+          }
+        },
+        {
+          "id": "vehicle:motor",
+          "region_id": "vehicle:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "motor",
+            "measurement": null
+          }
+        },
+        {
+          "id": "vehicle:axle",
+          "region_id": "vehicle:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "axle",
+            "measurement": null
+          }
+        },
+        {
+          "id": "vehicle:wheel",
+          "region_id": "vehicle:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "wheel",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "vehicle:battery",
+          "target": "vehicle:controller",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "vehicle:controller",
+          "target": "vehicle:motor",
+          "type": "declared_connection",
+          "directed": true
+        },
+        {
+          "source": "vehicle:motor",
+          "target": "vehicle:axle",
+          "type": "declared_coupling",
+          "directed": true
+        },
+        {
+          "source": "vehicle:axle",
+          "target": "vehicle:wheel",
+          "type": "declared_coupling",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "vehicle:route",
+          "entity_ids": [
+            "vehicle:battery",
+            "vehicle:controller",
+            "vehicle:motor",
+            "vehicle:axle",
+            "vehicle:wheel"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/vehicle",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "vehicle:profile",
+      "possible": [
+        "vehicle:wheel"
+      ],
+      "preferred": [
+        "vehicle:battery"
+      ],
+      "required": [
+        "vehicle:controller"
+      ],
+      "semantics": {
+        "domain_label": "vehicle",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "vehicle:route",
+    "candidate_id": "vehicle:candidate",
+    "review_key": "vehicle.declared_mode",
+    "unit": "declared_energy",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "garment",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-garment",
+      "regions": [
+        {
+          "id": "garment:region0"
+        }
+      ],
+      "entities": [
+        {
+          "id": "garment:panel",
+          "region_id": "garment:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "panel",
+            "measurement": null
+          }
+        },
+        {
+          "id": "garment:fastener",
+          "region_id": "garment:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "fastener",
+            "measurement": null
+          }
+        },
+        {
+          "id": "garment:seam",
+          "region_id": "garment:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "seam",
+            "measurement": null
+          }
+        },
+        {
+          "id": "garment:hem",
+          "region_id": "garment:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "hem",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "garment:panel",
+          "target": "garment:fastener",
+          "type": "declared_attachment",
+          "directed": false
+        },
+        {
+          "source": "garment:panel",
+          "target": "garment:seam",
+          "type": "declared_attachment",
+          "directed": false
+        },
+        {
+          "source": "garment:panel",
+          "target": "garment:hem",
+          "type": "declared_attachment",
+          "directed": false
+        }
+      ],
+      "routes": [
+        {
+          "id": "garment:route",
+          "entity_ids": [
+            "garment:fastener",
+            "garment:panel",
+            "garment:hem"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/garment",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "garment:profile",
+      "possible": [
+        "garment:hem"
+      ],
+      "preferred": [
+        "garment:panel"
+      ],
+      "required": [
+        "garment:fastener"
+      ],
+      "semantics": {
+        "domain_label": "garment",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "garment:route",
+    "candidate_id": "garment:candidate",
+    "review_key": "garment.declared_mode",
+    "unit": "declared_material",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "mechanical_assembly",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-mechanical_assembly",
+      "regions": [
+        {
+          "id": "mechanical_assembly:region0"
+        },
+        {
+          "id": "mechanical_assembly:region1"
+        },
+        {
+          "id": "mechanical_assembly:region2"
+        }
+      ],
+      "entities": [
+        {
+          "id": "mechanical_assembly:crank",
+          "region_id": "mechanical_assembly:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "crank",
+            "measurement": null
+          }
+        },
+        {
+          "id": "mechanical_assembly:shaft",
+          "region_id": "mechanical_assembly:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "shaft",
+            "measurement": null
+          }
+        },
+        {
+          "id": "mechanical_assembly:gear_A",
+          "region_id": "mechanical_assembly:region2",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "gear_A",
+            "measurement": null
+          }
+        },
+        {
+          "id": "mechanical_assembly:gear_B",
+          "region_id": "mechanical_assembly:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "gear_B",
+            "measurement": null
+          }
+        },
+        {
+          "id": "mechanical_assembly:bracket",
+          "region_id": "mechanical_assembly:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "bracket",
+            "measurement": null
+          }
+        },
+        {
+          "id": "mechanical_assembly:output",
+          "region_id": "mechanical_assembly:region2",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "output",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "mechanical_assembly:crank",
+          "target": "mechanical_assembly:shaft",
+          "type": "declared_coupling",
+          "directed": true
+        },
+        {
+          "source": "mechanical_assembly:shaft",
+          "target": "mechanical_assembly:gear_A",
+          "type": "declared_coupling",
+          "directed": true
+        },
+        {
+          "source": "mechanical_assembly:gear_A",
+          "target": "mechanical_assembly:gear_B",
+          "type": "declared_coupling",
+          "directed": true
+        },
+        {
+          "source": "mechanical_assembly:gear_B",
+          "target": "mechanical_assembly:crank",
+          "type": "declared_return",
+          "directed": true
+        },
+        {
+          "source": "mechanical_assembly:shaft",
+          "target": "mechanical_assembly:bracket",
+          "type": "declared_attachment",
+          "directed": false
+        },
+        {
+          "source": "mechanical_assembly:gear_B",
+          "target": "mechanical_assembly:output",
+          "type": "declared_coupling",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "mechanical_assembly:route",
+          "entity_ids": [
+            "mechanical_assembly:crank",
+            "mechanical_assembly:shaft",
+            "mechanical_assembly:gear_A",
+            "mechanical_assembly:gear_B",
+            "mechanical_assembly:output"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/mechanical_assembly",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "mechanical_assembly:profile",
+      "possible": [
+        "mechanical_assembly:output"
+      ],
+      "preferred": [
+        "mechanical_assembly:crank"
+      ],
+      "required": [
+        "mechanical_assembly:shaft"
+      ],
+      "semantics": {
+        "domain_label": "mechanical_assembly",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "mechanical_assembly:route",
+    "candidate_id": "mechanical_assembly:candidate",
+    "review_key": "mechanical_assembly.declared_mode",
+    "unit": "declared_energy",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "abstract_workflow",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-abstract_workflow",
+      "regions": [
+        {
+          "id": "abstract_workflow:region0"
+        }
+      ],
+      "entities": [
+        {
+          "id": "abstract_workflow:request",
+          "region_id": "abstract_workflow:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "request",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_workflow:review",
+          "region_id": "abstract_workflow:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "review",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_workflow:archive",
+          "region_id": "abstract_workflow:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "archive",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_workflow:publication",
+          "region_id": "abstract_workflow:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "publication",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_workflow:rejected",
+          "region_id": "abstract_workflow:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "rejected",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "abstract_workflow:request",
+          "target": "abstract_workflow:review",
+          "type": "declared_next",
+          "directed": true
+        },
+        {
+          "source": "abstract_workflow:review",
+          "target": "abstract_workflow:archive",
+          "type": "declared_next",
+          "directed": true
+        },
+        {
+          "source": "abstract_workflow:archive",
+          "target": "abstract_workflow:publication",
+          "type": "declared_next",
+          "directed": true
+        },
+        {
+          "source": "abstract_workflow:review",
+          "target": "abstract_workflow:rejected",
+          "type": "declared_alternative",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "abstract_workflow:route",
+          "entity_ids": [
+            "abstract_workflow:request",
+            "abstract_workflow:review",
+            "abstract_workflow:archive",
+            "abstract_workflow:publication"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/abstract_workflow",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "abstract_workflow:profile",
+      "possible": [
+        "abstract_workflow:rejected"
+      ],
+      "preferred": [
+        "abstract_workflow:request"
+      ],
+      "required": [
+        "abstract_workflow:review"
+      ],
+      "semantics": {
+        "domain_label": "abstract_workflow",
+        "interpretation": "declarations, not solver rules"
+      }
+    },
+    "route_id": "abstract_workflow:route",
+    "candidate_id": "abstract_workflow:candidate",
+    "review_key": "abstract_workflow.declared_mode",
+    "unit": "declared_items",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic representation; no measurements or domain-specific physics."
+  },
+  {
+    "id": "abstract_character_rig",
+    "spec": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "synthetic-domain-abstract_character_rig",
+      "regions": [
+        {
+          "id": "abstract_character_rig:region0"
+        },
+        {
+          "id": "abstract_character_rig:region1"
+        }
+      ],
+      "entities": [
+        {
+          "id": "abstract_character_rig:controller",
+          "region_id": "abstract_character_rig:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "controller",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_character_rig:root",
+          "region_id": "abstract_character_rig:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "root",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_character_rig:left_branch",
+          "region_id": "abstract_character_rig:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "left_branch",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_character_rig:right_branch",
+          "region_id": "abstract_character_rig:region1",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "right_branch",
+            "measurement": null
+          }
+        },
+        {
+          "id": "abstract_character_rig:sensor",
+          "region_id": "abstract_character_rig:region0",
+          "coordinates": {
+            "x": null,
+            "y": null
+          },
+          "attributes": {
+            "role_label": "sensor",
+            "measurement": null
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "abstract_character_rig:controller",
+          "target": "abstract_character_rig:root",
+          "type": "declared_rig_link",
+          "directed": true
+        },
+        {
+          "source": "abstract_character_rig:root",
+          "target": "abstract_character_rig:left_branch",
+          "type": "declared_rig_link",
+          "directed": true
+        },
+        {
+          "source": "abstract_character_rig:root",
+          "target": "abstract_character_rig:right_branch",
+          "type": "declared_rig_link",
+          "directed": true
+        },
+        {
+          "source": "abstract_character_rig:root",
+          "target": "abstract_character_rig:sensor",
+          "type": "declared_rig_link",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "abstract_character_rig:route",
+          "entity_ids": [
+            "abstract_character_rig:controller",
+            "abstract_character_rig:root",
+            "abstract_character_rig:left_branch"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle",
+        "quantity": null
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic/abstract_character_rig",
+          "digest": null
+        }
+      ]
+    },
+    "profile": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "abstract_character_rig:profile",
+      "possible": [
+        "abstract_character_rig:sensor"
+      ],
+      "preferred": [
+        "abstract_character_rig:controller"
+      ],
+      "required": [
+        "abstract_character_rig:root"
+      ],
+      "semantics": {
+        "domain_label": "abstract_character_rig",
+        "interpretation": "neutral synthetic rig declarations; no character canon or animation solver"
+      }
+    },
+    "route_id": "abstract_character_rig:route",
+    "candidate_id": "abstract_character_rig:candidate",
+    "review_key": "abstract_character_rig.declared_mode",
+    "unit": "declared_commands",
+    "budget": {
+      "input": 10,
+      "stored": 4,
+      "other": 6
+    },
+    "scope": "Synthetic neutral abstract-character graph; no appearance, animation, embodiment or physical inference."
+  }
+]

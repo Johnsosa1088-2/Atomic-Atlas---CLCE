@@ -1,0 +1,227 @@
+{"status": "PASS", "inventoried_files": 159, "document_links": 9, "capability_evidence_paths": 13}
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.139s
+
+OK
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.071s
+
+OK
+{"result": "PASS", "frozen_files": 43, "core_harness_schemas_wheel_unchanged": true}
+{"result": "PASS", "frozen_files": 43, "core_harness_schemas_wheel_unchanged": true}
+{"result": "PASS", "frozen_files": 43, "core_harness_schemas_wheel_unchanged": true}
+.................................................................        [100%]
+65 passed in 0.77s
+{
+  "result": "PASS",
+  "controls": [
+    {
+      "control": "connection_to_flow",
+      "result": "DETECTED",
+      "failing_cases": 4,
+      "mutated_source": "core/src/atomic_atlas_core/analysis.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "correlation_to_state",
+      "result": "DETECTED",
+      "failing_cases": 2,
+      "mutated_source": "core/src/atomic_atlas_core/model.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "label_to_mechanism",
+      "result": "DETECTED",
+      "failing_cases": 10,
+      "mutated_source": "core/src/atomic_atlas_core/analysis.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "candidate_to_validated",
+      "result": "DETECTED",
+      "failing_cases": 5,
+      "mutated_source": "core/src/atomic_atlas_core/model.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "replay_to_evidence",
+      "result": "DETECTED",
+      "failing_cases": 2,
+      "mutated_source": "core/src/atomic_atlas_core/runtime.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "review_to_verified",
+      "result": "DETECTED",
+      "failing_cases": 6,
+      "mutated_source": "proposal_harness/harness.py",
+      "scope": "temporary copy only"
+    }
+  ],
+  "source_files_unchanged": true,
+  "source_file_hashes": {
+    "core/src/atomic_atlas_core/analysis.py": "ba2f0198cdf5f409172db3083f79f211d107c5884e3770135b3100bc35137b01",
+    "core/src/atomic_atlas_core/model.py": "d15d42814193180299847876f6ab945d59822bc3474571ec06ba23ca9d8b4739",
+    "core/src/atomic_atlas_core/runtime.py": "4ad7646b2e557b96d9006015aa774c65fde1955e387fdfe9989528a8840deecd",
+    "proposal_harness/harness.py": "fa947c388499e1d2b6660173137c8eaa13b741879a439ee3c3b3d442781e58d9"
+  },
+  "limits": "These six seeded controls demonstrate targeted detection, not exhaustive mutation coverage or semantic truth recognition."
+}
+.........................................                                [100%]
+41 passed in 0.52s
+{
+  "result": "PASS",
+  "cases": [
+    "proposal isolation",
+    "explicit acceptance",
+    "conflict blocking",
+    "explicit rejection",
+    "linked correction",
+    "uncertainty blocking",
+    "source-attributed rejection",
+    "ledger reconstruction"
+  ],
+  "final_claim": {
+    "claim_id": "p3",
+    "value": 12,
+    "source": {
+      "id": "8b07c6851ee17e032a46d450e92155b1f89366099b2fa16d18189070854f7fe1",
+      "locator": "synthetic/manual-B",
+      "text": "Synthetic correction: valve setting is 12; unit not supplied.",
+      "digest": "79e50be874b6a159dc4d8ad47de56e1e99b8eff7cfb749a8c768e835aa4c4d3c"
+    },
+    "summary": "Synthetic manual reports setting 12; unit remains unspecified.",
+    "summary_kind": "SUMMARY",
+    "truth_status": "ACCEPTED_DECLARATION",
+    "supersedes": "p1"
+  },
+  "event_count": 2,
+  "ledger_count": 10,
+  "ledger_head": "bca1775a62ada9e4751a3a73b867ab7aeddb4c2a7ed3529b9c0f49b7153a568c",
+  "state_digest": "6aff04b996ec8eba4fbe339b08549439af41f20f5465df489b9a3fdd592c0dbb",
+  "scope": "Synthetic manual proposals, no LLM extraction or factual truth verification."
+}
+........................................................................ [ 58%]
+...................................................                      [100%]
+123 passed in 0.22s
+{
+  "case_count": 5097,
+  "supplied_fixture_count": 35,
+  "generated_mutation_count": 5062,
+  "classification_counts": {
+    "PASS": 1020,
+    "REJECT": 4077
+  },
+  "by_schema": {
+    "build-spec": 635,
+    "document": 1173,
+    "topology": 767,
+    "entity": 181,
+    "relation": 178,
+    "candidate-overlay": 408,
+    "observation": 180,
+    "state-snapshot": 929,
+    "replay-manifest": 196,
+    "neutral-profile": 181,
+    "event": 163,
+    "provenance": 106
+  },
+  "disagreements": [],
+  "expectation_failures": []
+}
+{"runner": "stdlib compatibility harness; NOT pytest", "passed": 55, "failed": 0, "skipped_files": [{"file": "test_adversarial_release.py", "reason": "parameterized release tests require real pytest; run python -m pytest -q"}, {"file": "test_step7_boundaries.py", "reason": "parameterized release tests require real pytest; run python -m pytest -q"}]}
+{"result": "PASS", "process": "fresh Python subprocess", "recovered": {"source": "27c7d8428f5b170d7b93244c55b363095e2d43ad5018cb11f5c6290b1e590086", "topology": "c070a93c0bde02bcd02d8b01f09e4dc41001cde65a42d75fe360772efba9af22", "state": "a3c3ea156fadab9a4b80dce07d3d03de6814bab0716ff349fd88c872569de8a9", "ledger_head": "fc607d3c83bb7baca0d3d2a2b8bcc43dacb62d723fba88a615793e6170cd547f", "event_count": 1}, "declared_event_replay": "PASS", "full_dynamic_replay": false, "language_model_recall_tested": false, "source_bytes_used": "clean release project 007 / core 0.0.5.dev1"}
+ATLAS EXAMPLE A — SOFT ROBOTIC FINGER PUBLIC TEST 002
+==============================================================
+[PASS] example identity
+[PASS] core integration remains untested
+[PASS] physical validation remains false
+[PASS] material remains profile-level and vendor-neutral
+[PASS] required regions present
+[PASS] required entities present
+[PASS] required states present
+[PASS] required events present
+[PASS] neutral budgets present
+[PASS] declared topological route preserved
+[PASS] declared SVG grouping vocabulary present
+[PASS] connection != physical flow
+[PASS] budget arithmetic != physical mechanics
+[PASS] material choice remains outside neutral core
+[PASS] image reference != validated geometry
+[PASS] image asset present
+[PASS] manifest file hashes
+[PASS] interactive HTML present
+[PASS] four SVG fluid pockets present
+[PASS] feeler tip SVG group present
+[PASS] interactive action controls present
+[PASS] self-contained SVG/JS demo contract
+[PASS] four nested bend joints present
+[PASS] four bend guide lines present
+[PASS] four bend-limit arcs present
+[PASS] auto/manual bend controls present
+[PASS] bend-limit edge coloring present
+[PASS] limit utilization readout present
+--------------------------------------------------------------
+RESULT: 28/28 checks passed
+[PASS] Example A satisfies its declared neutral public-test contract.
+NOTE: This does not validate real pneumatic, elastomer, pressure, or contact physics.
+test_cross_origin_write_is_rejected (test_http.HTTPTests.test_cross_origin_write_is_rejected) ... ok
+test_database_file_is_not_exposed_as_a_route (test_http.HTTPTests.test_database_file_is_not_exposed_as_a_route) ... ok
+test_real_http_trace_is_persistent_and_exportable (test_http.HTTPTests.test_real_http_trace_is_persistent_and_exportable) ... ok
+test_served_page_matches_standalone_bytes (test_http.HTTPTests.test_served_page_matches_standalone_bytes) ... ok
+test_hash_verifier_detects_tampering_even_without_triggers (test_provenance.ProvenanceTests.test_hash_verifier_detects_tampering_even_without_triggers) ... ok
+test_repeated_source_import_is_idempotent (test_provenance.ProvenanceTests.test_repeated_source_import_is_idempotent) ... ok
+test_restart_preserves_event_and_hash_anchor (test_provenance.ProvenanceTests.test_restart_preserves_event_and_hash_anchor) ... ok
+test_source_hashes_match_actual_bytes (test_provenance.ProvenanceTests.test_source_hashes_match_actual_bytes) ... ok
+test_sql_rejects_event_update_and_delete (test_provenance.ProvenanceTests.test_sql_rejects_event_update_and_delete) ... ok
+test_sql_rejects_source_update_and_delete (test_provenance.ProvenanceTests.test_sql_rejects_source_update_and_delete) ... ok
+test_synthetic_corpus_has_no_private_source_links (test_provenance.ProvenanceTests.test_synthetic_corpus_has_no_private_source_links) ... ok
+test_unsupported_event_is_not_recorded (test_provenance.ProvenanceTests.test_unsupported_event_is_not_recorded) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 2.035s
+
+OK
+PASS both retrievers respect the same character cap
+PASS no source identifier is fabricated
+PASS unknown query yields no fake supporting evidence
+PASS Atlas includes unresolved response law for reservoir question
+PASS missing formula is carried as incomplete
+PASS selected evidence includes source anchor and uncertainty instructions
+PASS same inputs reproduce selected context exactly
+{"tests_passed":7}
+{"runtime":"Node VM with minimal DOM fixture","interaction_checks_passed":10,"real_browser_layout_tested":false}
+✔ SHA256 portable implementation matches independent Node crypto (6.195318ms)
+✔ canonical JSON is independent of key insertion order (0.303217ms)
+✔ initial cold null has no transfers without heating (4.009619ms)
+✔ default loop circulates with explicit positive heat input/output (3.655487ms)
+✔ mass and energy conserved across parameter extremes and interventions (663.093224ms)
+✔ cut return edge reduces returned inventory, not total mass (4.555823ms)
+✔ sham pair matches all states exactly (5.380818ms)
+✔ zero baseline reports relative change as undefined (2.881586ms)
+✔ paired runs identical before frozen intervention boundary (4.158047ms)
+✔ comparison does not mutate input parameters (4.727896ms)
+✔ invalid controls and timestep rejected (0.605812ms)
+✔ append-only receipt hashes/order and altered content detection (1.005612ms)
+✔ replay recovers controls, transfers and multiple runs exactly (14.898818ms)
+✔ rehashed impossible state fails deterministic replay (1.060322ms)
+✔ UI boots empty without overwriting history; step and config are replayable (5.912172ms)
+✔ UI paired comparison chart and receipt are created (8.777293ms)
+✔ UI new run retains prefix and restored session matches (3.529711ms)
+✔ UI corrupt saved history is locked and not overwritten (2.784894ms)
+✔ UI rejects concurrent tab overwrite (1.785791ms)
+✔ UI replay pauses and returns to live without changing model (2.729412ms)
+✔ continuous replay reconstructs intermediate ticks without changing receipts (0.934978ms)
+✔ UI within-checkpoint replay reconstructs rather than interpolates (2.014228ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 835.514413
+{"result": "PASS", "frozen_files": 43, "core_harness_schemas_wheel_unchanged": true}
+Candidate integrity and full available release check suites passed. Wheel isolation is separately reproducible; Windows/browser remain untested.

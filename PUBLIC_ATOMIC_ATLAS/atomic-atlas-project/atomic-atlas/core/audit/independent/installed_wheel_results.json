@@ -1,0 +1,20 @@
+{
+  "installed_version": "0.0.5.dev1",
+  "schema_count": 12,
+  "schema_byte_hashes": {
+    "build-spec.schema.json": "bb3df8bd9da964bb30fcaa8e7f30c6a64eae75a0cf4476a29554b57c3c3dba65",
+    "candidate-overlay.schema.json": "0498080799a537077b5de0b4c034e3e8e70b26f9040f39ae2482cd67c1417656",
+    "document.schema.json": "9747cedca8e27007dcbdb4b5d8c175b822832f1a7a3a72a7693d576e05389cf2",
+    "entity.schema.json": "32745046e847252f7c13c6f95154fd4e642ee968c9cfd7178549f3fcff29f2fc",
+    "event.schema.json": "d008d6a6978f942ff9b4b4134fce629c091b5c86baa87f12039bc9de770a8c8b",
+    "neutral-profile.schema.json": "c884d7be17df5eb0a2f3b6b72e766b8dedc8b97dd88ccfbb0196e5f794e1fdb0",
+    "observation.schema.json": "5aa1b900267d59d78ffccc6682de3578fdcb8c340379fb3a9b8d27e424248654",
+    "provenance.schema.json": "4c990b8877cf0752f123e238a65f7f8ae0157a056b2c725d1145a35971974cf8",
+    "relation.schema.json": "59b7fbcf921ce5b2588d4362c2d57bf6fbc0fcddbb6b6d61797d4a5411eb92ba",
+    "replay-manifest.schema.json": "116e1414ce1e6f111c0b92dc83a33612bb5fe043034e92c68b4bbfbb9f32a838",
+    "state-snapshot.schema.json": "0a64f1181d8b0f3301255cdf47c88abc17f0dff6110c40729cab9d7a8af382ff",
+    "topology.schema.json": "ce94965a45d57d04d8c9ec4ad68647848cab8c8d71a41de99c4ca05d980b4cc9"
+  },
+  "source_tree_isolation": "PASS (-I, wheel-only venv)",
+  "build_validate_event_replay_save_load": "PASS"
+}

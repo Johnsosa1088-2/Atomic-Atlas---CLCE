@@ -1,0 +1,237 @@
+{
+  "runner": "stdlib compatibility harness; NOT pytest",
+  "passed": 55,
+  "failed": 0,
+  "skipped_files": [
+    {
+      "file": "test_adversarial_release.py",
+      "reason": "parameterized release tests require real pytest; run python -m pytest -q"
+    },
+    {
+      "file": "test_step7_boundaries.py",
+      "reason": "parameterized release tests require real pytest; run python -m pytest -q"
+    }
+  ],
+  "results": [
+    {
+      "test": "test_build_validate_and_roundtrip",
+      "result": "PASS"
+    },
+    {
+      "test": "test_candidate_overlay_does_not_change_state_digest",
+      "result": "PASS"
+    },
+    {
+      "test": "test_declared_event_replay_reproduces_runtime_state",
+      "result": "PASS"
+    },
+    {
+      "test": "test_explicit_event_is_only_runtime_state_mutator",
+      "result": "PASS"
+    },
+    {
+      "test": "test_jsonl_ledger_detects_tampering",
+      "result": "PASS"
+    },
+    {
+      "test": "test_manifest_does_not_claim_full_dynamic_replay",
+      "result": "PASS"
+    },
+    {
+      "test": "test_profile_categories_are_independent_p10",
+      "result": "PASS"
+    },
+    {
+      "test": "test_save_is_blocked_on_mismatched_lineage",
+      "result": "PASS"
+    },
+    {
+      "test": "test_serialized_event_sequence_gap_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "test": "test_budget_preview_only_establishes_arithmetic",
+      "result": "PASS"
+    },
+    {
+      "test": "test_candidate_overlay_stays_isolated_and_nontransporting",
+      "result": "PASS"
+    },
+    {
+      "test": "test_candidate_transport_is_rejected",
+      "result": "PASS"
+    },
+    {
+      "test": "test_digest_is_deterministic_content_fingerprint",
+      "result": "PASS"
+    },
+    {
+      "test": "test_interpretation_aliases_are_reversible_one_to_one",
+      "result": "PASS"
+    },
+    {
+      "test": "test_observation_cannot_mutate_state",
+      "result": "PASS"
+    },
+    {
+      "test": "test_profile_semantics_are_not_required_by_core",
+      "result": "PASS"
+    },
+    {
+      "test": "test_relation_does_not_imply_transport",
+      "result": "PASS"
+    },
+    {
+      "test": "test_replay_scope_must_be_explicit_for_full_dynamic",
+      "result": "PASS"
+    },
+    {
+      "test": "test_restart_guard_blocks_overwrite_until_explicit_reset",
+      "result": "PASS"
+    },
+    {
+      "test": "test_snapshot_excludes_candidate_overlays_and_observations_from_established_state",
+      "result": "PASS"
+    },
+    {
+      "test": "test_trace_gate_holds_without_mutation",
+      "result": "PASS"
+    },
+    {
+      "test": "test_trace_is_read_only",
+      "result": "PASS"
+    },
+    {
+      "test": "test_unknown_coordinates_remain_none",
+      "result": "PASS"
+    },
+    {
+      "test": "test_event_gap_rejected",
+      "result": "PASS"
+    },
+    {
+      "test": "test_events_are_ordered",
+      "result": "PASS"
+    },
+    {
+      "test": "test_constructor_state_and_direct_event_input_are_copied",
+      "result": "PASS"
+    },
+    {
+      "test": "test_explicit_reset_accepts_new_lineage",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f01_fresh_guard_checks_before_touching_destination",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f01_loaded_blocked_guard_remains_attached",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f02_input_returned_event_and_state_are_independent",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f03_failed_state_write_keeps_state_event_and_identity",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f04_direction_reversibility_and_candidate_exclusion",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f05_candidate_references_accept_established_and_same_overlay",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f05_rejects_unknown_shadow_duplicate_and_cross_overlay_references",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f06_fsync_failure_rolls_back_file_and_runtime",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f06_lock_excludes_another_process",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f06_stale_writer_is_rejected_without_corrupting_bytes",
+      "result": "PASS"
+    },
+    {
+      "test": "test_f07_dirty_baseline_rejected_without_modifying_baseline",
+      "result": "PASS"
+    },
+    {
+      "test": "test_failed_observation_and_overlay_writes_are_unpublished",
+      "result": "PASS"
+    },
+    {
+      "test": "test_import_export_and_snapshot_do_not_leak_nested_state_references",
+      "result": "PASS"
+    },
+    {
+      "test": "test_incomplete_tail_rejected_without_modifying_file",
+      "result": "PASS"
+    },
+    {
+      "test": "test_invalid_patch_does_not_partially_update_state",
+      "result": "PASS"
+    },
+    {
+      "test": "test_rejected_candidate_integrity_is_checked_on_loaded_document",
+      "result": "PASS"
+    },
+    {
+      "test": "test_replay_clean_baseline_recovers_state_and_preserves_inputs",
+      "result": "PASS"
+    },
+    {
+      "test": "test_successful_event_keeps_original_atlas_identity",
+      "result": "PASS"
+    },
+    {
+      "test": "test_all_valid_fixtures",
+      "result": "PASS"
+    },
+    {
+      "test": "test_dictionary_key_mismatch_is_semantic_error",
+      "result": "PASS"
+    },
+    {
+      "test": "test_invalid_fixture_classification_and_model_rejection",
+      "result": "PASS"
+    },
+    {
+      "test": "test_missing_coordinate_and_measurement_remain_unknown",
+      "result": "PASS"
+    },
+    {
+      "test": "test_nonfinite_and_nonjson_values_rejected",
+      "result": "PASS"
+    },
+    {
+      "test": "test_runtime_rejects_invalid_patch_without_mutation",
+      "result": "PASS"
+    },
+    {
+      "test": "test_schema_copies_are_identical",
+      "result": "PASS"
+    },
+    {
+      "test": "test_subset_validator_rejects_unsupported_schema_keywords",
+      "result": "PASS"
+    },
+    {
+      "test": "test_two_domains_use_unchanged_build_schema_and_replay",
+      "result": "PASS"
+    },
+    {
+      "test": "test_unsupported_replay_scope_rejected",
+      "result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Checkpoint 011 checks performed on Linux, not native Windows.
+python3 step10/test_inventory.py
+Ran 7 tests: OK.
+Includes PureWindowsPath separator regression, rejection of core/venv,
+rejection of project-root log, and prior unchanged/extra/missing/changed checks.
+python3 step8/check_source_freeze.py
+PASS: 43 frozen files, core/harness/schemas/wheel unchanged.
+Full runtime suites not rerun; historical 010 outputs retained.
+Native Windows run awaiting user evidence.

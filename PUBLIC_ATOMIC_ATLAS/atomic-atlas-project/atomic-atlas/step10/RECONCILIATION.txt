@@ -1,0 +1,7 @@
+Checkpoint 010 reconciles the user-supplied 008 assembly with the three standalone guides. The Step 9 capability register and gate records are now present; guide applicability labels match this assembly; stale harness wording is corrected. Original 008 metadata is retained under history/checkpoint008. The original user upload is unchanged.
+
+The nested aspirational ZIP is excluded from this candidate. No private conversation ledger or canonical character asset was introduced. Core/harness implementations, schemas, wheel and core build metadata retain all 43 frozen anchors.
+
+Fresh Linux full-suite checks passed for the reconciled candidate. Exact inventory, nine Markdown links and thirteen capability evidence paths pass. Four inventory tests include an unchanged-candidate positive control and extra/missing/modified-file negative controls. The included wheel was separately tested in a new wheel-only environment earlier in this Step 10 inspection and is unchanged here.
+
+No final README, blanket example license, invented author/DOI or publication approval was added. Windows, real-browser checks, external review, example/asset license scope, owner-selected citation/attribution and release-version selection remain open. See RELEASE_STATUS.json and METADATA_STATUS.json. This checkpoint is a local release candidate, not a completed public release.

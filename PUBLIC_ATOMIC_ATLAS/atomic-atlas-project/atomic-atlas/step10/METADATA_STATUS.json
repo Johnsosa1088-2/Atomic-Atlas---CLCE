@@ -1,0 +1,14 @@
+{
+  "title": "Atomic Atlas",
+  "core_version": "0.0.5.dev1",
+  "harness_version": "0.1",
+  "package_checkpoint": "010",
+  "core_and_harness_license_notice": "MIT: Atomic Atlas Public Extraction contributors",
+  "example_asset_license": "UNRESOLVED",
+  "public_author_attribution": "OWNER_DECISION_PENDING",
+  "repository_url": null,
+  "doi": null,
+  "orcid": null,
+  "release_date": null,
+  "citation_status": "NOT_FINAL_NO_CITATION_FILE_FABRICATED"
+}

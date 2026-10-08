@@ -1,0 +1,826 @@
+[
+  {
+    "schema": "build-spec",
+    "label": "misspelled top-level field",
+    "value": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "fixture-v1",
+      "regions": [
+        {
+          "id": "bench"
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir",
+          "region_id": "bench",
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          }
+        },
+        {
+          "id": "valve",
+          "region_id": "bench"
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "valve",
+          "type": "declared_connection",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "route",
+          "entity_ids": [
+            "reservoir",
+            "valve"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle"
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic fixture",
+          "digest": null
+        }
+      ],
+      "entitites": []
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "build-spec",
+    "label": "string entity entry",
+    "value": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "fixture-v1",
+      "regions": [
+        {
+          "id": "bench"
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir",
+          "region_id": "bench",
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          }
+        },
+        {
+          "id": "valve",
+          "region_id": "bench"
+        },
+        "bad"
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "valve",
+          "type": "declared_connection",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "route",
+          "entity_ids": [
+            "reservoir",
+            "valve"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle"
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic fixture",
+          "digest": null
+        }
+      ]
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "build-spec",
+    "label": "unknown endpoint requires model integrity",
+    "value": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "fixture-v1",
+      "regions": [
+        {
+          "id": "bench"
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir",
+          "region_id": "bench",
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          }
+        },
+        {
+          "id": "valve",
+          "region_id": "bench"
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "missing",
+          "type": "declared_connection",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "route",
+          "entity_ids": [
+            "reservoir",
+            "valve"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle"
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic fixture",
+          "digest": null
+        }
+      ]
+    },
+    "structural_result": "PASS",
+    "semantic_result": "REJECT"
+  },
+  {
+    "schema": "build-spec",
+    "label": "duplicate entity IDs require model integrity",
+    "value": {
+      "schema": "ATLAS_BUILD_SPEC/0.1",
+      "version": "fixture-v1",
+      "regions": [
+        {
+          "id": "bench"
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir",
+          "region_id": "bench",
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          }
+        },
+        {
+          "id": "valve",
+          "region_id": "bench"
+        },
+        {
+          "id": "reservoir",
+          "region_id": "bench",
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "valve",
+          "type": "declared_connection",
+          "directed": true
+        }
+      ],
+      "routes": [
+        {
+          "id": "route",
+          "entity_ids": [
+            "reservoir",
+            "valve"
+          ]
+        }
+      ],
+      "initial_state": {
+        "mode": "idle"
+      },
+      "provenance": [
+        {
+          "source_id": "synthetic fixture",
+          "digest": null
+        }
+      ]
+    },
+    "structural_result": "PASS",
+    "semantic_result": "REJECT"
+  },
+  {
+    "schema": "entity",
+    "label": "legacy region field is not silently migrated",
+    "value": {
+      "id": "reservoir",
+      "type": null,
+      "region_id": "bench",
+      "coordinates": null,
+      "attributes": {
+        "quantity": {
+          "value": null,
+          "unit": "kg"
+        }
+      },
+      "candidate": false,
+      "region": "bench"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "entity",
+    "label": "boolean coordinate is not a number",
+    "value": {
+      "id": "reservoir",
+      "type": null,
+      "region_id": "bench",
+      "coordinates": {
+        "x": true
+      },
+      "attributes": {
+        "quantity": {
+          "value": null,
+          "unit": "kg"
+        }
+      },
+      "candidate": false
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "relation",
+    "label": "legacy from field rejected",
+    "value": {
+      "source": "reservoir",
+      "target": "valve",
+      "type": "declared_connection",
+      "directed": true,
+      "reversible": null,
+      "transport_enabled": false,
+      "state_mutation_enabled": false,
+      "attributes": {},
+      "candidate": false,
+      "from": "reservoir"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "relation",
+    "label": "text transport flag rejected",
+    "value": {
+      "source": "reservoir",
+      "target": "valve",
+      "type": "declared_connection",
+      "directed": true,
+      "reversible": null,
+      "transport_enabled": "false",
+      "state_mutation_enabled": false,
+      "attributes": {},
+      "candidate": false
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "candidate-overlay",
+    "label": "validated status cannot be candidate overlay",
+    "value": {
+      "id": "c",
+      "entities": [
+        {
+          "id": "candidate",
+          "type": null,
+          "region_id": null,
+          "coordinates": null,
+          "attributes": {},
+          "candidate": true
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "candidate",
+          "type": "possible",
+          "directed": false,
+          "reversible": null,
+          "transport_enabled": false,
+          "state_mutation_enabled": false,
+          "attributes": {},
+          "candidate": true
+        }
+      ],
+      "routes": [],
+      "status": "validated"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "candidate-overlay",
+    "label": "candidate must be marked true",
+    "value": {
+      "id": "c",
+      "entities": [
+        {
+          "id": "candidate",
+          "type": null,
+          "region_id": null,
+          "coordinates": null,
+          "attributes": {},
+          "candidate": false
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "candidate",
+          "type": "possible",
+          "directed": false,
+          "reversible": null,
+          "transport_enabled": false,
+          "state_mutation_enabled": false,
+          "attributes": {},
+          "candidate": true
+        }
+      ],
+      "routes": [],
+      "status": "candidate"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "candidate-overlay",
+    "label": "candidate transport prohibited",
+    "value": {
+      "id": "c",
+      "entities": [
+        {
+          "id": "candidate",
+          "type": null,
+          "region_id": null,
+          "coordinates": null,
+          "attributes": {},
+          "candidate": true
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "candidate",
+          "type": "possible",
+          "directed": false,
+          "reversible": null,
+          "transport_enabled": true,
+          "state_mutation_enabled": false,
+          "attributes": {},
+          "candidate": true
+        }
+      ],
+      "routes": [],
+      "status": "candidate"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "observation",
+    "label": "observation cannot mutate state",
+    "value": {
+      "id": "o",
+      "payload": {
+        "rendered_value": 3,
+        "unit": "arbitrary"
+      },
+      "evidence": {
+        "label": "synthetic fixture",
+        "digest": null,
+        "verified": false
+      },
+      "mutates_state": true
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "observation",
+    "label": "absent source rejected",
+    "value": {
+      "id": "o",
+      "payload": {
+        "rendered_value": 3,
+        "unit": "arbitrary"
+      },
+      "evidence": null,
+      "mutates_state": false
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "event",
+    "label": "boolean sequence rejected",
+    "value": {
+      "sequence": true,
+      "type": "operator_declared_change",
+      "payload": {
+        "state_patch": {
+          "set": {
+            "mode": "active"
+          },
+          "delete": []
+        }
+      },
+      "evidence": null
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "event",
+    "label": "empty set key rejected",
+    "value": {
+      "sequence": 1,
+      "type": "operator_declared_change",
+      "payload": {
+        "state_patch": {
+          "set": {
+            "mode": "active",
+            "": 1
+          },
+          "delete": []
+        }
+      },
+      "evidence": null
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "event",
+    "label": "patch typo rejected",
+    "value": {
+      "sequence": 1,
+      "type": "operator_declared_change",
+      "payload": {
+        "state_patch": {
+          "set": {
+            "mode": "active"
+          },
+          "delete": [],
+          "increment": {
+            "x": 1
+          }
+        }
+      },
+      "evidence": null
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "document",
+    "label": "sequence gap requires model integrity",
+    "value": {
+      "schema": "ATLAS_DOCUMENT/0.1",
+      "version": "fixture-v1",
+      "profile_id": null,
+      "state": {
+        "mode": "active"
+      },
+      "regions": [
+        {
+          "id": "bench",
+          "bounds": null,
+          "attributes": {}
+        }
+      ],
+      "entities": [
+        {
+          "id": "reservoir",
+          "type": null,
+          "region_id": "bench",
+          "coordinates": null,
+          "attributes": {
+            "quantity": {
+              "value": null,
+              "unit": "kg"
+            }
+          },
+          "candidate": false
+        },
+        {
+          "id": "valve",
+          "type": null,
+          "region_id": "bench",
+          "coordinates": null,
+          "attributes": {},
+          "candidate": false
+        }
+      ],
+      "relations": [
+        {
+          "source": "reservoir",
+          "target": "valve",
+          "type": "declared_connection",
+          "directed": true,
+          "reversible": null,
+          "transport_enabled": false,
+          "state_mutation_enabled": false,
+          "attributes": {},
+          "candidate": false
+        }
+      ],
+      "routes": [
+        {
+          "id": "route",
+          "entity_ids": [
+            "reservoir",
+            "valve"
+          ],
+          "purpose": null
+        }
+      ],
+      "candidate_overlays": [],
+      "events": [
+        {
+          "sequence": 2,
+          "type": "operator_declared_change",
+          "payload": {
+            "state_patch": {
+              "set": {
+                "mode": "active"
+              },
+              "delete": []
+            }
+          },
+          "evidence": null
+        }
+      ],
+      "observations": [],
+      "provenance": [
+        {
+          "source_id": "synthetic fixture",
+          "version": null,
+          "digest": null,
+          "ancestor_id": null,
+          "transform": null
+        }
+      ]
+    },
+    "structural_result": "PASS",
+    "semantic_result": "REJECT"
+  },
+  {
+    "schema": "state-snapshot",
+    "label": "negative event count",
+    "value": {
+      "schema": "ATLAS_STATE/0.1",
+      "state": {
+        "version": "fixture-v1",
+        "profile_id": null,
+        "runtime_state": {
+          "mode": "active"
+        },
+        "regions": {
+          "bench": {
+            "id": "bench",
+            "bounds": null,
+            "attributes": {}
+          }
+        },
+        "entities": {
+          "reservoir": {
+            "id": "reservoir",
+            "type": null,
+            "region_id": "bench",
+            "coordinates": null,
+            "attributes": {
+              "quantity": {
+                "value": null,
+                "unit": "kg"
+              }
+            },
+            "candidate": false
+          },
+          "valve": {
+            "id": "valve",
+            "type": null,
+            "region_id": "bench",
+            "coordinates": null,
+            "attributes": {},
+            "candidate": false
+          }
+        },
+        "relations": [
+          {
+            "source": "reservoir",
+            "target": "valve",
+            "type": "declared_connection",
+            "directed": true,
+            "reversible": null,
+            "transport_enabled": false,
+            "state_mutation_enabled": false,
+            "attributes": {},
+            "candidate": false
+          }
+        ],
+        "routes": {
+          "route": {
+            "id": "route",
+            "entity_ids": [
+              "reservoir",
+              "valve"
+            ],
+            "purpose": null
+          }
+        }
+      },
+      "event_count": -1,
+      "source_digest": "7f78485984cf4c716ead82d5724505877042239d352733e2e269a95b0f6cfb33",
+      "topology_digest": "df86c8e7e839a35d6176eed831cbdaae09152ffe56d99cc9b5ce4fd43386f977",
+      "restart_status": "FRESH"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "state-snapshot",
+    "label": "unknown restart status",
+    "value": {
+      "schema": "ATLAS_STATE/0.1",
+      "state": {
+        "version": "fixture-v1",
+        "profile_id": null,
+        "runtime_state": {
+          "mode": "active"
+        },
+        "regions": {
+          "bench": {
+            "id": "bench",
+            "bounds": null,
+            "attributes": {}
+          }
+        },
+        "entities": {
+          "reservoir": {
+            "id": "reservoir",
+            "type": null,
+            "region_id": "bench",
+            "coordinates": null,
+            "attributes": {
+              "quantity": {
+                "value": null,
+                "unit": "kg"
+              }
+            },
+            "candidate": false
+          },
+          "valve": {
+            "id": "valve",
+            "type": null,
+            "region_id": "bench",
+            "coordinates": null,
+            "attributes": {},
+            "candidate": false
+          }
+        },
+        "relations": [
+          {
+            "source": "reservoir",
+            "target": "valve",
+            "type": "declared_connection",
+            "directed": true,
+            "reversible": null,
+            "transport_enabled": false,
+            "state_mutation_enabled": false,
+            "attributes": {},
+            "candidate": false
+          }
+        ],
+        "routes": {
+          "route": {
+            "id": "route",
+            "entity_ids": [
+              "reservoir",
+              "valve"
+            ],
+            "purpose": null
+          }
+        }
+      },
+      "event_count": 1,
+      "source_digest": "7f78485984cf4c716ead82d5724505877042239d352733e2e269a95b0f6cfb33",
+      "topology_digest": "df86c8e7e839a35d6176eed831cbdaae09152ffe56d99cc9b5ce4fd43386f977",
+      "restart_status": "APPROVED"
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "replay-manifest",
+    "label": "full dynamic replay prohibited",
+    "value": {
+      "scope": "DECLARED_EVENT_REPLAY",
+      "inputs": {
+        "version": "fixture-v1",
+        "profile_id": null,
+        "profile_digest": null,
+        "event_count": 1
+      },
+      "source_digest": "7f78485984cf4c716ead82d5724505877042239d352733e2e269a95b0f6cfb33",
+      "topology_digest": "df86c8e7e839a35d6176eed831cbdaae09152ffe56d99cc9b5ce4fd43386f977",
+      "state_digest": "a3c3ea156fadab9a4b80dce07d3d03de6814bab0716ff349fd88c872569de8a9",
+      "full_dynamic_replay": true
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "provenance",
+    "label": "malformed hash rejected",
+    "value": {
+      "source_id": "synthetic fixture",
+      "version": null,
+      "digest": "bad",
+      "ancestor_id": null,
+      "transform": null
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "neutral-profile",
+    "label": "duplicate category IDs rejected",
+    "value": {
+      "schema": "ATLAS_NEUTRAL_PROFILE/0.1",
+      "id": "neutral",
+      "possible": [
+        "a",
+        "a"
+      ],
+      "preferred": [
+        "b"
+      ],
+      "required": [
+        "c"
+      ],
+      "semantics": {}
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  },
+  {
+    "schema": "entity",
+    "label": "blank ID rejected",
+    "value": {
+      "id": "  ",
+      "type": null,
+      "region_id": "bench",
+      "coordinates": null,
+      "attributes": {
+        "quantity": {
+          "value": null,
+          "unit": "kg"
+        }
+      },
+      "candidate": false
+    },
+    "structural_result": "REJECT",
+    "semantic_result": "NOT_RUN"
+  }
+]

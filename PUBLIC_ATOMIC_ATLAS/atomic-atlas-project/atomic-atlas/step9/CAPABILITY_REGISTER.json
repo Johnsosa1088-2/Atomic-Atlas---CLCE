@@ -1,0 +1,98 @@
+{
+  "revision": "CAPABILITY_REGISTER/0.1",
+  "evidence_checkpoint": "008",
+  "counts_are_historical": true,
+  "capabilities": [
+    {
+      "id": "CAP-01",
+      "capability": "Declarative graph construction",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/src/atomic_atlas_core/builder.py",
+      "limit": "Graph payloads and cross-object integrity checks; no image/CAD/language extraction."
+    },
+    {
+      "id": "CAP-02",
+      "capability": "Read-only route tracing",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/src/atomic_atlas_core/analysis.py",
+      "limit": "Directed/reversible/undirected, cut and candidate exclusion semantics; no transport or mechanism established."
+    },
+    {
+      "id": "CAP-03",
+      "capability": "Arithmetic budget preview",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/tests/test_step7_boundaries.py",
+      "limit": "Exact finite-value balance comparison; arbitrary unit labels, no dimensional or physical validation."
+    },
+    {
+      "id": "CAP-04",
+      "capability": "Explicit state events and recovery",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/src/atomic_atlas_core/replay.py",
+      "limit": "Event-free baseline plus contiguous declared patches; no full physical dynamics, continuation replay or LLM recall."
+    },
+    {
+      "id": "CAP-05",
+      "capability": "Source and content hashes",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/src/atomic_atlas_core/provenance.py",
+      "limit": "Byte association and change detection relative to trusted anchors; not authorship, authenticity or truth."
+    },
+    {
+      "id": "CAP-06",
+      "capability": "Cooperating-writer append ledger",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/src/atomic_atlas_core/ledger.py",
+      "limit": "Lock/head checks, flush/fsync and best-effort ordinary-error rollback; no cross-file atomic transaction or hostile-writer isolation."
+    },
+    {
+      "id": "CAP-07",
+      "capability": "Candidate and observation separation",
+      "status": "Implemented; bounded tested",
+      "evidence": "core/tests/test_step7_boundaries.py",
+      "limit": "No automatic promotion to validated/evidence status; observation verified=true is caller-declared."
+    },
+    {
+      "id": "CAP-08",
+      "capability": "Explicit proposal review and supersession",
+      "status": "Implemented; bounded tested",
+      "evidence": "proposal_harness/harness.py",
+      "limit": "Acceptance is ACCEPTED_DECLARATION; reviewer labels unauthenticated; blocked attempts not automatically logged; claims not automatically synchronized into structural graphs."
+    },
+    {
+      "id": "CAP-09",
+      "capability": "Schema conformance",
+      "status": "Independently checked for bounded corpus",
+      "evidence": "core/audit/independent/conformance_results.json",
+      "limit": "12 schemas, 348 reference resolutions and 5,097 differential cases; runtime evaluator only used-keyword subset, not a general validator certification."
+    },
+    {
+      "id": "CAP-10",
+      "capability": "Domain substitution",
+      "status": "Demonstrated for eight synthetic domains",
+      "evidence": "step8/COVERAGE.json",
+      "limit": "65 checks and eight fresh core subprocess recoveries; no universal domain or physical capability claim."
+    },
+    {
+      "id": "CAP-11",
+      "capability": "Example A SVG actuator abstraction",
+      "status": "Standalone demonstration",
+      "evidence": "examples/a_soft_robotic_finger/EXAMPLE_A_ATLAS_MAPPING.json",
+      "limit": "28 static mapping checks; no physical actuator validation or core integration."
+    },
+    {
+      "id": "CAP-12",
+      "capability": "Example B retrieval selection",
+      "status": "Standalone demonstration",
+      "evidence": "examples/b_atlas_retrieval/engine.js",
+      "limit": "Synthetic lexical/atlas retrieval with optional SQLite reported events; no LLM generation, measured model benefit or automatic core integration."
+    },
+    {
+      "id": "CAP-13",
+      "capability": "Example C compartment accounting",
+      "status": "Standalone demonstration",
+      "evidence": "examples/c_closed_loop_budget/MODEL.md",
+      "limit": "Dimensionless toy model with separate model-step replay; no CFD, physical steam loop or historical formula validation."
+    }
+  ]
+}

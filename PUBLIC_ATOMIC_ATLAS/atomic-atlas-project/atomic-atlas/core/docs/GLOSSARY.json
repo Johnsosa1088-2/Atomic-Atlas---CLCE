@@ -1,0 +1,223 @@
+{
+  "schema": "ATLAS_NEUTRAL_GLOSSARY/0.1",
+  "scope": "Conceptual vocabulary; terms are not a list of implemented APIs. Current capabilities are specified in CAPABILITIES_AND_LIMITS.txt.",
+  "terms": [
+    {
+      "id": "AAO:001",
+      "term": "atlas",
+      "category": "container",
+      "definition": "A versioned container for declared structure, state, provenance, and optional candidate overlays.",
+      "does_not_mean": "A physical organism, validated world model, or autonomous agent."
+    },
+    {
+      "id": "AAO:002",
+      "term": "entity",
+      "category": "graph",
+      "definition": "An addressable item in the declared graph with an identifier, optional type, attributes, and optional coordinates.",
+      "does_not_mean": "An atom, organ, sensor, actuator, or physical object unless a profile separately establishes that meaning."
+    },
+    {
+      "id": "AAO:003",
+      "term": "relation",
+      "category": "graph",
+      "definition": "A typed declared connection between two entities, with optional attributes such as strength, directionality, reversibility, or capability flags.",
+      "does_not_mean": "Transport, causation, force, communication, or physical coupling by default."
+    },
+    {
+      "id": "AAO:004",
+      "term": "route",
+      "category": "graph",
+      "definition": "An ordered sequence of entities and/or relations used for traversal or reachability questions.",
+      "does_not_mean": "Material, energy, information, or signal actually moved along the route."
+    },
+    {
+      "id": "AAO:005",
+      "term": "region",
+      "category": "space",
+      "definition": "A named or indexed spatial/logical partition that can contain or address entities.",
+      "does_not_mean": "A biological body region; geometry and semantics are profile supplied."
+    },
+    {
+      "id": "AAO:006",
+      "term": "partition",
+      "category": "space",
+      "definition": "A rule that assigns extents, bounds, membership, or coordinates to regions without prescribing domain-specific anatomy.",
+      "does_not_mean": "A fixed body ratio or biologically meaningful segmentation."
+    },
+    {
+      "id": "AAO:007",
+      "term": "backbone",
+      "category": "graph-pattern",
+      "definition": "An optional ordered structural route used as a stable reference or coordination spine for other entities.",
+      "does_not_mean": "A literal spine, nervous system, identity carrier, or required topology."
+    },
+    {
+      "id": "AAO:008",
+      "term": "profile",
+      "category": "extension",
+      "definition": "A domain-specific vocabulary, metrics, build rules, and interpretations layered on the neutral core.",
+      "does_not_mean": "Core semantics or validated physics."
+    },
+    {
+      "id": "AAO:009",
+      "term": "interpretation_view",
+      "category": "semantics",
+      "definition": "A reversible mapping from source identifiers/relations to alternate functional labels while preserving the original declarations.",
+      "does_not_mean": "Instantiation of the function named by the alias."
+    },
+    {
+      "id": "AAO:010",
+      "term": "candidate_overlay",
+      "category": "hypothesis",
+      "definition": "A separately addressable graph layer for unvalidated entities, relations, routes, or hypotheses that must not silently alter established state.",
+      "does_not_mean": "Accepted structure, measurement, mechanism, or truth."
+    },
+    {
+      "id": "AAO:011",
+      "term": "candidate_entity",
+      "category": "hypothesis",
+      "definition": "An entity declared inside a candidate overlay whose unsupported fields remain null or absent.",
+      "does_not_mean": "An instantiated physical component."
+    },
+    {
+      "id": "AAO:012",
+      "term": "candidate_relation",
+      "category": "hypothesis",
+      "definition": "A relation inside a candidate overlay, disabled for transport or state mutation unless an explicit later mechanism authorizes otherwise.",
+      "does_not_mean": "Flow, admission, sensing, exchange, or causation merely because the relation type uses those words."
+    },
+    {
+      "id": "AAO:013",
+      "term": "unknown",
+      "category": "epistemic",
+      "definition": "An explicit representation of an unsupported value using null/absence rather than fabricated content.",
+      "does_not_mean": "Zero, false, impossible, or negligible."
+    },
+    {
+      "id": "AAO:014",
+      "term": "state_snapshot",
+      "category": "state",
+      "definition": "A versioned serializable record of authorized current state, hashes, and restart metadata.",
+      "does_not_mean": "Complete dynamic history or proof that represented state exists physically."
+    },
+    {
+      "id": "AAO:015",
+      "term": "event",
+      "category": "state",
+      "definition": "An ordered declared transition record with sequence and provenance suitable for replay where the event type permits mutation.",
+      "does_not_mean": "An external observation unless explicitly designated as one."
+    },
+    {
+      "id": "AAO:016",
+      "term": "observation",
+      "category": "evidence",
+      "definition": "A source-bound record stored outside model state by default, with explicit evidence status and provenance.",
+      "does_not_mean": "A model transition, measurement, or physical truth unless separately established."
+    },
+    {
+      "id": "AAO:017",
+      "term": "evidence_reference",
+      "category": "provenance",
+      "definition": "A stable label and/or digest that identifies the source material supporting an observation, candidate, budget preview, or event.",
+      "does_not_mean": "Verification merely because an identifier exists."
+    },
+    {
+      "id": "AAO:018",
+      "term": "ledger",
+      "category": "provenance",
+      "definition": "An append-oriented persistence interface for ordered source-bound records, optionally with a chained head digest.",
+      "does_not_mean": "Consensus, validation, or immutable storage unless its implementation guarantees those properties."
+    },
+    {
+      "id": "AAO:019",
+      "term": "digest",
+      "category": "provenance",
+      "definition": "A cryptographic content fingerprint used to compare declared artifacts, topology, state, or replay inputs.",
+      "does_not_mean": "Semantic equivalence, scientific validity, or authenticity of the original real-world source."
+    },
+    {
+      "id": "AAO:020",
+      "term": "provenance_record",
+      "category": "provenance",
+      "definition": "Metadata that binds an artifact or record to its source, version, digest, lineage ancestor, and transformation context.",
+      "does_not_mean": "A scientific claim about the source content."
+    },
+    {
+      "id": "AAO:021",
+      "term": "replay_manifest",
+      "category": "reproducibility",
+      "definition": "A declaration of replay scope and the inputs/digests required to reproduce that scope.",
+      "does_not_mean": "Full dynamic replay unless that scope is explicitly implemented and verified."
+    },
+    {
+      "id": "AAO:022",
+      "term": "restart_guard",
+      "category": "reproducibility",
+      "definition": "A rule that blocks silent continuation or overwrite when source, topology, seed, mesh, height/profile, or resumability assumptions differ.",
+      "does_not_mean": "Automatic repair or migration."
+    },
+    {
+      "id": "AAO:023",
+      "term": "explicit_reset",
+      "category": "reproducibility",
+      "definition": "A provenance-recorded operation that abandons a blocked/unresumable state only when an explicit nonempty reason is supplied.",
+      "does_not_mean": "Erasure of the historical blocked state."
+    },
+    {
+      "id": "AAO:024",
+      "term": "trace",
+      "category": "analysis",
+      "definition": "A read-only reachability evaluation over declared relations, optional cuts, and caller-supplied gate conditions.",
+      "does_not_mean": "State mutation or physical transport."
+    },
+    {
+      "id": "AAO:025",
+      "term": "gate_condition",
+      "category": "analysis",
+      "definition": "An explicit caller-supplied condition used by a trace to hold or permit traversal at a declared boundary.",
+      "does_not_mean": "Real-world consent, safety, compatibility, sensing, or valve state unless independently measured and mapped."
+    },
+    {
+      "id": "AAO:026",
+      "term": "budget_preview",
+      "category": "analysis",
+      "definition": "A non-mutating arithmetic conservation check over caller-supplied quantities and a reachable candidate route.",
+      "does_not_mean": "Measured capacity, flow, metabolism, energy transfer, or material transfer."
+    },
+    {
+      "id": "AAO:027",
+      "term": "metric",
+      "category": "extension",
+      "definition": "A profile-defined scalar or structured measure whose semantics, units, bounds, and evidence source must be declared outside the neutral core.",
+      "does_not_mean": "A universal Atlas property such as coherence, protection, freedom, or noise."
+    },
+    {
+      "id": "AAO:028",
+      "term": "reference_artifact",
+      "category": "provenance",
+      "definition": "An external visual, document, dataset, or artifact described by provenance metadata without mutating model state.",
+      "does_not_mean": "Authority to set geometry, physical budgets, identity, or mechanism unless separately declared."
+    },
+    {
+      "id": "AAO:029",
+      "term": "development_bridge",
+      "category": "transition-pattern",
+      "definition": "A replayable finite sequence of declared stages or anchors where each transition records predecessor and result digests.",
+      "does_not_mean": "Biological development, elapsed time, growth physics, or a continuous dynamical model."
+    },
+    {
+      "id": "AAO:030",
+      "term": "recovery_transition",
+      "category": "transition-pattern",
+      "definition": "An optional explicit transition that returns selected profile state toward a declared baseline after a prior transition.",
+      "does_not_mean": "Healing, biological recovery, or guaranteed restoration."
+    },
+    {
+      "id": "AAO:031",
+      "term": "adapter",
+      "category": "extension",
+      "definition": "A boundary component that translates external persistence, file, or domain representations into neutral Atlas records without changing core semantics.",
+      "does_not_mean": "Implicit authority to reinterpret or validate imported data."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "candidate": "005",
+  "core_version": "0.0.4.dev1",
+  "created_at_utc": "2026-10-08T17:45:05.708378+00:00",
+  "parent_zip_sha256": "a003a37b10a9e000bb7f13af5c87b525010c721eaa3842dc06848c3cb981d37c",
+  "publication_status": "NOT_PUBLISHED",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "external_validator_versions": {
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.9.1",
+    "attrs": "26.1.0",
+    "pytest": "9.1.1"
+  },
+  "schema_metaschemas_passed": 12,
+  "local_reference_occurrences_resolved": 348,
+  "differential_cases": 5097,
+  "disagreements": 0,
+  "expectation_failures": 0,
+  "full_pytest_passed": 91,
+  "new_adversarial_cases": 36,
+  "before_subset": {
+    "passed": 21,
+    "failed": 7
+  },
+  "boundary_findings_fixed": 3,
+  "minimal_reproductions": {
+    "before_accepted": 7,
+    "after_rejected": 7
+  },
+  "stdlib_adapter": {
+    "passed": 55,
+    "release_parameterized_file": "EXCLUDED; full pytest covers it"
+  },
+  "fresh_process_recovery": "PASS",
+  "wheel_isolation": "PASS on Linux/Python 3.12.14",
+  "wheel_sha256": "35f9bea659e95597b4bf511f874c6c7566503165598e551e0a0f22a857e71010",
+  "example_checks": {
+    "A": 28,
+    "B_python": 12,
+    "B_retrieval": 7,
+    "B_minimal_DOM": 10,
+    "C": 22
+  },
+  "untested": [
+    "Windows",
+    "other Python versions",
+    "real browser",
+    "external review",
+    "exhaustive adversarial/conformance coverage",
+    "example integration with core",
+    "final example/asset licensing"
+  ],
+  "scope": "Bounded software validation, not physical validity or language-model recall."
+}

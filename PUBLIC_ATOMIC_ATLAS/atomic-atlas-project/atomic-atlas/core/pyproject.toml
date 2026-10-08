@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atomic-atlas-core"
+version = "0.0.5.dev1"
+description = "Neutral public core for versioned graph/state, provenance, replay, and candidate overlays."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Atomic Atlas Public Extraction"}]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+atomic_atlas_core = ["schemas/*.json"]
