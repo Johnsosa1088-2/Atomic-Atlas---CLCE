@@ -1,0 +1,3 @@
+PUBLIC ATOMIC ATLAS — CHECKPOINT 010 / STEP 10 RECONCILIATION
+
+Read CAPABILITIES_AND_LIMITATIONS.md, HUMAN_GUIDE.md and AI_GUIDE.md. step9/CAPABILITY_REGISTER.json supplies scoped evidence links. Step 10 current status is step10/RELEASE_STATUS.json. Original 008 metadata is retained under history/checkpoint008. Core/harness implementation, schemas and wheel remain unchanged. Aspirational archive is excluded. Run python verify_candidate.py with pinned audit dependencies and Node. Final README, publication, Windows/browser checks and external approval remain deferred.

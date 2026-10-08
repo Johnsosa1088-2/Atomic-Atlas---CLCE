@@ -1,0 +1,1 @@
+Atomic Atlas checkpoint 013: Example B SQLite connections now close deterministically after commit/rollback, including exceptions. Read WINDOWS_START_HERE.txt. Original 43 frozen implementation anchors unchanged. Prior 010-012 reports are historical; native Windows full-suite confirmation pending. No publication authorized.

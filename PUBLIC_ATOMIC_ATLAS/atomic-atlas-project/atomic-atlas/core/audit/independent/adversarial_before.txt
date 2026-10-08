@@ -1,0 +1,124 @@
+...............FFFFFFF......                                             [100%]
+=================================== FAILURES ===================================
+_______ test_unhashed_ledger_envelope_changes_are_rejected[extra-field] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_unhashed_ledger_envelope_0')
+kind = 'extra-field'
+
+    @pytest.mark.parametrize('kind',['extra-field','missing-record'])
+    def test_unhashed_ledger_envelope_changes_are_rejected(tmp_path,kind):
+        p=tmp_path/'ledger.jsonl';l=JsonlHashLedger(p);l.append(None)
+        r=json.loads(p.read_text())
+        if kind=='extra-field':r['unhashed_claim']='approved'
+        else:del r['record']
+        p.write_text(json.dumps(r)+'\n');before=p.read_bytes()
+>       with pytest.raises(ValidationError):JsonlHashLedger(p)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:54: Failed
+______ test_unhashed_ledger_envelope_changes_are_rejected[missing-record] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_unhashed_ledger_envelope_1')
+kind = 'missing-record'
+
+    @pytest.mark.parametrize('kind',['extra-field','missing-record'])
+    def test_unhashed_ledger_envelope_changes_are_rejected(tmp_path,kind):
+        p=tmp_path/'ledger.jsonl';l=JsonlHashLedger(p);l.append(None)
+        r=json.loads(p.read_text())
+        if kind=='extra-field':r['unhashed_claim']='approved'
+        else:del r['record']
+        p.write_text(json.dumps(r)+'\n');before=p.read_bytes()
+>       with pytest.raises(ValidationError):JsonlHashLedger(p)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:54: Failed
+________ test_duplicate_json_keys_rejected_at_file_boundaries[document] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_json_keys_rejec0')
+boundary = 'document'
+
+    @pytest.mark.parametrize('boundary',['document','ledger'])
+    def test_duplicate_json_keys_rejected_at_file_boundaries(tmp_path,boundary):
+        p=tmp_path/'input.json'
+        if boundary=='document':
+            d=fixture();raw=json.dumps(d);raw=raw.replace('"version": "fixture-v1"','"version": "hidden-version", "version": "fixture-v1"');p.write_text(raw)
+            loader=lambda:AtlasRuntime.load(p)
+        else:
+            l=JsonlHashLedger(p);l.append({'x':1});raw=p.read_text().replace('"record":','"record":{"hidden":1},"record":');p.write_text(raw)
+            loader=lambda:JsonlHashLedger(p)
+        before=p.read_bytes()
+>       with pytest.raises(ValidationError):loader()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:67: Failed
+_________ test_duplicate_json_keys_rejected_at_file_boundaries[ledger] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_json_keys_rejec1')
+boundary = 'ledger'
+
+    @pytest.mark.parametrize('boundary',['document','ledger'])
+    def test_duplicate_json_keys_rejected_at_file_boundaries(tmp_path,boundary):
+        p=tmp_path/'input.json'
+        if boundary=='document':
+            d=fixture();raw=json.dumps(d);raw=raw.replace('"version": "fixture-v1"','"version": "hidden-version", "version": "fixture-v1"');p.write_text(raw)
+            loader=lambda:AtlasRuntime.load(p)
+        else:
+            l=JsonlHashLedger(p);l.append({'x':1});raw=p.read_text().replace('"record":','"record":{"hidden":1},"record":');p.write_text(raw)
+            loader=lambda:JsonlHashLedger(p)
+        before=p.read_bytes()
+>       with pytest.raises(ValidationError):loader()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:67: Failed
+_________ test_nonfinite_ledger_payloads_rejected_without_append[nan] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_nonfinite_ledger_payloads0')
+value = nan
+
+    @pytest.mark.parametrize('value',[float('nan'),float('inf'),float('-inf')])
+    def test_nonfinite_ledger_payloads_rejected_without_append(tmp_path,value):
+        p=tmp_path/'ledger.jsonl';l=JsonlHashLedger(p);l.append({'seed':1});before=p.read_bytes();head=l.head
+>       with pytest.raises(ValidationError):l.append({'value':value})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:73: Failed
+_________ test_nonfinite_ledger_payloads_rejected_without_append[inf] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_nonfinite_ledger_payloads1')
+value = inf
+
+    @pytest.mark.parametrize('value',[float('nan'),float('inf'),float('-inf')])
+    def test_nonfinite_ledger_payloads_rejected_without_append(tmp_path,value):
+        p=tmp_path/'ledger.jsonl';l=JsonlHashLedger(p);l.append({'seed':1});before=p.read_bytes();head=l.head
+>       with pytest.raises(ValidationError):l.append({'value':value})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:73: Failed
+_________ test_nonfinite_ledger_payloads_rejected_without_append[-inf] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_nonfinite_ledger_payloads2')
+value = -inf
+
+    @pytest.mark.parametrize('value',[float('nan'),float('inf'),float('-inf')])
+    def test_nonfinite_ledger_payloads_rejected_without_append(tmp_path,value):
+        p=tmp_path/'ledger.jsonl';l=JsonlHashLedger(p);l.append({'seed':1});before=p.read_bytes();head=l.head
+>       with pytest.raises(ValidationError):l.append({'value':value})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+atlas_release_candidate_005/core/tests/test_adversarial_release.py:73: Failed
+=========================== short test summary info ============================
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_unhashed_ledger_envelope_changes_are_rejected[extra-field]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_unhashed_ledger_envelope_changes_are_rejected[missing-record]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_duplicate_json_keys_rejected_at_file_boundaries[document]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_duplicate_json_keys_rejected_at_file_boundaries[ledger]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_nonfinite_ledger_payloads_rejected_without_append[nan]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_nonfinite_ledger_payloads_rejected_without_append[inf]
+FAILED atlas_release_candidate_005/core/tests/test_adversarial_release.py::test_nonfinite_ledger_payloads_rejected_without_append[-inf]
+7 failed, 21 passed in 0.13s

@@ -1,0 +1,125 @@
+{
+  "example_id": "ATLAS_EXAMPLE_A_SOFT_ROBOTIC_FINGER_TEST_002",
+  "title": "Soft Robotic Finger Actuator \u2014 4 Fluid Pockets + 1 Feeler Tip",
+  "status": "ILLUSTRATIVE_STANDALONE_DEMO",
+  "public_core_compatible": null,
+  "physical_validation": false,
+  "material_profile": {
+    "recommended_example_material": "soft platinum-cure silicone elastomer",
+    "vendor_locked": false,
+    "grade_locked": false,
+    "note": "Material is a profile choice, not a neutral-core invariant."
+  },
+  "structure": {
+    "regions": [
+      "base_region",
+      "inlet_region",
+      "chamber_region",
+      "shell_region",
+      "tip_region"
+    ],
+    "entities": [
+      "base_mount",
+      "pressure_interface",
+      "internal_route",
+      "pocket_01",
+      "pocket_02",
+      "pocket_03",
+      "pocket_04",
+      "outer_shell",
+      "strain_limiting_layer",
+      "feeler_tip"
+    ],
+    "route": [
+      "pressure_interface",
+      "internal_route",
+      "pocket_01",
+      "pocket_02",
+      "pocket_03",
+      "pocket_04",
+      "feeler_tip"
+    ],
+    "events": [
+      "prime",
+      "inflate",
+      "partial_inflate",
+      "full_inflate",
+      "contact",
+      "deflate",
+      "release"
+    ],
+    "states": [
+      "idle",
+      "primed",
+      "pocketed_low",
+      "pocketed_medium",
+      "pocketed_high",
+      "contacting",
+      "released"
+    ]
+  },
+  "svg_groups": [
+    "base_mount",
+    "inlet_tube",
+    "pressure_interface",
+    "outer_shell",
+    "strain_limiting_layer",
+    "internal_route",
+    "pocket_01",
+    "pocket_02",
+    "pocket_03",
+    "pocket_04",
+    "feeler_tip",
+    "route_overlay",
+    "candidate_overlay",
+    "state_overlay"
+  ],
+  "budgets": [
+    "pressure_budget",
+    "active_pocket_count",
+    "deformation_budget",
+    "contact_budget"
+  ],
+  "guardrails": [
+    "declared route does not establish physical flow",
+    "budget arithmetic does not establish mechanics",
+    "material choice does not belong to neutral core",
+    "image is a reference asset, not validated geometry",
+    "HTML animation uses coherent visual state transitions, not a physical solver",
+    "bend-limit color is a declared visual threshold, not measured strain"
+  ],
+  "interactive_revision": "HTML_002",
+  "bend_boundaries": [
+    {
+      "id": "bend_01",
+      "linked_pocket": "pocket_01",
+      "declared_max_angle_deg": 22
+    },
+    {
+      "id": "bend_02",
+      "linked_pocket": "pocket_02",
+      "declared_max_angle_deg": 20
+    },
+    {
+      "id": "bend_03",
+      "linked_pocket": "pocket_03",
+      "declared_max_angle_deg": 18
+    },
+    {
+      "id": "bend_04",
+      "linked_pocket": "pocket_04",
+      "declared_max_angle_deg": 15
+    }
+  ],
+  "relations": [
+    "pocket_01 influences bend_01",
+    "pocket_02 influences bend_02",
+    "pocket_03 influences bend_03",
+    "pocket_04 influences bend_04",
+    "bend_01 upstream_of bend_02",
+    "bend_02 upstream_of bend_03",
+    "bend_03 upstream_of bend_04",
+    "bend_04 upstream_of feeler_tip"
+  ],
+  "core_integration_status": "NOT_TESTED"
+}

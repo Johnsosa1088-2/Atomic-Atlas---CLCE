@@ -1,0 +1,1 @@
+Atomic Atlas checkpoint 014. Read WINDOWS_START_HERE.txt. verify_candidate.py checks source integrity, runs suites in a retained external copy, and rechecks source. Every run saves results beside this project. Original 43 freeze anchors unchanged. Prior reports are historical. Native Windows full run pending. No publication authorized.

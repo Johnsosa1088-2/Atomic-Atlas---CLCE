@@ -1,0 +1,11 @@
+{
+  "parent": "013",
+  "changes": [
+    "Nonmutating verification coordinator",
+    "Previous verifier retained as internal run_suite.py",
+    "Preflight Node and Python dependencies",
+    "External run logs/receipts",
+    "Simplified instructions"
+  ],
+  "core_harness_schema_wheel_changes": 0
+}

@@ -1,0 +1,30 @@
+PUBLIC ATOMIC ATLAS — STEP 8 DOMAIN SUBSTITUTION / PROJECT 008
+
+RESULT: PASS FOR EIGHT SYNTHETIC DOMAINS; IMPLEMENTATION UNCHANGED.
+Core remains 0.0.5.dev1 and proposal harness remains 0.1. All implementation, schema, wheel and core build-metadata anchors match parent 007 exactly. No domain-specific engine hook or implementation branch was added. Parent ZIP is unchanged and remains independently anchored.
+
+CORPUS
+Reservoir reference; chair; lamp; vehicle; garment; mechanical assembly; abstract workflow; neutral abstract-character rig. These use different entity/edge counts, degree distributions, regions, directed/undirected edges, branching and cyclic structures. Eight distinct unlabeled degree/count signatures confirm that these are not merely the same graph with new names. All fixtures are synthetic, with unknown coordinates and measurements preserved as null. The rig has no personal canon, appearance or animation solver.
+
+COMMON CHECKS
+Each domain runs the same eight parameterized groups: schema/build/profile/document round-trip; reached/cut/held/open route and read-only arithmetic budget; candidate/observation isolation; declared state patches and event-free-baseline replay plus fresh subprocess ledger recovery; dangling-endpoint/duplicate-ID rejection; labels/profile categories without inferred behavior; explicit review/conflict/supersession/reconstruction; name/label neutralization with unchanged operation behavior.
+64 parameterized cases plus one graph-diversity check pass: 65 total. Every domain successfully reconstructs state/topology/ledger head in a fresh Python subprocess. Unknown measurement/coordinates stay unknown. Candidate/review statuses remain declarations. Removing entity/region/route names, role attributes, relation labels, version and provenance domain labels preserves tested route/event behavior while changing content-bound topology hashes, as expected. No LLM recall is tested.
+
+The harness uses a separate claim ledger/state as designed; it does not automatically synchronize claims into each fixture's structural graph. The same review/correction APIs are exercised for each domain. The domain fixtures are manually prepared contract payloads; this does not demonstrate automatic extraction from ordinary language, images or CAD files.
+
+INTERPRETATION / LIMITS
+This demonstrates portability of declared graph/state/provenance/review/replay operations across this bounded corpus. It does not establish chair load-bearing, electrical lamp operation, vehicle dynamics, garment mechanics, machine kinematics, workflow authority, rig animation, fluid behavior, scientific truth or complete cross-domain conformance. Budget unit names are declared labels and are not dimensional or physical validation. Topology/source hashes are expected to differ between different contents; invariance is about operation semantics, not identical fingerprints. The corpus is small; no resource/performance/large-graph benchmark is claimed.
+
+REPRODUCE
+Create/activate a Python venv and install core/audit/independent/requirements-lock.txt. Node.js is required for example suites.
+  python verify_candidate.py
+Targeted checks:
+  python -m pytest step8/tests -q
+  python step8/check_source_freeze.py
+The source-freeze manifest retains parent byte anchors; the actual historical ZIP is not required to run current checks. FILE_CHANGES.json records additions/doc/evidence changes; frozen implementation anchors are checked before and after the full verification command.
+
+RUN EVIDENCE
+Current full results are in RUN_RECEIPT.json and step8/ALL_PROJECT_CHECKS.txt. Prior step-7 and independent-validator evidence remain labeled checkpoints. Core schemas remain the same independently tested 12 documents. Examples A/B/C remain standalone demonstrations; domain substitution is tested directly against the actual Python core and source-only proposal harness.
+
+NEXT
+Step 9: consolidate the capabilities/limitations documentation against these actual results. Step 10: independent release inspection, portability/browser checks, final example/asset licenses and citation metadata. No external publication or final README yet; step 11 remains deferred. Step 8 is complete for this documented corpus, not a universal domain claim.

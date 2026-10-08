@@ -1,0 +1,11 @@
+{
+  "parent": "010",
+  "changes": [
+    "step10/check_inventory.py path separator normalization",
+    "step10/test_inventory.py three regressions",
+    "WINDOWS_START_HERE.txt external venv/log instructions",
+    "Historical 010 metadata preserved",
+    "New root receipt and manifest"
+  ],
+  "old_zip_unchanged": true
+}

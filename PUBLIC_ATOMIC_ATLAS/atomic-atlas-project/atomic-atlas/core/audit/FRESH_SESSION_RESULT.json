@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "process": "fresh Python subprocess",
+  "recovered": {
+    "source": "27c7d8428f5b170d7b93244c55b363095e2d43ad5018cb11f5c6290b1e590086",
+    "topology": "c070a93c0bde02bcd02d8b01f09e4dc41001cde65a42d75fe360772efba9af22",
+    "state": "a3c3ea156fadab9a4b80dce07d3d03de6814bab0716ff349fd88c872569de8a9",
+    "ledger_head": "fc607d3c83bb7baca0d3d2a2b8bcc43dacb62d723fba88a615793e6170cd547f",
+    "event_count": 1
+  },
+  "declared_event_replay": "PASS",
+  "full_dynamic_replay": false,
+  "language_model_recall_tested": false,
+  "source_bytes_used": "clean release project 007 / core 0.0.5.dev1"
+}

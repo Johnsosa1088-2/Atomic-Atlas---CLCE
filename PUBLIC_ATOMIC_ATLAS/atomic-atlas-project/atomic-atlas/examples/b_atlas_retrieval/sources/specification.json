@@ -1,0 +1,65 @@
+{
+  "classification": "SYNTHETIC_DEMO_SPECIFICATION",
+  "records": [
+    {
+      "id": "R-PAIR",
+      "text": "In this synthetic specification, left and right reservoirs R_L and R_R store, buffer and release carrier.",
+      "literal": null
+    },
+    {
+      "id": "R-ROUTING",
+      "text": "The routing controller determines routing. Reservoirs provide buffering capacity; they do not choose routes.",
+      "literal": null
+    },
+    {
+      "id": "R-STATE",
+      "text": "Fill/store, buffer/hold and release are proposed continuous control states. The two reservoirs may differ.",
+      "literal": null
+    },
+    {
+      "id": "R-CONTROL",
+      "text": "The abstract reservoir response function B[ ] is unresolved. No numerical control law or validated pressure envelope is supplied.",
+      "literal": null
+    },
+    {
+      "id": "R-VALIDITY",
+      "text": "Physical realization is unvalidated. Flow thresholds, pressure envelope and transduction law remain unresolved.",
+      "literal": null
+    },
+    {
+      "id": "R-HYDROLOGY",
+      "text": "The transport subsystem carries carrier locally. The routing controller distributes carrier and receives return. Reservoirs store, buffer and release.",
+      "literal": null
+    },
+    {
+      "id": "R-CONSERVATION",
+      "text": "Exchange between controller and reservoirs is internal redistribution. Internal transfer is not total-system gain or loss.",
+      "literal": null
+    },
+    {
+      "id": "EQ-012",
+      "text": "The synthetic formula placeholder is P_light = with its right-hand side absent. It is incomplete; no full equation or normalized LaTeX is supplied.",
+      "literal": "P_light = [right-hand side absent]"
+    },
+    {
+      "id": "REVIEW-002",
+      "text": "Two fictional scenario records conflict about coherence ranges. The discrepancy is unresolved; no corrected values are adopted.",
+      "literal": null
+    },
+    {
+      "id": "IMAGE-006",
+      "text": "A fictional illustration describes 68.4 \u00b0C outer temperature, 32.1 \u00b0C hub temperature, 22.6 \u00b0C ambient temperature and 0.82 m/s airflow. These invented values are not verified measurements.",
+      "literal": null
+    },
+    {
+      "id": "SCOPE-002",
+      "text": "The fictional record series begins at step 1. Earlier imported records would be retained; this demonstration contains no personal conversation history.",
+      "literal": null
+    },
+    {
+      "id": "SCOPE-001",
+      "text": "The fictional clarification has no supplied date. Its chronology remains unknown; do not invent an event time.",
+      "literal": null
+    }
+  ]
+}

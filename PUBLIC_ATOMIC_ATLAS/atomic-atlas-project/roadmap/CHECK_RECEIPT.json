@@ -1,0 +1,11 @@
+{
+  "checks_passed": [
+    "13 unique application IDs",
+    "All statuses remain PROPOSED_APPLICATION",
+    "Source-image byte hash matches supplied image",
+    "Machine-readable map parses"
+  ],
+  "implementation_tests": "Not rerun: documentation-only addendum",
+  "scientific_validation": "Not performed",
+  "project_modified": false
+}

@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atomic Atlas Example A — Soft Robotic Finger Interactive 002</title>
+<style>
+:root{
+  --bg:#f4f7f9; --panel:#ffffff; --text:#1f2933; --muted:#667684;
+  --line:#cfd8df; --accent:#4c8fbf; --accent2:#6cb3a5; --candidate:#9f7aea;
+  --safe:#5f9fbf; --caution:#d7a743; --warn:#e47a38; --limit:#d64545;
+  --soft:#dfeaf0; --tip:#66717a; --base:#cfd4d8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+main{max-width:1240px;margin:0 auto;padding:24px}
+h1{font-size:1.7rem;margin:.1rem 0 .35rem}
+p.lead{margin:0 0 1.1rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.9fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stage{min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+svg{width:100%;height:auto;display:block}
+.controls{display:grid;gap:14px}
+fieldset{border:1px solid var(--line);border-radius:12px;padding:12px}
+legend{padding:0 7px;color:var(--muted);font-size:.9rem}
+label{display:flex;gap:9px;align-items:center;margin:8px 0;font-size:.95rem}
+label.stack{display:block}
+button,select,input[type="range"]{font:inherit}
+button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;cursor:pointer}
+button:hover{background:#f7fafb}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.readout{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:.92rem}
+.readout div:nth-child(odd){color:var(--muted)}
+.badge{padding:2px 8px;border-radius:999px;background:#eef4f7;font-size:.82rem}
+.small{font-size:.82rem;color:var(--muted);line-height:1.45}
+.pocket-fill{transition:fill .2s ease, opacity .2s ease}
+.pocket-edge{fill:none;stroke-width:4;transition:stroke .2s ease,stroke-width .2s ease}
+.bend-guide{fill:none;stroke:#d85a5a;stroke-width:2.5;stroke-dasharray:8 7;opacity:0}
+.bend-arc{fill:none;stroke:#e39a9a;stroke-width:2;stroke-dasharray:5 6;opacity:0}
+.overlay-line{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.mode-note{font-size:.8rem;color:var(--muted);margin-top:6px}
+.range-row{display:grid;grid-template-columns:62px 1fr 70px;gap:8px;align-items:center;margin:7px 0}
+.range-row output{text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.stage{min-height:430px}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Atomic Atlas Example A — Soft Robotic Finger</h1>
+  <p class="lead">4 fluid pockets · 4 local bend boundaries · 1 feeler tip · Interactive HTML 002</p>
+
+  <div class="grid">
+    <section class="card stage">
+      <svg id="finger_svg" viewBox="0 0 900 600" role="img" aria-labelledby="svgTitle svgDesc">
+        <title id="svgTitle">Segmented soft robotic finger actuator</title>
+        <desc id="svgDesc">A soft robotic finger with four fluid pockets, four local bend boundaries, bend-limit coloring, and a feeler tip.</desc>
+
+        <defs>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+            <feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".14"/>
+          </filter>
+        </defs>
+
+        <ellipse cx="400" cy="520" rx="260" ry="28" fill="#dfe5e8" opacity=".7"/>
+
+        <g id="contact_target" transform="translate(720 150)" opacity="0">
+          <circle cx="0" cy="0" r="44" fill="#e7ecef" stroke="#aebbc4" stroke-width="3"/>
+          <text x="0" y="72" text-anchor="middle" font-size="15" fill="#6c7a86">contact target</text>
+        </g>
+
+        <g id="base_mount" filter="url(#shadow)">
+          <rect x="165" y="420" width="250" height="95" rx="10" fill="#cfd4d8" stroke="#929ba2" stroke-width="3"/>
+          <circle cx="200" cy="445" r="9" fill="#7c878f"/>
+          <circle cx="380" cy="445" r="9" fill="#7c878f"/>
+          <rect x="310" y="382" width="85" height="58" rx="18" fill="#aeb8bf" stroke="#7c878f" stroke-width="3"/>
+        </g>
+
+        <g id="inlet_tube">
+          <path d="M45 460 C90 460, 110 465, 175 465" fill="none" stroke="#73b8df" stroke-width="21" stroke-linecap="round" opacity=".85"/>
+          <path d="M50 454 C95 454, 114 459, 172 459" fill="none" stroke="#bfe6f5" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+        </g>
+
+        <g id="pressure_interface">
+          <rect x="164" y="445" width="38" height="40" rx="8" fill="#59656d"/>
+          <rect x="192" y="450" width="28" height="30" rx="6" fill="#7c878f"/>
+        </g>
+
+        <!-- Shell/backing drawn as a coherent envelope behind the nested segment chain.
+             It remains schematic; LightEngine can later replace it with continuously interpolated skin. -->
+        <g id="outer_shell">
+          <path id="shell_path"
+            d="M330 408
+               C340 360, 351 314, 362 270
+               C374 226, 389 185, 407 148
+               C426 109, 452 77, 485 55
+               C512 37, 544 30, 574 35
+               C591 38, 607 46, 620 58
+               C603 77, 590 97, 581 119
+               C569 151, 560 187, 553 227
+               C545 269, 535 311, 518 347
+               C500 385, 474 414, 443 431
+               C410 449, 371 448, 330 408 Z"
+            fill="#e8f0f4" stroke="#7d8f9a" stroke-width="4" opacity=".58"/>
+        </g>
+
+        <path id="strain_limiting_layer"
+          d="M342 412 C372 424, 407 417, 437 400
+             C467 383, 490 354, 505 318
+             C521 280, 532 238, 540 197
+             C548 155, 559 119, 578 89"
+          fill="none" stroke="#5d6d76" stroke-width="12" stroke-linecap="round" opacity=".82"/>
+
+        <!-- Global visual route overlay only; not physical-flow validation -->
+        <g id="route_overlay" opacity="0">
+          <path class="overlay-line"
+            d="M345 402 C362 361, 378 317, 391 275
+               C406 228, 424 187, 447 151
+               C472 111, 505 82, 552 66"
+            stroke="#4c8fbf"/>
+          <circle cx="391" cy="275" r="7" fill="#4c8fbf"/>
+          <circle cx="447" cy="151" r="7" fill="#4c8fbf"/>
+        </g>
+
+        <g id="candidate_overlay" opacity="0">
+          <path class="overlay-line"
+            d="M351 402 C355 350, 355 305, 360 260
+               C365 211, 379 166, 405 127
+               C431 89, 468 59, 516 43"
+            stroke="#9f7aea" stroke-dasharray="12 10"/>
+          <text x="365" y="115" font-size="17" fill="#825bb6">candidate route</text>
+        </g>
+
+        <!-- Nested segment chain: downstream geometry inherits upstream rotations. -->
+        <g id="finger_chain" transform="translate(350 390)">
+
+          <g id="segment_01">
+            <g id="pocket_01">
+              <rect class="pocket-fill" x="-27" y="-72" width="105" height="66" rx="29" fill="#d9e4ea" opacity=".48"/>
+              <rect class="pocket-edge" x="-27" y="-72" width="105" height="66" rx="29" stroke="#5f9fbf"/>
+            </g>
+            <path id="bend_line_01" class="bend-guide" d="M-18 -82 Q26 -95 82 -78"/>
+            <path id="bend_arc_01" class="bend-arc" d="M-25 -102 Q31 -128 92 -98"/>
+
+            <g id="joint_01" transform="translate(30 -82)">
+              <g id="segment_02">
+                <g id="pocket_02">
+                  <rect class="pocket-fill" x="-51" y="-72" width="112" height="66" rx="29" fill="#d9e4ea" opacity=".48"/>
+                  <rect class="pocket-edge" x="-51" y="-72" width="112" height="66" rx="29" stroke="#5f9fbf"/>
+                </g>
+                <path id="bend_line_02" class="bend-guide" d="M-47 -82 Q4 -96 65 -80"/>
+                <path id="bend_arc_02" class="bend-arc" d="M-54 -102 Q8 -130 77 -100"/>
+
+                <g id="joint_02" transform="translate(6 -82)">
+                  <g id="segment_03">
+                    <g id="pocket_03">
+                      <rect class="pocket-fill" x="-55" y="-72" width="116" height="66" rx="29" fill="#d9e4ea" opacity=".48"/>
+                      <rect class="pocket-edge" x="-55" y="-72" width="116" height="66" rx="29" stroke="#5f9fbf"/>
+                    </g>
+                    <path id="bend_line_03" class="bend-guide" d="M-52 -82 Q3 -96 67 -81"/>
+                    <path id="bend_arc_03" class="bend-arc" d="M-59 -102 Q5 -131 80 -101"/>
+
+                    <g id="joint_03" transform="translate(4 -82)">
+                      <g id="segment_04">
+                        <g id="pocket_04">
+                          <rect class="pocket-fill" x="-56" y="-72" width="118" height="66" rx="29" fill="#d9e4ea" opacity=".48"/>
+                          <rect class="pocket-edge" x="-56" y="-72" width="118" height="66" rx="29" stroke="#5f9fbf"/>
+                        </g>
+                        <path id="bend_line_04" class="bend-guide" d="M-52 -82 Q5 -96 69 -81"/>
+                        <path id="bend_arc_04" class="bend-arc" d="M-59 -102 Q7 -132 83 -101"/>
+
+                        <g id="joint_04" transform="translate(6 -84)">
+                          <g id="feeler_tip">
+                            <path id="tip_shape"
+                              d="M-15 -8 C7 -27, 39 -29, 61 -11
+                                 C77 2, 80 23, 70 41
+                                 C58 61, 33 68, 11 59
+                                 C-11 50, -24 29, -21 10
+                                 C-20 3, -18 -3, -15 -8 Z"
+                              fill="#6d777f"/>
+                            <circle cx="27" cy="18" r="4" fill="#d9e0e4"/>
+                            <circle cx="42" cy="20" r="4" fill="#d9e0e4"/>
+                            <circle cx="35" cy="34" r="4" fill="#d9e0e4"/>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </section>
+
+    <aside class="controls">
+      <section class="card">
+
+        <fieldset>
+          <legend>Fluid pockets</legend>
+          <label><input type="checkbox" data-pocket="0"> Pocket 1</label>
+          <label><input type="checkbox" data-pocket="1"> Pocket 2</label>
+          <label><input type="checkbox" data-pocket="2"> Pocket 3</label>
+          <label><input type="checkbox" data-pocket="3"> Pocket 4</label>
+          <div class="btnrow">
+            <button id="inflateAll" type="button">Inflate all</button>
+            <button id="deflateAll" type="button">Deflate all</button>
+            <button id="progressive" type="button">Progressive inflate</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Bend mode</legend>
+          <label><input id="autoBend" type="checkbox" checked> Auto bend from active pockets</label>
+          <div class="mode-note">Disable auto bend to explore each local bend boundary manually.</div>
+
+          <div class="range-row">
+            <span>Bend 1</span><input id="bend1" type="range" min="0" max="22" step="1" value="0"><output id="bend1Out">0° / 22°</output>
+          </div>
+          <div class="range-row">
+            <span>Bend 2</span><input id="bend2" type="range" min="0" max="20" step="1" value="0"><output id="bend2Out">0° / 20°</output>
+          </div>
+          <div class="range-row">
+            <span>Bend 3</span><input id="bend3" type="range" min="0" max="18" step="1" value="0"><output id="bend3Out">0° / 18°</output>
+          </div>
+          <div class="range-row">
+            <span>Bend 4</span><input id="bend4" type="range" min="0" max="15" step="1" value="0"><output id="bend4Out">0° / 15°</output>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Feeler tip</legend>
+          <label><select id="tipSelect">
+            <option value="normal">Normal</option>
+            <option value="active">Active</option>
+            <option value="contact">Contact</option>
+          </select></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Visibility / overlays</legend>
+          <label><input type="checkbox" id="showShell" checked> Show shell</label>
+          <label><input type="checkbox" id="showPockets" checked> Show pockets</label>
+          <label><input type="checkbox" id="showStrain" checked> Show strain layer</label>
+          <label><input type="checkbox" id="showBends"> Show bend guides</label>
+          <label><input type="checkbox" id="showLimits"> Show bend-limit arcs</label>
+          <label><input type="checkbox" id="showRoute"> Show route</label>
+          <label><input type="checkbox" id="showCandidate"> Show candidate overlay</label>
+          <label><input type="checkbox" id="showTarget"> Show contact target</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Abstract demo budget</legend>
+          <label class="stack">Pressure budget
+            <input id="pressureRange" type="range" min="0" max="100" value="0" style="width:100%">
+          </label>
+          <div class="small">Abstract/demo values only; not measured pressure, force, stress, strain, or flow.</div>
+        </fieldset>
+
+        <div class="btnrow"><button id="resetBtn" type="button">Reset</button></div>
+      </section>
+
+      <section class="card">
+        <div class="readout" aria-live="polite">
+          <div>Atlas state</div><div id="rState" class="badge">idle</div>
+          <div>Active pockets</div><div id="rPockets">0 / 4</div>
+          <div>Pressure budget</div><div id="rPressure">0</div>
+          <div>Bend 1</div><div id="rB1">0°</div>
+          <div>Bend 2</div><div id="rB2">0°</div>
+          <div>Bend 3</div><div id="rB3">0°</div>
+          <div>Bend 4</div><div id="rB4">0°</div>
+          <div>Highest limit use</div><div id="rLimit">0%</div>
+          <div>Feeler tip</div><div id="rTip">normal</div>
+          <div>Route overlay</div><div id="rRoute">off</div>
+          <div>Candidate overlay</div><div id="rCandidate">off</div>
+        </div>
+      </section>
+
+      <section class="card small">
+        <strong>Boundary:</strong> pocket activation drives declared visual bend contribution only.
+        Pocket-edge color indicates proximity to a declared bend limit, not measured mechanical strain.
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script>
+(() => {
+  const maxAngles=[22,20,18,15];
+  const autoAngles=[14,12,10,8]; // per active pocket; illustrative visual mapping only
+
+  const state={
+    pockets:[false,false,false,false],
+    angles:[0,0,0,0],
+    tip:"normal",
+    pressure:0,
+    autoBend:true,
+    route:false,candidate:false,target:false,
+    showShell:true,showPockets:true,showStrain:true,
+    showBends:false,showLimits:false
+  };
+
+  let progressiveTimer=null;
+
+  const joints=[1,2,3,4].map(i=>document.getElementById(`joint_0${i}`));
+  const pocketGroups=[1,2,3,4].map(i=>document.getElementById(`pocket_0${i}`));
+  const bendGuides=[1,2,3,4].map(i=>document.getElementById(`bend_line_0${i}`));
+  const bendArcs=[1,2,3,4].map(i=>document.getElementById(`bend_arc_0${i}`));
+  const checks=[...document.querySelectorAll("[data-pocket]")];
+  const sliders=[1,2,3,4].map(i=>document.getElementById(`bend${i}`));
+  const outputs=[1,2,3,4].map(i=>document.getElementById(`bend${i}Out`));
+
+  const shell=document.getElementById("outer_shell");
+  const strain=document.getElementById("strain_limiting_layer");
+  const route=document.getElementById("route_overlay");
+  const candidate=document.getElementById("candidate_overlay");
+  const target=document.getElementById("contact_target");
+  const tip=document.getElementById("tip_shape");
+
+  function edgeColor(ratio){
+    if(ratio < .50) return "#5f9fbf";
+    if(ratio < .75) return "#d7a743";
+    if(ratio < .90) return "#e47a38";
+    return "#d64545";
+  }
+
+  function updateAutoAngles(){
+    if(!state.autoBend) return;
+    for(let i=0;i<4;i++){
+      // Each local bend is primarily driven by its own pocket.
+      // A small inherited contribution from upstream active pockets keeps the chain coherent.
+      const own=state.pockets[i] ? autoAngles[i] : 0;
+      const upstream=state.pockets.slice(0,i).filter(Boolean).length * 0.8;
+      state.angles[i]=Math.min(maxAngles[i], own+upstream);
+    }
+  }
+
+  function setPocket(i,on){
+    state.pockets[i]=!!on;
+    checks[i].checked=!!on;
+    updateAutoAngles();
+  }
+
+  function render(){
+    // Nested transforms produce cumulative downstream curvature.
+    // Positive rotation bends the chain to the right in this SVG coordinate system.
+    state.angles.forEach((a,i)=>{
+      joints[i].setAttribute("transform", `translate(${i===0?30:(i===1?6:(i===2?4:6))} ${i<3?-82:-84}) rotate(${a})`);
+      sliders[i].value=String(Math.round(a));
+      outputs[i].textContent=`${Math.round(a)}° / ${maxAngles[i]}°`;
+      sliders[i].disabled=state.autoBend;
+    });
+
+    shell.style.opacity=state.showShell?".58":"0";
+    strain.style.opacity=state.showStrain?".82":"0";
+
+    state.pockets.forEach((on,i)=>{
+      const fill=pocketGroups[i].querySelector(".pocket-fill");
+      const edge=pocketGroups[i].querySelector(".pocket-edge");
+      const ratio=maxAngles[i] ? state.angles[i]/maxAngles[i] : 0;
+      fill.style.opacity=state.showPockets?(on?".92":".35"):"0";
+      fill.style.fill=on?"#75e0be":"#d9e4ea";
+      edge.style.opacity=state.showPockets?"1":"0";
+      edge.style.stroke=edgeColor(ratio);
+      edge.style.strokeWidth=ratio>=.9?"6":"4";
+      const scale=on?1.055:1;
+      pocketGroups[i].setAttribute("transform",`scale(${scale} ${scale})`);
+      bendGuides[i].style.opacity=state.showBends?"1":"0";
+      bendArcs[i].style.opacity=state.showLimits?"1":"0";
+    });
+
+    route.style.opacity=state.route?"1":"0";
+    candidate.style.opacity=state.candidate?"1":"0";
+    target.style.opacity=state.target?"1":"0";
+
+    tip.setAttribute("fill",
+      state.tip==="contact"?"#6cb3a5":
+      state.tip==="active"?"#4c8fbf":"#6d777f");
+
+    const activeCount=state.pockets.filter(Boolean).length;
+    let atlasState="idle";
+    if(activeCount===0 && state.pressure>0) atlasState="primed";
+    if(activeCount===1) atlasState="pocketed_low";
+    if(activeCount===2 || activeCount===3) atlasState="pocketed_medium";
+    if(activeCount===4) atlasState="pocketed_high";
+    if(state.tip==="contact") atlasState="contacting";
+
+    const ratios=state.angles.map((a,i)=>a/maxAngles[i]);
+    const high=Math.max(...ratios,0);
+
+    document.getElementById("rState").textContent=atlasState;
+    document.getElementById("rPockets").textContent=`${activeCount} / 4`;
+    document.getElementById("rPressure").textContent=String(state.pressure);
+    state.angles.forEach((a,i)=>document.getElementById(`rB${i+1}`).textContent=`${Math.round(a)}°`);
+    document.getElementById("rLimit").textContent=`${Math.round(high*100)}%`;
+    document.getElementById("rTip").textContent=state.tip;
+    document.getElementById("rRoute").textContent=state.route?"on":"off";
+    document.getElementById("rCandidate").textContent=state.candidate?"on":"off";
+  }
+
+  checks.forEach((box,i)=>box.addEventListener("change",()=>{
+    setPocket(i,box.checked);
+    render();
+  }));
+
+  document.getElementById("autoBend").addEventListener("change",e=>{
+    state.autoBend=e.target.checked;
+    updateAutoAngles();
+    render();
+  });
+
+  sliders.forEach((s,i)=>s.addEventListener("input",e=>{
+    if(state.autoBend) return;
+    state.angles[i]=Number(e.target.value);
+    render();
+  }));
+
+  document.getElementById("tipSelect").addEventListener("change",e=>{state.tip=e.target.value;render()});
+  document.getElementById("pressureRange").addEventListener("input",e=>{state.pressure=Number(e.target.value);render()});
+
+  document.getElementById("showShell").addEventListener("change",e=>{state.showShell=e.target.checked;render()});
+  document.getElementById("showPockets").addEventListener("change",e=>{state.showPockets=e.target.checked;render()});
+  document.getElementById("showStrain").addEventListener("change",e=>{state.showStrain=e.target.checked;render()});
+  document.getElementById("showBends").addEventListener("change",e=>{state.showBends=e.target.checked;render()});
+  document.getElementById("showLimits").addEventListener("change",e=>{state.showLimits=e.target.checked;render()});
+  document.getElementById("showRoute").addEventListener("change",e=>{state.route=e.target.checked;render()});
+  document.getElementById("showCandidate").addEventListener("change",e=>{state.candidate=e.target.checked;render()});
+  document.getElementById("showTarget").addEventListener("change",e=>{state.target=e.target.checked;render()});
+
+  document.getElementById("inflateAll").addEventListener("click",()=>{
+    state.pockets=[true,true,true,true];
+    checks.forEach(x=>x.checked=true);
+    state.pressure=Math.max(state.pressure,80);
+    document.getElementById("pressureRange").value=state.pressure;
+    updateAutoAngles();
+    render();
+  });
+
+  document.getElementById("deflateAll").addEventListener("click",()=>{
+    state.pockets=[false,false,false,false];
+    checks.forEach(x=>x.checked=false);
+    state.pressure=0;
+    state.tip="normal";
+    document.getElementById("pressureRange").value=0;
+    document.getElementById("tipSelect").value="normal";
+    if(state.autoBend) state.angles=[0,0,0,0];
+    render();
+  });
+
+  document.getElementById("progressive").addEventListener("click",()=>{
+    if(progressiveTimer) clearInterval(progressiveTimer);
+    state.pockets=[false,false,false,false];
+    checks.forEach(x=>x.checked=false);
+    state.pressure=10;
+    document.getElementById("pressureRange").value=10;
+    if(state.autoBend) state.angles=[0,0,0,0];
+    let i=0;
+    progressiveTimer=setInterval(()=>{
+      if(i>=4){clearInterval(progressiveTimer);progressiveTimer=null;return;}
+      setPocket(i,true);
+      state.pressure=Math.min(100,25+(i+1)*18);
+      document.getElementById("pressureRange").value=state.pressure;
+      render();
+      i++;
+    },550);
+  });
+
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+    if(progressiveTimer){clearInterval(progressiveTimer);progressiveTimer=null}
+    Object.assign(state,{
+      pockets:[false,false,false,false],angles:[0,0,0,0],
+      tip:"normal",pressure:0,autoBend:true,
+      route:false,candidate:false,target:false,
+      showShell:true,showPockets:true,showStrain:true,
+      showBends:false,showLimits:false
+    });
+    checks.forEach(x=>x.checked=false);
+    sliders.forEach(x=>x.value="0");
+    document.getElementById("autoBend").checked=true;
+    document.getElementById("tipSelect").value="normal";
+    document.getElementById("pressureRange").value=0;
+    ["showShell","showPockets","showStrain"].forEach(id=>document.getElementById(id).checked=true);
+    ["showBends","showLimits","showRoute","showCandidate","showTarget"].forEach(id=>document.getElementById(id).checked=false);
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

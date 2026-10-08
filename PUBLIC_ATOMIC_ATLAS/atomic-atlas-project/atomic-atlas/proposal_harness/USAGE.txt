@@ -1,0 +1,25 @@
+PROPOSAL / EXPLICIT REVIEW / COMMIT HARNESS 0.1
+
+A separate local adapter imports the bundled core; the harness implementation and 12 core schemas are unchanged from candidate 005; the core analysis module was hardened in checkpoint 007 (core 0.0.5.dev1). Proposal shape is checked by this adapter's explicit Python guards, not a new core JSON Schema. Accepted changes use the core Event and document contracts. No LLM, prompt extractor, external service or SQLite is connected.
+
+Start:
+  python proposal_harness/demo.py
+This uses a temporary synthetic ledger and leaves no history behind. To retain a synthetic run, add --output-folder NEW_DIRECTORY (it must not exist). DEMO_RECEIPT.json is an explicitly synthetic receipt; no source ledger/user history is bundled.
+Tests:
+  python -m pytest proposal_harness/tests -q
+
+CLI from project root:
+  python proposal_harness/cli.py --ledger work/review.jsonl source --locator synthetic/manual-A --text-file YOUR_SOURCE.txt
+  python proposal_harness/cli.py --ledger work/review.jsonl propose --json-file YOUR_PROPOSAL.json
+  python proposal_harness/cli.py --ledger work/review.jsonl view
+  python proposal_harness/cli.py --ledger work/review.jsonl decide --proposal-id p1 --outcome ACCEPT --reason "Explicit review" --reviewer "local reviewer" --proposal-digest COPIED_PROPOSAL_DIGEST --state-digest COPIED_STATE_DIGEST
+Copy hashes from the proposed payload and current view. Optional --expected-head adds an independently retained ledger-head check when opening history. Without an external head, a complete rehashed rewrite is not detectable by chain hashes alone.
+
+Every proposal contains exactly: id, key, value, source_id, summary, summary_kind, uncertainty, supersedes, revises, truth_status.
+summary_kind is SUMMARY; truth_status is UNVERIFIED. uncertainty is a list of nonempty strings; supersedes and revises are null or IDs. Source IDs must refer to previously registered text bytes and locator. A revision links a prior same-key proposal; supersession must name the currently accepted same-key claim. Generated/input summaries are summaries, never exact quotations.
+
+Proposals and sources append before review; they do not mutate accepted state. ACCEPT creates a core state-patch event only after explicit reviewer/reason and matching proposal/state hashes. REJECT appends a decision and leaves state unchanged. Any existing key needs explicit current-claim supersession, even when a new proposal repeats its value. Corrections preserve old source/proposal/decision records. Pending uncertainty must be addressed in a new linked proposal before acceptance. The adapter reconstructs state from ledger decisions and checks regenerated events and before/after digests. Append failure or stale cooperating writer leaves local state unchanged.
+
+Acceptance means ACCEPTED_DECLARATION, not verified fact. Registered source hashes prove byte association, not correct interpretation, authenticity or scientific validity. A human reviewer can still accept an unsupported statement: there is no semantic entailment checker. Reviewer labels are declarations, not authenticated identities. Blocked attempts are not automatically logged; completed ACCEPT/REJECT decisions are. Sources store supplied text verbatim locally, so do not submit private text to a ledger intended for distribution. No source is transmitted.
+
+Limitations: trusted local caller, cooperating writer locks, no adversarial sandbox, no database transaction combining a separately saved document and this ledger, no live LLM evaluation, no UI or performance benchmarks. CLI command errors fail instead of retrying or auto-accepting. The adapter is source-only; the included wheel installs the core, not this harness. Its tests are a bounded integration demonstration.

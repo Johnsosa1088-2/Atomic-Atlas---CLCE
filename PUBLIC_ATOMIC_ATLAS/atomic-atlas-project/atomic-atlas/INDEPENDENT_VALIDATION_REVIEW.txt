@@ -1,0 +1,56 @@
+ATOMIC ATLAS — INDEPENDENT VALIDATION & ADVERSARIAL REVIEW 005
+
+RESULT: PASS WITH BOUNDED CLAIMS; THREE INPUT-BOUNDARY FINDINGS FIXED.
+Candidate 004 remains unchanged. Candidate 005 uses core 0.0.4.dev1, contract revision 0.2 and wire markers 0.1. All 12 schemas are byte-for-byte unchanged. No publication performed.
+
+INDEPENDENT SCHEMA CHECKS
+jsonschema 4.26.0 Draft202012Validator (external to this project's evaluator) checked all 12 schemas against its bundled Draft 2020-12 metaschema. All 348 local reference occurrences resolved offline; all schema IDs are unique. A deliberately malformed metaschema control failed as expected. Integer controls distinguish 1.0 from boolean true under the standard's mathematical integer semantics.
+
+Both validators agreed on 5,097 finite-JSON classifications: 35 supplied fixtures (12 valid and 23 adversarial/invalid fixtures) plus 5,062 deduplicated generated field mutations. Results: 1,020 structurally accepted and 4,077 rejected; zero disagreements and zero failures against supplied expected structural classifications. Schema-valid semantic-invalid fixtures are expected to pass structural checks and fail model integrity, not be misreported as validator failures. Detailed per-case anchors and deterministic generator are included.
+
+This validates THESE schemas and THESE cases; it does not certify every Draft 2020-12 feature, every possible instance, or the project's physics. Format validation is not asserted: these schemas use no format keyword. Validation is offline, with remote instance-schema reference retrieval disabled. No dependency is added to runtime core: the external validator is an audit dependency.
+
+ADVERSARIAL FINDINGS AND FIXES
+AV005-01: Duplicate JSON keys were silently collapsed by the standard loader. A hidden earlier version or ledger record could disappear before validation. Strict file decoding now rejects duplicate keys at any object depth, malformed JSON and nonfinite constants. Original duplicate-document and duplicate-ledger reproductions accepted in 004, rejected in 005.
+AV005-02: Ledger verification ignored unexpected fields and treated an absent record as null. Such envelope changes could retain a valid digest. Envelopes now require exactly sequence, previous_head, record and head. Added/missing-field reproductions accepted in 004, rejected in 005. This does not authenticate external authors or prevent a complete chain rewrite unless the reader retains an independent expected head.
+AV005-03: Ledger append/hash serialization admitted NaN and infinities, which are outside finite JSON. Canonical hashing now checks finite JSON values; persisted output prohibits nonfinite constants. Three reproductions accepted in 004, rejected before append in 005. Rejection leaves bytes, head and count intact.
+
+Valid finite canonical bytes/hashes preserve the prior contract; existing valid envelopes remain readable. There is no silent migration of ambiguous/invalid old files. They require explicit source inspection. Changes affect persisted input acceptance and canonical hashing; ordinary supported finite data is unchanged.
+
+TEST EVIDENCE
+Initial adversarial subset: 7 failures and 21 passes, exposing the three findings. All 7 minimal reproductions accept on the retained 004 core and reject on 005 in separate processes.
+Final full pytest: 91 passed (original 55 plus 36 new adversarial/boundary cases). The bounded stdlib adapter still runs 55, explicitly declaring the parameterized release test file excluded. It is not reported as a substitute for full pytest.
+Fresh-process file recovery and declared-event replay: PASS. This is deterministic artifact recovery, not language-model recall.
+Unchanged examples rerun: A 28 checks; B Python 12, retrieval 7, minimal DOM 10; C Node 22 — all pass. These are mixed implementation check types, not scientific experiments or proof of core integration.
+Installed wheel: core 0.0.4.dev1 built and installed with no core dependencies in a fresh Linux Python environment. Under python -I outside the source tree: schema resources (12), validation, event application, replay, save/load and state hash round-trip passed. All installed schema byte hashes matched source. Wheel SHA-256: 35f9bea659e95597b4bf511f874c6c7566503165598e551e0a0f22a857e71010.
+
+LIMITS / OPEN ITEMS
+Standalone snapshot digest verification is not implemented. A formatted digest can pass a schema while being false; compare with independent trusted anchors and the actual topology/source.
+Final document state is supplied, not recomputed or authenticated from events without an event-free baseline. Explicit replay can check it when that baseline is available.
+Event construction requires a Python int, while JSON Schema integer accepts finite whole-number floats such as 1.0. This is a stricter model policy, distinct from structural validator agreement; no silent coercion added.
+Wider adversarial/property coverage, Windows, additional Python versions, real browsers, external review and example/asset licensing remain open. Resource exhaustion/hostile direct object mutation and power-failure transactions are outside current guarantees. Examples A/B/C still are standalone, not integrated with the Python core.
+
+REPRODUCE
+From the extracted root:
+  python -m venv .venv
+  Activate it for your operating system.
+  python -m pip install -r core/audit/independent/requirements-lock.txt
+  python verify_candidate.py
+Node.js is required for example checks. Exact tested audit dependency versions are pinned; their download and availability on other platforms are not guaranteed by this ZIP.
+Independent check alone:
+  python core/audit/independent/check_conformance.py
+Before/after finding reproductions (separate processes):
+  python core/audit/independent/reproduce_boundary_findings.py PATH_TO_004/core
+  python core/audit/independent/reproduce_boundary_findings.py core
+Wheel isolation: create a separate venv, install distributions/atomic_atlas_core-0.0.4.dev1-py3-none-any.whl with --no-index, then use that venv's python -I to run the absolute path to core/audit/independent/check_installed_wheel.py from outside this source tree.
+Checks may regenerate reports and cache files; integrity verification checks the delivered anchors before execution. Use a separate extraction when preserving delivered bytes.
+
+ANCESTRY
+Parent candidate 004 ZIP SHA-256: a003a37b10a9e000bb7f13af5c87b525010c721eaa3842dc06848c3cb981d37c
+Original upstream source bundle SHA-256 is retained separately in RELEASE_MANIFEST.json. No parent/history ZIPs are embedded; original delivered copies remain unchanged. FILE_CHANGES.json anchors changed, added and removed members against the exact parent ZIP.
+
+PRIMARY IMPLEMENTATION / STANDARD REFERENCES
+https://python-jsonschema.readthedocs.io/en/v4.25.1/validate/
+https://github.com/python-jsonschema/jsonschema/blob/main/docs/referencing.rst
+https://json-schema.org/draft/2020-12/json-schema-validation
+The actual installed validator and dependencies, rather than a website's latest release label, determine this run's versions.

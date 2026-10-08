@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-08T21:51:25.127704+00:00",
+  "changes": [
+    {
+      "file": "lightbench/BROWSER_SCREENSHOT_REVIEW_008.json",
+      "before_sha256": "e318b04fa3538519f4d798c685213970ca6ddb2f5e3dad532c44c47ea3e81798",
+      "private_identifiers_removed": 2
+    },
+    {
+      "file": "lightbench/README.md",
+      "before_sha256": "89a353d0aefb6f144523436e7f8e5a57e5c3aa7937d2a22faa27856dc0c44c16",
+      "private_identifiers_removed": 4
+    },
+    {
+      "file": "lightbench/sources/HERMES_CODE_INVENTORY.json",
+      "before_sha256": "0b8ff867b538a130555180bb463b74b76711a8aac8966ad3e90d16256e654cc9",
+      "private_identifiers_removed": 1
+    },
+    {
+      "file": "lightbench/sources/HERMES_COVERAGE.json",
+      "before_sha256": "69ddce9777f1a1cc723b69715823db0e4b0ea724ce747224ad09d7218da48c2c",
+      "private_identifiers_removed": 2
+    },
+    {
+      "file": "roadmap/APPLICATION_MAP.json",
+      "before_sha256": "855518f73f13ccf430aa15749183b225446c39632c878b099e53ee82c53dbcf0",
+      "private_identifiers_removed": 1
+    }
+  ],
+  "core_files_byte_identical": 179,
+  "image_conversion": "NOT_PERFORMED_NO_JPG_REPLACEMENTS_SUPPLIED",
+  "metadata_review": "Targeted private Library ID and local-path review; not a comprehensive secret scan",
+  "core_local_paths": "Two historical logs contain generic scratch paths; retained to preserve core inventory",
+  "publication": "NOT_PERFORMED",
+  "current_checks": {
+    "lightbench_model": 37,
+    "engines": 19,
+    "phases": 12,
+    "independent_numpy": 6,
+    "total": 74,
+    "result": "PASS",
+    "browser": "NOT_RUN",
+    "full_core_suite": "NOT_RERUN"
+  }
+}

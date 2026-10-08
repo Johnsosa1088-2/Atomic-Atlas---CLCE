@@ -1,0 +1,55 @@
+{
+  "step": 7,
+  "scope": "Five prohibited automatic promotions plus proposal review and arithmetic preview integrity",
+  "cases": [
+    {
+      "boundary": "connection -> flow",
+      "core_cases": 4,
+      "checks": "Declared flags and reachable route never execute transport or change state",
+      "mutation": "connection_to_flow"
+    },
+    {
+      "boundary": "correlation -> causation",
+      "core_cases": 2,
+      "checks": "Paired observations, including caller verified=true, do not infer causal state",
+      "mutation": "correlation_to_state"
+    },
+    {
+      "boundary": "label -> physical mechanism",
+      "core_cases": 5,
+      "checks": "Causal/physics labels and attributes remain declarations; budget output asserts no mechanism/evidence",
+      "mutation": "label_to_mechanism"
+    },
+    {
+      "boundary": "candidate -> validated",
+      "core_cases": 7,
+      "checks": "Status/transport/mutation promotion rejected; roundtrip retains candidate isolation",
+      "mutation": "candidate_to_validated"
+    },
+    {
+      "boundary": "replay -> evidence",
+      "core_cases": 2,
+      "checks": "Declared replay reproduces even a false input claim without generating observations or evidence",
+      "mutation": "replay_to_evidence"
+    },
+    {
+      "boundary": "budget -> warranted arithmetic closure",
+      "core_cases": 12,
+      "checks": "Nonempty typed ledgers, balance failure and exact comparison independent of ambient Decimal precision"
+    },
+    {
+      "boundary": "review -> scientific verification",
+      "harness_cases": 19,
+      "checks": "Stronger statuses/outcomes rejected; opaque flags remain attributed; labels do not act as authority; forged promotion event rejected",
+      "mutation": "review_to_verified"
+    }
+  ],
+  "new_core_cases": 32,
+  "new_harness_cases": 19,
+  "limits": [
+    "No semantic entailment checker; opaque assertions may be stored.",
+    "No physical experiments, causal estimator or physics solver run.",
+    "No universal/exhaustive boundary guarantee; direct hostile internal mutation outside API contract.",
+    "Mutation controls operate only on temporary copies."
+  ]
+}

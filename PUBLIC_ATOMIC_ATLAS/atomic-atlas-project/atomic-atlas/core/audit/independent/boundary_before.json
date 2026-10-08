@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "case": "extra-envelope-field",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "missing-record",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "duplicate-document-key",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "duplicate-ledger-key",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "nan-payload",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "infinite-payload",
+      "observed": "ACCEPTED"
+    },
+    {
+      "case": "negative-infinite-payload",
+      "observed": "ACCEPTED"
+    }
+  ]
+}

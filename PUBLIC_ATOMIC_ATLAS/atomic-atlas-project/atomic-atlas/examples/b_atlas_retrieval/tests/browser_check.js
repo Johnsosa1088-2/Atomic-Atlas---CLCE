@@ -1,0 +1,26 @@
+const {chromium}=require('playwright');
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+(async()=>{
+const root=path.resolve(__dirname,'..');const browser=await chromium.launch({headless:true,executablePath:chromium.executablePath()});
+const page=await browser.newPage({viewport:{width:1420,height:1050}});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('file://'+path.join(root,'index.html'));
+await page.locator('#docs-atlas .doc').first().waitFor();
+assert.ok((await page.locator('#prompt').innerText()).includes('R-CONTROL'));
+await page.locator('#mode-passage').click();assert.equal(await page.locator('#mode-passage').getAttribute('aria-pressed'),'true');
+await page.locator('#case').selectOption('formula');assert.ok((await page.locator('#prompt').innerText()).includes('P_light'));
+await page.locator('#mode-atlas').click();assert.ok((await page.locator('#prompt').innerText()).includes('right-hand side absent'));
+await page.locator('#docs-atlas .doc').first().click();assert.equal(await page.locator('#document').evaluate(d=>d.open),true);
+await page.locator('#close-doc').click();
+await page.locator('#atlas [role=button]').first().press('Enter');assert.ok((await page.locator('#query').inputValue()).includes('Left reservoir'));
+await page.locator('#save-trace').click();await page.waitForFunction(()=>document.querySelector('#history-count').textContent.startsWith('1 event'));
+await page.locator('#model').fill('Test fixture, not an actual model run');await page.locator('#answer').fill('Fixture answer only.');
+await page.locator('#save-answer').click();await page.waitForFunction(()=>document.querySelector('#history-count').textContent.startsWith('2 event'));
+await page.locator('#case').selectOption('reservoir');await page.screenshot({path:path.join(root,'preview-desktop.png'),fullPage:true});
+await page.setViewportSize({width:390,height:844});
+assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+await page.screenshot({path:path.join(root,'preview-mobile.png'),fullPage:true});
+assert.deepEqual(errors,[]);
+await browser.close();
+console.log(JSON.stringify({browser:'Chromium',checks_passed:10,console_errors:errors,model_generation_tested:false}));
+})().catch(e=>{console.error(e);process.exit(1)});

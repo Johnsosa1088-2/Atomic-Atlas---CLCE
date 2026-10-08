@@ -1,0 +1,1 @@
+Checkpoint 010: start with START_HERE.txt and the three Markdown guides. Exact inventory verification is included in verify_candidate.py. Remaining release gates are explicit in step10/RELEASE_STATUS.json. Not published.

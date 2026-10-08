@@ -1,0 +1,25 @@
+{
+  "artifact": "EXAMPLE_A_CLEAN_CANDIDATE",
+  "files": [
+    {
+      "name": "EXAMPLE_A_ATLAS_MAPPING.json",
+      "sha256": "c99248b2fdbdee14e2aa8b304d4141392748eca40b99c3dbd1c20b82a496b8c2"
+    },
+    {
+      "name": "EXPECTED_TEST_RESULTS.json",
+      "sha256": "d57151e4b0de6c4456054dc055cd96731f09027de5dded9b12a44b86d6919eab"
+    },
+    {
+      "name": "index.html",
+      "sha256": "5058883e384341208b4731c7198254071cceba6b99806694632951c8f98132ae"
+    },
+    {
+      "name": "run_example_a_test.py",
+      "sha256": "25b59f6312c92d6ab91c2b9fd55216cf06d3eaf365883f8b47acb407f096d3a7"
+    },
+    {
+      "name": "soft_robotic_finger_asset.png",
+      "sha256": "4cd94b26aa21487350de0627cb042b5b4c6b33e829da3425cab61c92e3fa38f1"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "User-supplied 008 assembly plus guides",
+  "changes": [
+    "Included Step 9 register and gate metadata",
+    "Reconciled three guide applicability labels",
+    "Corrected stale harness description",
+    "Regenerated complete inventory",
+    "Added inventory verifier and release status",
+    "Excluded aspirational ZIP"
+  ],
+  "core_harness_schema_wheel_changes": 0,
+  "original_upload_unchanged": true
+}

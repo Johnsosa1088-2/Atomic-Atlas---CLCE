@@ -1,0 +1,10 @@
+{
+  "checkpoint": "013",
+  "recorded_utc": "2026-10-08T19:59:50.113584+00:00",
+  "parent_zip_sha256": "ad017267d1ee82281e8b980051420c6acc6971ba1f5987e65373297d272b9025",
+  "change": "Example B deterministic SQLite connection closure with transaction semantics preserved",
+  "tests": "step10/SQLITE_CLOSURE_TEST_OUTPUT_013.txt",
+  "original_43_freeze_anchors_changed": false,
+  "native_windows": "PENDING",
+  "publication": "NOT_PUBLISHED"
+}

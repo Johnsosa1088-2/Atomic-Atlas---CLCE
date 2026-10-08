@@ -1,0 +1,11 @@
+{
+  "checkpoint": "011",
+  "recorded_utc": "2026-10-08T19:47:58.718375+00:00",
+  "parent_zip_sha256": "0b425478e5ef2caeb93f1d774d2be97a150176c2d7097f7258adfc847ab9e58e",
+  "change": "Inventory relative paths use as_posix; Windows instructions isolate environment and log",
+  "core_harness_schema_wheel_changes": 0,
+  "new_inventory_tests": 7,
+  "new_inventory_test_status": "See step10/PORTABILITY_TEST_OUTPUT.txt; native Windows untested",
+  "full_runtime_suite": "Not rerun for this checkpoint; prior 010 evidence retained",
+  "publication": "NOT_PUBLISHED"
+}

@@ -1,0 +1,464 @@
+{
+  "schema": "NEUTRAL_ATLAS_RAG_DEMO/2",
+  "graph_version": "SYNTHETIC_DEMO_GRAPH/2",
+  "notice": "Synthetic neutral retrieval corpus. No personal history, source graphics, LLM generation or improvement measurements are bundled.",
+  "docs": [
+    {
+      "id": "R-PAIR",
+      "title": "Paired reservoirs",
+      "text": "In this synthetic specification, left and right reservoirs R_L and R_R store, buffer and release carrier.",
+      "entities": [
+        "left",
+        "right"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-PAIR",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "evidence",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-ROUTING",
+      "title": "Routing authority",
+      "text": "The routing controller determines routing. Reservoirs provide buffering capacity; they do not choose routes.",
+      "entities": [
+        "cdn",
+        "left",
+        "right"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-ROUTING",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "constraint",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-STATE",
+      "title": "Operating states",
+      "text": "Fill/store, buffer/hold and release are proposed continuous control states. The two reservoirs may differ.",
+      "entities": [
+        "left",
+        "right",
+        "control"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-STATE",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "state",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-CONTROL",
+      "title": "Unresolved response law",
+      "text": "The abstract reservoir response function B[ ] is unresolved. No numerical control law or validated pressure envelope is supplied.",
+      "entities": [
+        "control"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-CONTROL",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-VALIDITY",
+      "title": "Physical status",
+      "text": "Physical realization is unvalidated. Flow thresholds, pressure envelope and transduction law remain unresolved.",
+      "entities": [
+        "validation",
+        "control"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-VALIDITY",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-HYDROLOGY",
+      "title": "Transport responsibility",
+      "text": "The transport subsystem carries carrier locally. The routing controller distributes carrier and receives return. Reservoirs store, buffer and release.",
+      "entities": [
+        "hydrology",
+        "cdn",
+        "left",
+        "right"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-HYDROLOGY",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "relationship",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "R-CONSERVATION",
+      "title": "Internal redistribution",
+      "text": "Exchange between controller and reservoirs is internal redistribution. Internal transfer is not total-system gain or loss.",
+      "entities": [
+        "cdn",
+        "left",
+        "right",
+        "constraints"
+      ],
+      "source": {
+        "locator": "Synthetic specification / R-CONSERVATION",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "constraint",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "EQ-012",
+      "title": "Missing rendered expression",
+      "text": "The synthetic formula placeholder is P_light = with its right-hand side absent. It is incomplete; no full equation or normalized LaTeX is supplied.",
+      "entities": [
+        "formula"
+      ],
+      "source": {
+        "locator": "Synthetic specification / EQ-012",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": "P_light = [right-hand side absent]"
+    },
+    {
+      "id": "REVIEW-002",
+      "title": "Conflicting synthetic records",
+      "text": "Two fictional scenario records conflict about coherence ranges. The discrepancy is unresolved; no corrected values are adopted.",
+      "entities": [
+        "constraints",
+        "validation"
+      ],
+      "source": {
+        "locator": "Synthetic specification / REVIEW-002",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "IMAGE-006",
+      "title": "Illustrated readings",
+      "text": "A fictional illustration describes 68.4 \u00b0C outer temperature, 32.1 \u00b0C hub temperature, 22.6 \u00b0C ambient temperature and 0.82 m/s airflow. These invented values are not verified measurements.",
+      "entities": [
+        "validation",
+        "hydrology"
+      ],
+      "source": {
+        "locator": "Synthetic specification / IMAGE-006",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "SCOPE-002",
+      "title": "Fictional scope decision",
+      "text": "The fictional record series begins at step 1. Earlier imported records would be retained; this demonstration contains no personal conversation history.",
+      "entities": [
+        "history",
+        "constraints"
+      ],
+      "source": {
+        "locator": "Synthetic specification / SCOPE-002",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "decision",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    },
+    {
+      "id": "SCOPE-001",
+      "title": "Undated fictional clarification",
+      "text": "The fictional clarification has no supplied date. Its chronology remains unknown; do not invent an event time.",
+      "entities": [
+        "history"
+      ],
+      "source": {
+        "locator": "Synthetic specification / SCOPE-001",
+        "path": "sources/specification.json",
+        "date": null,
+        "date_basis": "UNDATED_SYNTHETIC_SPECIFICATION",
+        "access": "BUNDLED_FULL_SPECIFICATION",
+        "scientific_status": "SYNTHETIC_NOT_MEASURED",
+        "sha256": "6acc90ccf9a657f1640841fc92430eab71691c4ceb2d571e6e9c25f210306565"
+      },
+      "role": "unresolved",
+      "basis": "SYNTHETIC_DEMO_SPECIFICATION",
+      "literal": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "left",
+      "label": "Left reservoir",
+      "x": 190,
+      "y": 130,
+      "aliases": [
+        "left reservoir",
+        "reservoirs",
+        "reservoir",
+        "r_l",
+        "buffer",
+        "storage"
+      ]
+    },
+    {
+      "id": "right",
+      "label": "Right reservoir",
+      "x": 650,
+      "y": 130,
+      "aliases": [
+        "right reservoir",
+        "reservoirs",
+        "reservoir",
+        "r_r",
+        "buffer",
+        "storage"
+      ]
+    },
+    {
+      "id": "cdn",
+      "label": "Routing controller",
+      "x": 430,
+      "y": 285,
+      "aliases": [
+        "controller",
+        "routing",
+        "route",
+        "distribution",
+        "redistribution"
+      ]
+    },
+    {
+      "id": "control",
+      "label": "Response law B[ ]",
+      "x": 430,
+      "y": 65,
+      "aliases": [
+        "controller",
+        "control",
+        "b[",
+        "b [",
+        "response law",
+        "threshold"
+      ]
+    },
+    {
+      "id": "hydrology",
+      "label": "Transport",
+      "x": 710,
+      "y": 365,
+      "aliases": [
+        "transport",
+        "carrier",
+        "flow",
+        "airflow"
+      ]
+    },
+    {
+      "id": "validation",
+      "label": "Evidence status",
+      "x": 665,
+      "y": 550,
+      "aliases": [
+        "validated",
+        "measurement",
+        "verified",
+        "evidence",
+        "physical",
+        "experiment"
+      ]
+    },
+    {
+      "id": "constraints",
+      "label": "Constraints",
+      "x": 150,
+      "y": 350,
+      "aliases": [
+        "constraint",
+        "conservation",
+        "contradiction",
+        "conflict",
+        "coherence"
+      ]
+    },
+    {
+      "id": "formula",
+      "label": "Formula gaps",
+      "x": 430,
+      "y": 575,
+      "aliases": [
+        "formula",
+        "equation",
+        "p_light",
+        "p light",
+        "right-hand",
+        "rhs"
+      ]
+    },
+    {
+      "id": "history",
+      "label": "Record scope",
+      "x": 160,
+      "y": 550,
+      "aliases": [
+        "history",
+        "scope",
+        "date",
+        "provenance",
+        "step"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from_id": "left",
+      "to_id": "cdn",
+      "label": "buffers through"
+    },
+    {
+      "from_id": "right",
+      "to_id": "cdn",
+      "label": "buffers through"
+    },
+    {
+      "from_id": "left",
+      "to_id": "control",
+      "label": "state depends on"
+    },
+    {
+      "from_id": "right",
+      "to_id": "control",
+      "label": "state depends on"
+    },
+    {
+      "from_id": "cdn",
+      "to_id": "hydrology",
+      "label": "routes carrier to"
+    },
+    {
+      "from_id": "control",
+      "to_id": "validation",
+      "label": "limited by"
+    },
+    {
+      "from_id": "cdn",
+      "to_id": "constraints",
+      "label": "must conserve"
+    },
+    {
+      "from_id": "constraints",
+      "to_id": "validation",
+      "label": "requires adjudication"
+    },
+    {
+      "from_id": "formula",
+      "to_id": "validation",
+      "label": "requires source"
+    },
+    {
+      "from_id": "history",
+      "to_id": "constraints",
+      "label": "retains decisions"
+    }
+  ],
+  "questions": [
+    {
+      "id": "reservoir",
+      "text": "How do the dual reservoirs respond to demand, and what is unresolved?",
+      "focus": "left"
+    },
+    {
+      "id": "routing",
+      "text": "What routes the carrier, and how does that differ from buffering?",
+      "focus": "cdn"
+    },
+    {
+      "id": "formula",
+      "text": "What is the complete P_light formula?",
+      "focus": "formula"
+    },
+    {
+      "id": "history",
+      "text": "Where does the fictional record series begin, and are dates known?",
+      "focus": "history"
+    },
+    {
+      "id": "physical",
+      "text": "Which airflow readings were experimentally verified?",
+      "focus": "validation"
+    }
+  ]
+}

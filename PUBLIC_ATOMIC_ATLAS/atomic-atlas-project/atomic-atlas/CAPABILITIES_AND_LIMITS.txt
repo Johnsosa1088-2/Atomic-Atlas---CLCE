@@ -1,0 +1,81 @@
+ATOMIC ATLAS — CAPABILITIES AND LIMITATIONS / STEP 9 / PROJECT 009
+
+SCOPE
+Pre-alpha neutral representation, provenance and explicit-review toolkit. Core 0.0.5.dev1; source-only harness 0.1; schema contract revision 0.2 and wire markers 0.1 are separate version axes. These capabilities are bounded by the supplied cases. No public release or universal conformance is claimed.
+
+CAP-01: Declarative graph construction
+Status: Implemented; bounded tested
+Evidence: core/src/atomic_atlas_core/builder.py
+Boundary: Graph payloads and cross-object integrity checks; no image/CAD/language extraction.
+
+CAP-02: Read-only route tracing
+Status: Implemented; bounded tested
+Evidence: core/src/atomic_atlas_core/analysis.py
+Boundary: Directed/reversible/undirected, cut and candidate exclusion semantics; no transport or mechanism established.
+
+CAP-03: Arithmetic budget preview
+Status: Implemented; bounded tested
+Evidence: core/tests/test_step7_boundaries.py
+Boundary: Exact finite-value balance comparison; arbitrary unit labels, no dimensional or physical validation.
+
+CAP-04: Explicit state events and recovery
+Status: Implemented; bounded tested
+Evidence: core/src/atomic_atlas_core/replay.py
+Boundary: Event-free baseline plus contiguous declared patches; no full physical dynamics, continuation replay or LLM recall.
+
+CAP-05: Source and content hashes
+Status: Implemented; bounded tested
+Evidence: core/src/atomic_atlas_core/provenance.py
+Boundary: Byte association and change detection relative to trusted anchors; not authorship, authenticity or truth.
+
+CAP-06: Cooperating-writer append ledger
+Status: Implemented; bounded tested
+Evidence: core/src/atomic_atlas_core/ledger.py
+Boundary: Lock/head checks, flush/fsync and best-effort ordinary-error rollback; no cross-file atomic transaction or hostile-writer isolation.
+
+CAP-07: Candidate and observation separation
+Status: Implemented; bounded tested
+Evidence: core/tests/test_step7_boundaries.py
+Boundary: No automatic promotion to validated/evidence status; observation verified=true is caller-declared.
+
+CAP-08: Explicit proposal review and supersession
+Status: Implemented; bounded tested
+Evidence: proposal_harness/harness.py
+Boundary: Acceptance is ACCEPTED_DECLARATION; reviewer labels unauthenticated; blocked attempts not automatically logged; claims not automatically synchronized into structural graphs.
+
+CAP-09: Schema conformance
+Status: Independently checked for bounded corpus
+Evidence: core/audit/independent/conformance_results.json
+Boundary: 12 schemas, 348 reference resolutions and 5,097 differential cases; runtime evaluator only used-keyword subset, not a general validator certification.
+
+CAP-10: Domain substitution
+Status: Demonstrated for eight synthetic domains
+Evidence: step8/COVERAGE.json
+Boundary: 65 checks and eight fresh core subprocess recoveries; no universal domain or physical capability claim.
+
+CAP-11: Example A SVG actuator abstraction
+Status: Standalone demonstration
+Evidence: examples/a_soft_robotic_finger/EXAMPLE_A_ATLAS_MAPPING.json
+Boundary: 28 static mapping checks; no physical actuator validation or core integration.
+
+CAP-12: Example B retrieval selection
+Status: Standalone demonstration
+Evidence: examples/b_atlas_retrieval/engine.js
+Boundary: Synthetic lexical/atlas retrieval with optional SQLite reported events; no LLM generation, measured model benefit or automatic core integration.
+
+CAP-13: Example C compartment accounting
+Status: Standalone demonstration
+Evidence: examples/c_closed_loop_budget/MODEL.md
+Boundary: Dimensionless toy model with separate model-step replay; no CFD, physical steam loop or historical formula validation.
+
+EVIDENCE STATUS
+Checkpoint 008 records 123 core tests, 41 harness tests, 65 substitution checks and six detected Step-7 mutation controls. The 12 schemas were independently checked using jsonschema 4.26.0 with zero disagreements across 5,097 cases. Eight domain recoveries use fresh Python subprocesses; this is deterministic file recovery, not language-model recall. These implementation results are inherited, not rerun during this documentation-only checkpoint. Current work checks source byte preservation, documentation evidence locators and packaging hashes. Counts cover distinct suites and should not be presented as a universal confidence score.
+
+SECURITY AND INTEGRITY LIMITS
+Public Atlas dictionaries can be modified directly. Opaque source prose, state values and attributes may contain unsupported claims. No semantic truth checker or hostile-caller sandbox exists. Source digests and chain hashes require independent trusted anchors to detect fully rehashed history replacement. Snapshot structure can pass with incorrect supplied hashes; compare trusted anchors explicitly. Final document state is supplied, not authenticated by replay without the baseline. No power-loss guarantee, automatic abandoned-lock removal, resource bounds or large-graph stress benchmark is established. A mathematical JSON integer such as 1.0 may pass a schema while Event construction requires a Python int; this separate model rule is intentional.
+
+APPLICATION ASPIRATIONS
+Robotics, games, retrieval/agents, aerospace, medicine, finance, industry and deep-space use are proposed applications requiring domain adapters, independent models and empirical validation. The private aspiration-image companion is separately retained and is not a public-candidate asset. Proposed applications are not measured capabilities. A useful future retrieval experiment would freeze model, source corpus and tasks, vary retrieval organization, and score accuracy, attribution, unsupported claims, contradictions and overhead. No measured advantage is currently established.
+
+RELEASE GATES
+Step 9 documentation consolidation is complete for the present implementation/evidence scope. Step 10 remains: independent package inspection; clean-install/fresh-environment verification; Windows portability; real-browser checks; example/asset licensing; citation metadata and release version decision. Core and harness have MIT licenses; no blanket example/asset license is asserted. The wheel installs only the core. Audit dependencies and Node are required for the full verification command. A prior isolated Linux wheel check is not Windows qualification or an independent external release review. Final README remains deferred until Step 11.

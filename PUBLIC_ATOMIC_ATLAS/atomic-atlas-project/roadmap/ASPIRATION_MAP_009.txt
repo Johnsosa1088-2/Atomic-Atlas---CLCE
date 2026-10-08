@@ -1,0 +1,85 @@
+ATOMIC ATLAS — ASPIRATION MAP 009
+
+Documentation-only companion to Step 8; beginning of Step 9 application planning.
+
+SOURCE AND COVERAGE
+The user supplied easier.png and described it as an ambitious Gemini-generated list of aspirations. The image is retained unchanged. Entries below are grouped summaries of visible application families, not exact quotations or a complete transcription. Dense small text, detailed thresholds and individual formula-like snippets have not been fully transcribed or validated. Source hash: fd8b7585cc155cdd89ca03ca9f61f34c8589ba7289f1267f8df9bdcaff572c32
+
+DEMONSTRATED FOUNDATION
+Step 8 reports 65 substitution checks across eight distinct synthetic graph structures with unchanged implementations, schemas and wheel. The accompanying project reports 123 core tests and 41 harness tests. These are retained historical test results, not tests rerun for this addendum. The foundation supports declarative topology, explicit event/state bookkeeping, source-linked review and bounded deterministic recovery. Examples A/B/C remain separate demonstrations; their tests do not establish integration into the core.
+
+APPLICATIONS AND REQUIRED EVIDENCE
+
+APP-001 — Robotics and spatial computing [PROPOSED APPLICATION]
+Existing foundation: Articulated regions, graph paths, explicit state changes
+Missing: Calibrated kinematics, collision handling, actuator/sensor adapters
+Next evidence: Compare predicted poses and contacts against measured ground truth; test unsafe command rejection.
+
+APP-002 — Gaming and virtual worlds [PROPOSED APPLICATION]
+Existing foundation: Domain-neutral graphs and declared-event replay
+Missing: Renderer/rig integration, timing, physics and asset pipeline
+Next evidence: Replay a fixed scene across fresh runs; measure pose fidelity and frame timing.
+
+APP-003 — Agentic AI and retrieval [PROPOSED APPLICATION]
+Existing foundation: Source-bound proposals, explicit review, synthetic retrieval demo
+Missing: LLM adapter, controlled retrieval evaluation and authenticated inputs
+Next evidence: Frozen tasks with baseline and atlas conditions; score source attribution, contradictions and answer accuracy.
+
+APP-004 — Aerospace and avionics [PROPOSED APPLICATION]
+Existing foundation: Topology and provenance bookkeeping
+Missing: Qualified dynamics models, fault models and real telemetry
+Next evidence: Independent simulation and hardware validation, with domain-specific safety assessment.
+
+APP-005 — Automotive and autonomous driving [PROPOSED APPLICATION]
+Existing foundation: Declared graphs and guarded state patches
+Missing: Perception, vehicle dynamics, real-time control and uncertainty models
+Next evidence: Evaluate held-out scenes and failure cases before any actuation.
+
+APP-006 — Healthcare and biomedicine [PROPOSED APPLICATION]
+Existing foundation: Structured declarations and review history
+Missing: Clinical data governance, validated biological models and clinical evaluation
+Next evidence: Independent domain review and prospectively defined clinical validation; no present clinical capability claimed.
+
+APP-007 — Finance and algorithmic trading [PROPOSED APPLICATION]
+Existing foundation: Ordered records, explicit decisions and hash anchors
+Missing: Market data adapters, time-aware baselines and risk models
+Next evidence: Zero-lookahead held-out evaluation with costs and risk; no present profitability claim.
+
+APP-008 — Industrial systems and smart grids [PROPOSED APPLICATION]
+Existing foundation: Relation graphs, route checks and arithmetic budget previews
+Missing: Unit-aware electrical/process models, telemetry and control interfaces
+Next evidence: Compare against physical measurements and established solvers; test fault isolation.
+
+APP-009 — Supply chains and logistics [PROPOSED APPLICATION]
+Existing foundation: Source-linked entities, routes and state history
+Missing: Operational data adapters, optimization and uncertainty models
+Next evidence: Compare delivery/cost outcomes against frozen baselines on held-out operational data.
+
+APP-010 — Defense and security [PROPOSED APPLICATION]
+Existing foundation: Provenance bookkeeping and explicit review boundaries
+Missing: Application-specific threat models and independent security review
+Next evidence: Evaluate data integrity and access controls; no operational defense capability established.
+
+APP-011 — Energy, geoscience and climate [PROPOSED APPLICATION]
+Existing foundation: Graph representation and bounded arithmetic accounting
+Missing: Physical solvers, calibrated observations and dimensional contracts
+Next evidence: Validate conservation, units and prediction errors against independent observations.
+
+APP-012 — Telecommunications, micro-robotics and materials [PROPOSED APPLICATION]
+Existing foundation: Neutral representation and declared state transitions
+Missing: Domain-specific signal/material models and hardware integration
+Next evidence: Measured signal, material or motion benchmarks with uncertainty reporting.
+
+APP-013 — Deep-space engineering and astrophysics [PROPOSED APPLICATION]
+Existing foundation: Graph, source and decision organization
+Missing: Navigation, orbital/thermal models, communications and mission-specific validation
+Next evidence: Compare with trusted physical models and independent data; no flight qualification established.
+
+HOW TO ADVANCE A PROPOSAL
+Freeze a use case and inputs; define the domain adapter and measurable output; select an independent baseline; specify failure criteria; run held-out tests; append results with source and version hashes. Only the tested claim can advance. Failed or untested claims remain visible.
+
+PRIORITY
+Start with an offline retrieval evaluation: it is closest to Example B and can test the user's hypothesis that atlas organization improves LLM robustness. Use the same model, task set and source corpus, varying only retrieval organization. Measure attribution accuracy, unsupported claims, contradictions, task accuracy and retrieval overhead. No benefit is currently established.
+
+RELEASE LIMITS
+No real fluid, thermal, biological, orbital or material solver is implemented by the core. Accepted declarations are not verified truth; replay is not experimental evidence. Windows checks, real browser checks, independent release review, example/asset licensing and citation metadata remain open. This image is kept in a private planning companion, not inserted into the public candidate; redistribution rights are unresolved. Final README remains deferred. Full Step 9 consolidation is still pending.

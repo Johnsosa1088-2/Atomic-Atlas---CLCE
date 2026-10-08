@@ -1,0 +1,1 @@
+Atomic Atlas checkpoint 012. Read WINDOWS_START_HERE.txt. Fixes both inventory and frozen-source Windows path comparisons. Original 43 source anchors unchanged. Reports labeled 010 or 011 are historical. Native Windows full-suite result remains pending; no publication authorized.

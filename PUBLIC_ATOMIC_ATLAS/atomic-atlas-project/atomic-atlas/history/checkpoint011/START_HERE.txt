@@ -1,0 +1,1 @@
+Atomic Atlas checkpoint 011: Windows portability fix. Read WINDOWS_START_HERE.txt first on Windows. Core, harness, schemas and wheel unchanged from 010. Reports labeled 010 are historical. Native Windows verification and other release gates remain open. No publication authorized.

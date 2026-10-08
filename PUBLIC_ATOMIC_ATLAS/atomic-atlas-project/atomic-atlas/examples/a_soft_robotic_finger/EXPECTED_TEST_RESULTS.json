@@ -1,0 +1,45 @@
+{
+  "schema": "ATLAS_EXAMPLE_PUBLIC_TEST_EXPECTATION/0.1",
+  "example_id": "ATLAS_EXAMPLE_A_SOFT_ROBOTIC_FINGER_TEST_002",
+  "expected_check_count": 28,
+  "expected_exit_code": 0,
+  "scope": [
+    "declared neutral topology",
+    "state and event vocabulary",
+    "budget vocabulary",
+    "future SVG grouping contract",
+    "public-core guardrails",
+    "asset presence",
+    "package integrity"
+  ],
+  "explicitly_not_validated": [
+    "real pressure",
+    "fluid flow",
+    "CFD",
+    "FEA",
+    "silicone modulus",
+    "contact force",
+    "fatigue life",
+    "physical actuator performance"
+  ],
+  "interactive_html_expected": true,
+  "interactive_html_file": "index.html",
+  "interactive_controls": [
+    "4 pocket toggles",
+    "feeler tip state",
+    "bend presets",
+    "inflate all",
+    "deflate all",
+    "progressive inflate",
+    "reset",
+    "route overlay",
+    "candidate overlay",
+    "auto bend mode",
+    "manual bend 1-4 sliders",
+    "bend guides",
+    "bend-limit arcs",
+    "bend-limit edge coloring",
+    "highest limit utilization readout"
+  ],
+  "interactive_html_revision": "002"
+}

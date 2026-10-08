@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "cases": [
+    "proposal isolation",
+    "explicit acceptance",
+    "conflict blocking",
+    "explicit rejection",
+    "linked correction",
+    "uncertainty blocking",
+    "source-attributed rejection",
+    "ledger reconstruction"
+  ],
+  "final_claim": {
+    "claim_id": "p3",
+    "value": 12,
+    "source": {
+      "id": "8b07c6851ee17e032a46d450e92155b1f89366099b2fa16d18189070854f7fe1",
+      "locator": "synthetic/manual-B",
+      "text": "Synthetic correction: valve setting is 12; unit not supplied.",
+      "digest": "79e50be874b6a159dc4d8ad47de56e1e99b8eff7cfb749a8c768e835aa4c4d3c"
+    },
+    "summary": "Synthetic manual reports setting 12; unit remains unspecified.",
+    "summary_kind": "SUMMARY",
+    "truth_status": "ACCEPTED_DECLARATION",
+    "supersedes": "p1"
+  },
+  "event_count": 2,
+  "ledger_count": 10,
+  "ledger_head": "bca1775a62ada9e4751a3a73b867ab7aeddb4c2a7ed3529b9c0f49b7153a568c",
+  "state_digest": "6aff04b996ec8eba4fbe339b08549439af41f20f5465df489b9a3fdd592c0dbb",
+  "scope": "Synthetic manual proposals, no LLM extraction or factual truth verification."
+}

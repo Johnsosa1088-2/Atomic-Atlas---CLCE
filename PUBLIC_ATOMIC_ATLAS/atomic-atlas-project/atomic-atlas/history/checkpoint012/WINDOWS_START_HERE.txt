@@ -1,0 +1,45 @@
+Checkpoint 012: Windows inventory path portability correction.
+
+Extract this ZIP into a NEW folder. Keep checkpoint 010, its environments and
+its error log intact. Do not copy core/venv or old logs into this clean folder.
+Open PowerShell in the folder containing verify_candidate.py.
+
+Use your installed Python 3.11 explicitly. Create the Atlas environment OUTSIDE
+the project, with a new unused name. No activation, global pip, PATH changes,
+ComfyUI environment changes or deletion of old environments are required.
+
+py -3.11 --version
+node --version
+py -3.11 -m venv ..\atlas-012-venv
+..\atlas-012-venv\Scripts\python.exe -m pip install -r .\core\audit\independent\requirements-lock.txt
+..\atlas-012-venv\Scripts\python.exe -m pip check
+..\atlas-012-venv\Scripts\python.exe .\verify_candidate.py 2>&1 | Tee-Object -FilePath ..\atlas-012-windows-test-output.txt
+$LASTEXITCODE
+
+STOP if installation fails. A successful install alone is not a test-suite pass.
+For an easier-to-read Python traceback, rerun verification without 2>&1 or Tee.
+Exit code zero and the verifier's final success message are required. Save the
+external log as evidence; do not put it into this project inventory.
+
+Both step10/check_inventory.py and step8/check_source_freeze.py normalize relative file paths
+now use as_posix(), matching the ZIP manifest on Windows and POSIX systems.
+Hash checks and rejection of unexpected files remain enabled. core/venv is
+NOT broadly ignored: clean extraction plus an external environment avoids it.
+
+Tests run by the assistant are Linux tests, including a PureWindowsPath
+separator regression. Native Windows execution is still awaiting user evidence.
+Existing checkpoint-010 reports remain historical evidence, not new 011 runs.
+
+If atlas-012-venv already installed dependencies successfully, reuse it instead
+of creating atlas-012-venv: replace atlas-012-venv in commands with atlas-012-venv.
+Run from this newly extracted 012 project folder.
+Five added freeze-check regressions inject PureWindowsPath relative paths into
+the actual checker and confirm changed, extra and missing files are rejected.
+This is simulated Windows path behavior on Linux, not native Windows testing.
+
+If atlas-011-venv already installed dependencies successfully, reuse it instead
+of creating atlas-012-venv: replace atlas-012-venv in commands with atlas-011-venv.
+Run from this newly extracted 012 project folder.
+Five added freeze-check regressions inject PureWindowsPath relative paths into
+the actual checker and confirm changed, extra and missing files are rejected.
+This is simulated Windows path behavior on Linux, not native Windows testing.

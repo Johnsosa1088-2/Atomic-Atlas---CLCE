@@ -1,0 +1,170 @@
+....................FFFFF...FFFF                                         [100%]
+=================================== FAILURES ===================================
+_ test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities0] _
+
+quantities = {}
+
+    @pytest.mark.parametrize('quantities',[{},None,[],{'declared_unit':None},{'':{'input':1,'output':1}}])
+    def test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure(quantities):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities=quantities,evidence_id='fixture')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:78: Failed
+____ test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[None] _____
+
+quantities = None
+
+    @pytest.mark.parametrize('quantities',[{},None,[],{'declared_unit':None},{'':{'input':1,'output':1}}])
+    def test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure(quantities):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities=quantities,evidence_id='fixture')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+trace = TraceResult(visited=('a', 'b'), status='REACHED_DECLARED_TARGET', at='b', state_changed=False, transport_occurred=False)
+quantities = None, evidence_id = 'fixture'
+
+    def budget_preview(trace: TraceResult, *, quantities: Mapping[str, Mapping[str, object]], evidence_id: str) -> dict:
+        if not isinstance(evidence_id, str) or not evidence_id.strip():
+            raise ValidationError("nonempty evidence_id required")
+        if trace.status != "REACHED_DECLARED_TARGET":
+            return {"status": "NO_BUDGET_ROUTE", "trace": trace.__dict__, "state_changed": False,
+                    "transport_enabled": False, "evidence_verified": False}
+        closed = {}
+>       for unit, values in quantities.items():
+                            ^^^^^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'items'
+
+public_atomic_atlas_006/core/src/atomic_atlas_core/analysis.py:71: AttributeError
+_ test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities2] _
+
+quantities = []
+
+    @pytest.mark.parametrize('quantities',[{},None,[],{'declared_unit':None},{'':{'input':1,'output':1}}])
+    def test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure(quantities):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities=quantities,evidence_id='fixture')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+trace = TraceResult(visited=('a', 'b'), status='REACHED_DECLARED_TARGET', at='b', state_changed=False, transport_occurred=False)
+quantities = [], evidence_id = 'fixture'
+
+    def budget_preview(trace: TraceResult, *, quantities: Mapping[str, Mapping[str, object]], evidence_id: str) -> dict:
+        if not isinstance(evidence_id, str) or not evidence_id.strip():
+            raise ValidationError("nonempty evidence_id required")
+        if trace.status != "REACHED_DECLARED_TARGET":
+            return {"status": "NO_BUDGET_ROUTE", "trace": trace.__dict__, "state_changed": False,
+                    "transport_enabled": False, "evidence_verified": False}
+        closed = {}
+>       for unit, values in quantities.items():
+                            ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list' object has no attribute 'items'
+
+public_atomic_atlas_006/core/src/atomic_atlas_core/analysis.py:71: AttributeError
+_ test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities3] _
+
+quantities = {'declared_unit': None}
+
+    @pytest.mark.parametrize('quantities',[{},None,[],{'declared_unit':None},{'':{'input':1,'output':1}}])
+    def test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure(quantities):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities=quantities,evidence_id='fixture')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+trace = TraceResult(visited=('a', 'b'), status='REACHED_DECLARED_TARGET', at='b', state_changed=False, transport_occurred=False)
+quantities = {'declared_unit': None}, evidence_id = 'fixture'
+
+    def budget_preview(trace: TraceResult, *, quantities: Mapping[str, Mapping[str, object]], evidence_id: str) -> dict:
+        if not isinstance(evidence_id, str) or not evidence_id.strip():
+            raise ValidationError("nonempty evidence_id required")
+        if trace.status != "REACHED_DECLARED_TARGET":
+            return {"status": "NO_BUDGET_ROUTE", "trace": trace.__dict__, "state_changed": False,
+                    "transport_enabled": False, "evidence_verified": False}
+        closed = {}
+        for unit, values in quantities.items():
+>           keys = tuple(values.keys())
+                         ^^^^^^^^^^^
+E           AttributeError: 'NoneType' object has no attribute 'keys'
+
+public_atomic_atlas_006/core/src/atomic_atlas_core/analysis.py:72: AttributeError
+_ test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities4] _
+
+quantities = {'': {'input': 1, 'output': 1}}
+
+    @pytest.mark.parametrize('quantities',[{},None,[],{'declared_unit':None},{'':{'input':1,'output':1}}])
+    def test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure(quantities):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities=quantities,evidence_id='fixture')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:78: Failed
+____________ test_nontext_or_empty_budget_bucket_labels_rejected[] _____________
+
+label = ''
+
+    @pytest.mark.parametrize('label',['',False,1])
+    def test_nontext_or_empty_budget_bucket_labels_rejected(label):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities={'declared_unit':{'input':1,label:1}},evidence_id='fixture')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:89: Failed
+__________ test_nontext_or_empty_budget_bucket_labels_rejected[False] __________
+
+label = False
+
+    @pytest.mark.parametrize('label',['',False,1])
+    def test_nontext_or_empty_budget_bucket_labels_rejected(label):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities={'declared_unit':{'input':1,label:1}},evidence_id='fixture')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:89: Failed
+____________ test_nontext_or_empty_budget_bucket_labels_rejected[1] ____________
+
+label = 1
+
+    @pytest.mark.parametrize('label',['',False,1])
+    def test_nontext_or_empty_budget_bucket_labels_rejected(label):
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+>       with pytest.raises(ValidationError):budget_preview(trace,quantities={'declared_unit':{'input':1,label:1}},evidence_id='fixture')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:89: Failed
+__________ test_ambient_decimal_rounding_cannot_hide_budget_imbalance __________
+
+    def test_ambient_decimal_rounding_cannot_hide_budget_imbalance():
+        from decimal import localcontext
+        trace=trace_route(['a','b'],[Relation('a','b','declared')])
+        with localcontext() as ctx:
+            ctx.prec=4
+>           with pytest.raises(ValidationError):budget_preview(trace,quantities={'declared_unit':{'input':'100000','output':'99999'}},evidence_id='fixture')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValidationError
+
+STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py:96: Failed
+=========================== short test summary info ============================
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities0]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[None]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities2]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities3]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_empty_or_malformed_budgets_cannot_claim_arithmetic_closure[quantities4]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_nontext_or_empty_budget_bucket_labels_rejected[]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_nontext_or_empty_budget_bucket_labels_rejected[False]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_nontext_or_empty_budget_bucket_labels_rejected[1]
+FAILED STEP7_TESTS_AGAINST_PARENT_006/core/tests/test_step7_boundaries.py::test_ambient_decimal_rounding_cannot_hide_budget_imbalance
+9 failed, 23 passed in 0.13s

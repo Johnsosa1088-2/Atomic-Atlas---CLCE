@@ -1,0 +1,36 @@
+{
+  "project_checkpoint": "006",
+  "created_at_utc": "2026-10-08T17:58:40.076804+00:00",
+  "publication_status": "NOT_PUBLISHED",
+  "parent_candidate": "005",
+  "parent_zip_sha256": "d898096419e913f43d2c98b4582f3432c360f4e650453abe469e134936751078",
+  "core_version": "0.0.4.dev1",
+  "core_source_schemas_and_wheel_unchanged_from_parent": true,
+  "core_schema_milestone": "COMPLETE_FOR_DOCUMENTED_12_SCHEMA_SCOPE",
+  "core_pytest_passed": 91,
+  "proposal_harness_pytest_passed": 22,
+  "proposal_harness_version": "0.1",
+  "harness_demo": "PASS, synthetic inputs only",
+  "fresh_process_harness_recovery": "PASS with matching state/head anchors",
+  "independent_schemas_passed": 12,
+  "differential_classifications": 5097,
+  "validator_disagreements": 0,
+  "example_checks": {
+    "A": 28,
+    "B_python": 12,
+    "B_retrieval": 7,
+    "B_minimal_DOM": 10,
+    "C": 22
+  },
+  "core_fresh_process_replay": "PASS",
+  "installed_wheel": "Retained isolated Linux PASS from unchanged parent 005 wheel/source",
+  "limits": [
+    "No LLM extraction/semantic entailment or authenticated reviewer",
+    "No core SQLite integration",
+    "Examples A/B/C are standalone",
+    "Windows and real browser untested",
+    "External review and example/asset licensing pending",
+    "Blocked review attempts are not automatically recorded",
+    "Adapter shape uses Python guards, not an added core JSON Schema"
+  ]
+}

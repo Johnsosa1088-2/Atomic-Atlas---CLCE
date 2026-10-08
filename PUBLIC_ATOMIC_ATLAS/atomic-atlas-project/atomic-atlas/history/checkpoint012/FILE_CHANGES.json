@@ -1,0 +1,11 @@
+{
+  "parent": "011",
+  "changes": [
+    "step8/check_source_freeze.py uses as_posix in both relative path sets",
+    "Five actual-checker regression tests added",
+    "Verifier invokes added regressions",
+    "Windows instructions allow reusing external installed environment",
+    "Historical metadata and original anchors preserved"
+  ],
+  "core_harness_schema_wheel_changes": 0
+}

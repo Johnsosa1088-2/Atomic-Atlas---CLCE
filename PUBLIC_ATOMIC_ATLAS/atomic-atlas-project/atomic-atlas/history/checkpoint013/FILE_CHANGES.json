@@ -1,0 +1,10 @@
+{
+  "parent": "012",
+  "changes": [
+    "Example B server.connect is now a closing contextmanager",
+    "Three connection-lifetime and rollback regressions added",
+    "Instructions and receipts updated"
+  ],
+  "core_harness_schema_wheel_changes": 0,
+  "example_b_implementation_changed": true
+}

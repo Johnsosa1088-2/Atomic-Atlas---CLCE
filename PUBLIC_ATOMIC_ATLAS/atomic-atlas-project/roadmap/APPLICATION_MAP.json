@@ -1,0 +1,142 @@
+{
+  "revision": "ASPIRATION-MAP/0.1",
+  "created_utc": "2026-10-08T18:44:54.422706+00:00",
+  "source": {
+    "file": "easier.png",
+    "library_id": "source-ref-4c3aee28dadf",
+    "sha256": "fd8b7585cc155cdd89ca03ca9f61f34c8589ba7289f1267f8df9bdcaff572c32",
+    "attribution": "User reports Gemini provided the list after reviewing the work; authorship not independently verified.",
+    "coverage": "Grouped visual summary, not exhaustive cell-by-cell transcription. Small table text remains partly ambiguous."
+  },
+  "baseline": {
+    "package": "PUBLIC_ATOMIC_ATLAS_STEP8_008.zip",
+    "sha256": "b3c8860b73e19469ef31a0eba8be2d2f5f88387f65f1310ac5695390c269e5e8",
+    "evidence_status": "Existing Step 8 results; not rerun for this documentation-only addendum."
+  },
+  "applications": [
+    {
+      "id": "APP-001",
+      "domain": "Robotics and spatial computing",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Articulated regions, graph paths, explicit state changes",
+      "missing_integration": "Calibrated kinematics, collision handling, actuator/sensor adapters",
+      "next_evidence": "Compare predicted poses and contacts against measured ground truth; test unsafe command rejection.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-002",
+      "domain": "Gaming and virtual worlds",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Domain-neutral graphs and declared-event replay",
+      "missing_integration": "Renderer/rig integration, timing, physics and asset pipeline",
+      "next_evidence": "Replay a fixed scene across fresh runs; measure pose fidelity and frame timing.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-003",
+      "domain": "Agentic AI and retrieval",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Source-bound proposals, explicit review, synthetic retrieval demo",
+      "missing_integration": "LLM adapter, controlled retrieval evaluation and authenticated inputs",
+      "next_evidence": "Frozen tasks with baseline and atlas conditions; score source attribution, contradictions and answer accuracy.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-004",
+      "domain": "Aerospace and avionics",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Topology and provenance bookkeeping",
+      "missing_integration": "Qualified dynamics models, fault models and real telemetry",
+      "next_evidence": "Independent simulation and hardware validation, with domain-specific safety assessment.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-005",
+      "domain": "Automotive and autonomous driving",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Declared graphs and guarded state patches",
+      "missing_integration": "Perception, vehicle dynamics, real-time control and uncertainty models",
+      "next_evidence": "Evaluate held-out scenes and failure cases before any actuation.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-006",
+      "domain": "Healthcare and biomedicine",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Structured declarations and review history",
+      "missing_integration": "Clinical data governance, validated biological models and clinical evaluation",
+      "next_evidence": "Independent domain review and prospectively defined clinical validation; no present clinical capability claimed.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-007",
+      "domain": "Finance and algorithmic trading",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Ordered records, explicit decisions and hash anchors",
+      "missing_integration": "Market data adapters, time-aware baselines and risk models",
+      "next_evidence": "Zero-lookahead held-out evaluation with costs and risk; no present profitability claim.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-008",
+      "domain": "Industrial systems and smart grids",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Relation graphs, route checks and arithmetic budget previews",
+      "missing_integration": "Unit-aware electrical/process models, telemetry and control interfaces",
+      "next_evidence": "Compare against physical measurements and established solvers; test fault isolation.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-009",
+      "domain": "Supply chains and logistics",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Source-linked entities, routes and state history",
+      "missing_integration": "Operational data adapters, optimization and uncertainty models",
+      "next_evidence": "Compare delivery/cost outcomes against frozen baselines on held-out operational data.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-010",
+      "domain": "Defense and security",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Provenance bookkeeping and explicit review boundaries",
+      "missing_integration": "Application-specific threat models and independent security review",
+      "next_evidence": "Evaluate data integrity and access controls; no operational defense capability established.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-011",
+      "domain": "Energy, geoscience and climate",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Graph representation and bounded arithmetic accounting",
+      "missing_integration": "Physical solvers, calibrated observations and dimensional contracts",
+      "next_evidence": "Validate conservation, units and prediction errors against independent observations.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-012",
+      "domain": "Telecommunications, micro-robotics and materials",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Neutral representation and declared state transitions",
+      "missing_integration": "Domain-specific signal/material models and hardware integration",
+      "next_evidence": "Measured signal, material or motion benchmarks with uncertainty reporting.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    },
+    {
+      "id": "APP-013",
+      "domain": "Deep-space engineering and astrophysics",
+      "status": "PROPOSED_APPLICATION",
+      "existing_foundation": "Graph, source and decision organization",
+      "missing_integration": "Navigation, orbital/thermal models, communications and mission-specific validation",
+      "next_evidence": "Compare with trusted physical models and independent data; no flight qualification established.",
+      "source_kind": "IMAGE_GROUP_SUMMARY_NOT_EXACT_QUOTE"
+    }
+  ],
+  "limits": [
+    "No proposed application is promoted to validated capability.",
+    "Hash links establish byte association, not truth or authorship.",
+    "Synthetic substitution tests establish bounded workflow portability, not physical simulation.",
+    "This addendum begins Step 9 application planning; full capabilities/limitations consolidation remains pending.",
+    "No publication or blanket source-image license is granted."
+  ]
+}

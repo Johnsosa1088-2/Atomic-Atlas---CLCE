@@ -1,0 +1,10 @@
+{
+  "checkpoint": "014",
+  "recorded_utc": "2026-10-08T20:08:19.683859+00:00",
+  "parent_zip_sha256": "7a921be6495a3a272bab77559149dbdff8f9201227dbb6285e4a4c6ec8f74ebd",
+  "change": "External retained copy, dependency preflight, combined log and receipt, source hash checks before/after",
+  "tests": "step10/REPEAT_RUN_EVIDENCE_014.json",
+  "original_43_freeze_anchors_changed": false,
+  "native_windows": "PENDING",
+  "publication": "NOT_PUBLISHED"
+}

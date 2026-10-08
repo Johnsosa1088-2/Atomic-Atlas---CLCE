@@ -1,0 +1,17 @@
+{
+  "checkpoint": "010",
+  "recorded_utc": "2026-10-08T19:23:56.042807+00:00",
+  "parent_upload_sha256": "1880c547fe9f955e1d0607f5a493e532cfae63d266f9d27bea80c3088537c2dd",
+  "implementation_changed": false,
+  "local_checks": "step10/TEST_OUTPUT.txt",
+  "prior_fresh_linux_full_suites": "PASS",
+  "prior_separate_fresh_wheel_install": "PASS",
+  "external_approval": false,
+  "publication": "NOT_PUBLISHED",
+  "current_full_suite_run": "PASS",
+  "core_tests": 123,
+  "harness_tests": 41,
+  "substitution_tests": 65,
+  "inventory_tests": 4,
+  "wheel_evidence": "step10/WHEEL_INSTALL_CHECK.json (same unchanged wheel freshly tested earlier in Step 10)"
+}

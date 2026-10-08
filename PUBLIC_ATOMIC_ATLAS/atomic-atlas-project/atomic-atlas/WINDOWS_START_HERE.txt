@@ -1,0 +1,12 @@
+Extract into a new folder and open PowerShell there. Reuse your installed external environment:
+
+node --version
+..\atlas-012-venv\Scripts\python.exe .\verify_candidate.py
+$LASTEXITCODE
+
+Substitute your environment name if different. No Tee-Object needed: each run
+saves test-output.txt and RUN_RECEIPT.json in a new atlas-014-run-* sibling
+folder and prints its path. Full pass requires exit code 0 and final PASS.
+The package is preserved, so this command can be repeated. Do not run
+run_suite.py directly: it is the internal worker for the disposable test copy.
+Keep prior folders and logs intact. No ComfyUI environment changes needed.

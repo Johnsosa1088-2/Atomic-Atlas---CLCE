@@ -1,0 +1,30 @@
+PUBLIC ATOMIC ATLAS — COMPLETE CURRENT PROJECT 008
+
+This is the cumulative neutral public-project candidate. Core implementation is 0.0.5.dev1, with step-7 read-only budget hardening. Contract revision 0.2 and wire markers 0.1 are distinct version axes. The current 12 core JSON schemas have completed independent metaschema/reference validation and the bounded differential suite. New features still require regression checks and may require contract changes.
+
+CONTENTS
+core/ — Python source, 12 schemas, fixtures, tests, audits, MIT license.
+distributions/ — installable core wheel; source-only harness is separate.
+examples/ — A SVG actuator, B synthetic retrieval, C dimensionless closed-loop budget.
+proposal_harness/ — explicit local source registration, proposals, decisions, linked corrections, core state events and hash-ledger reconstruction; CLI, demo and tests.
+INDEPENDENT_VALIDATION_REVIEW.txt — retained candidate-005 schema/boundary evidence and reproduction instructions.
+CAPABILITIES_AND_LIMITS.txt — current capabilities and limits.
+RUN_RECEIPT.json — current cumulative run; RELEASE_MANIFEST.json anchors current files and the parent; FILE_CHANGES.json compares with parent 007.
+
+START
+Open an example's index.html for the standalone demonstrations.
+Run python proposal_harness/demo.py for the synthetic proposal/commit demonstration.
+See proposal_harness/USAGE.txt for the explicit review CLI.
+For full checks: create/activate a Python venv, then:
+  python -m pip install -r core/audit/independent/requirements-lock.txt
+  python verify_candidate.py
+Node.js is required for example checks. See the retained independent review for installed-wheel isolation commands. Core runtime uses no external validator dependency; independent auditing uses pinned jsonschema/pytest.
+
+The harness imports and uses the actual bundled core. A/B/C remain standalone examples. It accepts manually supplied JSON proposals and provides no natural-language extractor, connected LLM, semantic truth checker, authenticated reviewer service or SQLite integration. Acceptance is an attributed reviewed declaration; source hashes establish byte association. Revisions/supersessions append rather than erase history. Unresolved uncertainty blocks acceptance. Proposal shape is checked by explicit adapter guards; no new core JSON Schema has been silently introduced.
+
+RELEASE STATUS
+Not published. Current core schema milestone is complete within the documented test scope. Windows, real-browser checks, broader coverage, external review and final example/asset licensing remain open. Core and new harness source carry the project MIT license; no blanket license is asserted for separately supplied example assets. This is a pre-release package, not an authorization or scientific certification. Final public README remains deferred until release review. Personal/canonical material and historical nested packages are excluded; earlier ZIPs remain unchanged outside this candidate.
+
+STEP 7: See STEP7_REVIEW.txt and step7/COVERAGE.json for the 51 new targeted cases, two arithmetic/input findings and six seeded negative controls. Step 8 remains next. Current schemas are unchanged; the core API remains declarative and does not adjudicate scientific truth.
+
+STEP 8: Eight distinct synthetic domains run the same generic core/harness workflows. 65 substitution tests pass with no implementation changes. See STEP8_REVIEW.txt and step8/COVERAGE.json. These are representation/bookkeeping tests, not domain physics. Next is step 9 documentation consolidation.

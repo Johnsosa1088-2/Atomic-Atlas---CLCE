@@ -1,0 +1,55 @@
+{
+  "result": "PASS",
+  "controls": [
+    {
+      "control": "connection_to_flow",
+      "result": "DETECTED",
+      "failing_cases": 4,
+      "mutated_source": "core/src/atomic_atlas_core/analysis.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "correlation_to_state",
+      "result": "DETECTED",
+      "failing_cases": 2,
+      "mutated_source": "core/src/atomic_atlas_core/model.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "label_to_mechanism",
+      "result": "DETECTED",
+      "failing_cases": 10,
+      "mutated_source": "core/src/atomic_atlas_core/analysis.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "candidate_to_validated",
+      "result": "DETECTED",
+      "failing_cases": 5,
+      "mutated_source": "core/src/atomic_atlas_core/model.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "replay_to_evidence",
+      "result": "DETECTED",
+      "failing_cases": 2,
+      "mutated_source": "core/src/atomic_atlas_core/runtime.py",
+      "scope": "temporary copy only"
+    },
+    {
+      "control": "review_to_verified",
+      "result": "DETECTED",
+      "failing_cases": 6,
+      "mutated_source": "proposal_harness/harness.py",
+      "scope": "temporary copy only"
+    }
+  ],
+  "source_files_unchanged": true,
+  "source_file_hashes": {
+    "core/src/atomic_atlas_core/analysis.py": "ba2f0198cdf5f409172db3083f79f211d107c5884e3770135b3100bc35137b01",
+    "core/src/atomic_atlas_core/model.py": "d15d42814193180299847876f6ab945d59822bc3474571ec06ba23ca9d8b4739",
+    "core/src/atomic_atlas_core/runtime.py": "4ad7646b2e557b96d9006015aa774c65fde1955e387fdfe9989528a8840deecd",
+    "proposal_harness/harness.py": "fa947c388499e1d2b6660173137c8eaa13b741879a439ee3c3b3d442781e58d9"
+  },
+  "limits": "These six seeded controls demonstrate targeted detection, not exhaustive mutation coverage or semantic truth recognition."
+}

@@ -1,0 +1,9 @@
+{
+  "checkpoint": "012",
+  "recorded_utc": "2026-10-08T19:54:51.354359+00:00",
+  "parent_zip_sha256": "3ec88ba617cf4010640d7e8e3ab870b8fbb0d594315190fa2ba6ac60fa713b15",
+  "original_43_freeze_anchors_changed": false,
+  "tests": "See step10/PORTABILITY_TEST_OUTPUT_012.txt",
+  "native_windows": "PENDING",
+  "publication": "NOT_PUBLISHED"
+}

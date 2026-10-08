@@ -1,0 +1,90 @@
+{
+  "parent_zip_sha256": "641eeea519b2f4b1a05d19c044734686a3f998faa8b7b5ce28cb8c868b10a3b6",
+  "implementation_changes": 0,
+  "entries": [
+    {
+      "path": "CAPABILITIES_AND_LIMITS.txt",
+      "change": "CHANGED",
+      "before_sha256": "651ab2689a6d3f893319d497c8a7772814d79de65b28b1cb59e2f39e12743c24",
+      "after_sha256": "1be40708f8c7f7800d8448e1e9b937f7620a9c6292cdf1ac2adf4aa235afd95b"
+    },
+    {
+      "path": "RELEASE_CANDIDATE_GUIDE.txt",
+      "change": "CHANGED",
+      "before_sha256": "3e41104351774c8b72dee8fef0d8db7720ec71ffe545103eac4fe4e4820bcfca",
+      "after_sha256": "336c5d5163beaf93b2e631371653900ae90758655dda845891f0d5aa187eb7e1"
+    },
+    {
+      "path": "RUN_RECEIPT.json",
+      "change": "CHANGED",
+      "before_sha256": "879309567caee82fef049e2ed25c5bc9046e40ee9ed5c6e097651241a102e37d",
+      "after_sha256": "773375287afbf2393de321d8ddd5838ef931ca76e8de25bef27762996ce2a15e"
+    },
+    {
+      "path": "START_HERE.txt",
+      "change": "CHANGED",
+      "before_sha256": "3948852d94df47ac973e8b927ca97a9f3c8de30dbd63ab5468588a5db1d338f3",
+      "after_sha256": "3b7ce2a92288cf24ce7e18d29f186bdf5b345ffbfd36ad1a25765b3b2de9a80c"
+    },
+    {
+      "path": "STEP8_REVIEW.txt",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "0d5f5de88e2c10cccbc501c8574cfbc442696c8a44602f4bdbc3987f9ed08e30"
+    },
+    {
+      "path": "step8/ALL_PROJECT_CHECKS.txt",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "34aab96ce67db0854d16ff6e57e2e48d2b39406111b4e3f31a02e4f959ea603d"
+    },
+    {
+      "path": "step8/COVERAGE.json",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "3807bc9f233934ceae763109b42dda6a38844f0467e2ef166e4314962a74b449"
+    },
+    {
+      "path": "step8/FREEZE_RESULT.json",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "d892fdf51df9300e0f23c0ec1f53d84310baec3d79c458b934b7ccc05d043f7e"
+    },
+    {
+      "path": "step8/FROZEN_IMPLEMENTATION.json",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "e7f02aeb38920b0a9016ff9395eca4808de708e7a779b5445fb3782e1f14a436"
+    },
+    {
+      "path": "step8/TEST_RESULTS.txt",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "30d4e37f600e6877b73f3a1fc8592e7fb2575d611f94fdbe3715605e43bcfb55"
+    },
+    {
+      "path": "step8/check_source_freeze.py",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "ad0d8ecf0e239b302f55fd295d2461f6230faea940eddf0e4257a0780d262472"
+    },
+    {
+      "path": "step8/domains.json",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "5c4faff5be8bafabbfe68ef8accb277f7a117b2853e05887463127c22257dd5e"
+    },
+    {
+      "path": "step8/tests/test_substitution.py",
+      "change": "ADDED",
+      "before_sha256": null,
+      "after_sha256": "f98be548eec2c129820810d9b93e8bb9f2b77f30671e0335c0b4d25a6dea791a"
+    },
+    {
+      "path": "verify_candidate.py",
+      "change": "CHANGED",
+      "before_sha256": "7d00868fd1302e6c0082906d3819cdf1644da9009827592cc9a36ef64da19308",
+      "after_sha256": "44d4352f919dd0c4fdff1c547b1b6308f5d83370bd8899b8b64c2b51b0cbe199"
+    }
+  ]
+}

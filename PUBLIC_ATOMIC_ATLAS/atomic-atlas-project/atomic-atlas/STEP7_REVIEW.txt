@@ -1,0 +1,40 @@
+PUBLIC ATOMIC ATLAS — STEP 7 ADVERSARIAL BOUNDARIES / PROJECT 007
+
+RESULT: DOCUMENTED STEP-7 SCOPE PASSES; TWO BUDGET FINDINGS FIXED.
+Parent project 006 remains unchanged. Current core is 0.0.5.dev1; harness remains 0.1. All 12 core schemas remain byte-identical to the independently checked baseline. No publication or final README.
+
+BOUNDARIES TESTED
+1. Connection does not imply flow: directed/declared reachable routes, including transport/state flags set by a caller, remain read-only traces. Balanced budget output is an arithmetic hypothesis and sets physical mechanism, transport and evidence verification false.
+2. Correlation does not imply causation: synthetic paired observations and caller-verified evidence labels do not create state events or inferred causal effects. No correlation estimator or causal adjudicator is present.
+3. Label does not imply mechanism: causal/physics relation labels and attributes are stored as declarations, without converting a closed ledger into a physical mechanism.
+4. Candidate does not imply validated: attempted status/transport/state promotion is rejected; save/load and snapshots preserve isolation; candidate edges remain excluded from established route tracing.
+5. Replay does not imply evidence: declared patches can reconstruct even a deliberately unsupported experiment claim as data. Replay adds no fabricated observation/evidence and does not assert full dynamic replay or authenticate an experiment.
+The proposal harness additionally rejects stronger truth-status/outcome requests. Source/summary instructions do not execute acceptance. Accepted opaque flags remain inside ACCEPTED_DECLARATION values, while proposals retain UNVERIFIED status. A valid rehashed ledger cannot replace the derived acceptance event with a VERIFIED promotion.
+
+IMPORTANT SCOPE
+These are API/status/inference boundaries, not a natural-language truth filter. A caller or reviewer can still supply or accept an unsupported assertion inside arbitrary finite JSON. Preserving that declaration is not scientific validation. No experiment, intervention study, fluid solver, independent reviewer identity authentication, or LLM evaluation occurred. Source/head hashes require retained external anchors for authenticity/history comparisons.
+
+FINDINGS
+S7-F01: Empty quantity mappings could return ARITHMETIC_CLOSED_HYPOTHESIS with no ledger. Malformed mappings raised incidental AttributeError, and empty/nontext labels could pass. Reached-route budget preview now requires at least one complete quantity mapping and nonempty text unit/bucket labels, returning ValidationError on unsupported shapes. Unit labels remain declarations, not dimensional verification.
+S7-F02: Summing Decimals under ambient precision could conceal imbalance (e.g. input 100000, output 99999 at precision 4). Exact Fraction comparison of finite parsed Decimal values now rejects this imbalance, while input 100000 = stored 99999 + loss 1 closes correctly. The preview remains read-only hypothesis accounting. Arbitrarily huge numeric inputs are not resource bounded; this is not a hostile-input sandbox.
+Documentation correction: two older core contract notes still described eight provisional schemas, missing runtime enforcement, and untested independent validation/full pytest/wheel. They now describe the actual 12-schema contract and point to current results. Historical versions are retained through the parent ZIP anchor, not overwritten.
+
+TESTS / CONTROLS
+New core step-7 cases: 32. Against parent 006: 23 pass, 9 fail (8 input/label cases and 1 precision case). All pass after repair.
+New harness step-7 cases: 19, all pass. Harness implementation is unchanged; tests strengthen the recorded contract.
+Full suites: 123 core pytest cases and 41 harness pytest cases pass.
+Six temporary mutation controls deliberately introduce connection->flow, correlation->state inference, label->mechanism, candidate->validated, replay->fabricated evidence and review->VERIFIED. All six are detected by targeted failing tests. Production source hashes remain unchanged during mutation runs. These controls demonstrate test sensitivity, not exhaustive mutation coverage.
+All 12 independent schema/metaschema checks, 348 reference resolutions, and 5,097 classifications rerun with zero disagreements. Original examples A/B/C and fresh-process core replay pass. Core 0.0.5.dev1 wheel is installed in an isolated Linux environment; schema/build/event/replay/save/load smoke checks pass. The installed schema hashes match source. See RUN_RECEIPT.json for actual current run scope and versions.
+
+REPRODUCE
+Create/activate a Python environment and install core/audit/independent/requirements-lock.txt.
+  python verify_candidate.py
+Node.js is needed for example checks. This includes the step-7 tests and six temporary mutation controls.
+Targeted commands from project root:
+  PYTHONPATH=core/src python -m pytest core/tests/test_step7_boundaries.py -q
+  python -m pytest proposal_harness/tests/test_step7_claims.py -q
+  python step7/mutation_controls.py
+For Windows, set PYTHONPATH using the shell's syntax; Windows itself remains untested. Retained parent 006 source is needed only to reproduce the before-fix run. Current checks do not require a historical ZIP.
+
+NEXT
+Step 8: domain substitution using unchanged architecture. Existing tiny two-domain fixtures do not complete that milestone. Wider adversarial coverage, Windows, real browser, external review and final example/asset licensing remain open. Capabilities/limits documentation and packaging are checkpoints for later release work; final README remains deferred.
