@@ -1,0 +1,13 @@
+{
+  "step": "AURELIA-ADAPTER-001",
+  "recorded_utc": "2026-10-09T00:19:51.517742+00:00",
+  "tests_passed": 7,
+  "test_exit_code": 0,
+  "parts": 17,
+  "pockets": 11,
+  "browser_verification": "untested",
+  "physical_validation": "untested; proposed schematic",
+  "historical_packages_modified": false,
+  "source_images_inspected": 0,
+  "source_atlas_member_inspected": true
+}

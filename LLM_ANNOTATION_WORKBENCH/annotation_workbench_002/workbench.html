@@ -1,0 +1,510 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aurelia image annotation workbench</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#0d1522;color:#e3eef8;font:15px system-ui}header,footer{padding:16px 22px;background:#152338}h1{font-size:21px;margin:0 0 6px}main{display:grid;grid-template-columns:220px minmax(300px,1fr) 290px;gap:12px;padding:12px}aside{background:#152338;padding:14px;border-radius:10px}button,select,input{font:inherit;padding:8px;border:1px solid #4b6480;border-radius:6px;background:#20344d;color:#fff;max-width:100%}button{cursor:pointer;margin:3px}label{display:block;margin:12px 0 4px}input:not([type=range]){width:100%}.stage{overflow:auto;background:#070e19;height:70vh;border-radius:10px}svg{display:block;touch-action:none}button.active{background:#235d6d}.row{display:flex;flex-wrap:wrap;align-items:center}#list button{display:block;text-align:left;width:100%}.hint{font-size:13px;color:#aec0d6}#status{min-height:22px;color:#86e3c4}#log{max-height:130px;overflow:auto;font:12px monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}@media(max-width:1000px){main{grid-template-columns:180px 1fr}#inspect{grid-column:1/-1}.stage{height:60vh}}@media(max-width:650px){main{display:block}aside{margin-bottom:10px}}</style>
+<header><h1>Aurelia · image annotation foundation</h1><div class="hint">Private, local workbench · source-image coordinates · reviewed proposals · no automatic physics or AI service</div><div id="status" role="status" aria-live="polite">Upload a PNG, JPEG or WebP to begin.</div></header>
+<main><aside><h2>Sources</h2><label for="image">Upload image</label><input id="image" type="file" accept="image/png,image/jpeg,image/webp"><label for="sources">Active image</label><select id="sources"></select><label for="view">Source view</label><select id="view"><option>unspecified</option><option>front</option><option>side-left</option><option>side-right</option><option>back</option></select><p class="hint" id="sourceInfo"></p><label for="zoom">Zoom</label><input id="zoom" type="range" min="10" max="200" value="60"><label for="opacity">Image opacity</label><input id="opacity" type="range" min="0" max="100" value="100"><label><input type="checkbox" id="cage"> Show schematic cage</label><p class="hint">Cage placement is provisional. It is not an image binding.</p><button id="export">Export checkpoint</button><label for="import">Import checkpoint</label><input id="import" type="file" accept="application/json"><button id="undo">Undo last event</button><p class="hint">Exports include images and full edit history. Keep private. Save an export before closing.</p></aside>
+<section><div class="row" id="tools"><button data-tool="select" class="active">Select</button><button data-tool="landmark">Landmark</button><button data-tool="region">Region</button><button data-tool="connection">Connection</button><button id="finish">Finish region</button><button id="cancel">Cancel draft</button></div><p class="hint" id="help">Select a mark to inspect it. Regions: click at least three vertices, then Finish. Connections: click two accepted landmarks.</p><div class="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" aria-label="Image annotation canvas"></svg></div><div id="list"></div></section>
+<aside id="inspect"><h2>Selected annotation</h2><label for="label">Label / next mark name</label><input id="label" value="Unlabelled landmark" maxlength="200"><label for="part">Adapter part</label><select id="part"><option value="">Unbound</option></select><label for="object">Custom object / part ID (optional)</label><input id="object" placeholder="e.g. lamp.arm or vessel.chamber"><label for="confidence">Confidence (optional 0–1)</label><input id="confidence" type="number" min="0" max="1" step="0.05" placeholder="Unknown"><button id="apply">Apply metadata</button><button id="accept">Accept proposal</button><button id="reject">Reject proposal</button><button id="remove">Remove selected</button><pre id="details">No annotation selected.</pre><p class="hint">AI marks require author=ai, a method identifier and proposed status. Importing a proposal does not accept it. No AI model is invoked here.</p></aside></main>
+<footer><strong>Workflow</strong><p>Choose a view → mark landmarks or polygon regions → label and link a part → connect landmarks → export a checkpoint. Select mode lets you drag human landmarks. Region geometry stays fixed after creation; replace it with a corrected region when needed. Undo appends a restoration event; it does not erase provenance.</p><div id="log"></div></footer>
+<script>(function(root){
+'use strict';
+const clone=x=>JSON.parse(JSON.stringify(x));
+function stable(x){if(Array.isArray(x))return '['+x.map(stable).join(',')+']';if(x&&typeof x==='object')return '{'+Object.keys(x).sort().map(k=>JSON.stringify(k)+':'+stable(x[k])).join(',')+'}';return JSON.stringify(x)}
+async function hash(x){const b=new TextEncoder().encode(typeof x==='string'?x:stable(x));return [...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(v=>v.toString(16).padStart(2,'0')).join('')}
+function check(ok,msg){if(!ok)throw Error(msg)}
+function valid(s){
+ check(s&&s.version===1&&Array.isArray(s.images)&&Array.isArray(s.annotations),'Unsupported project');
+ check(s.images.length<=30&&s.annotations.length<=5000,'Project exceeds limits');
+ const images=new Map(),annotations=new Map();
+ for(const i of s.images){check(typeof i.id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(i.id)&&!images.has(i.id),'Duplicate or invalid image ID');images.set(i.id,i);check(/^[a-f0-9]{64}$/.test(i.sha256),'Invalid image hash');check(Number.isInteger(i.width)&&Number.isInteger(i.height)&&i.width>0&&i.height>0&&i.width<=20000&&i.height<=20000,'Invalid dimensions');check(['front','side-left','side-right','back','unspecified'].includes(i.view),'Invalid view');check(typeof i.name==='string'&&i.name.length<=250,'Invalid filename');check(i.data===null||typeof i.data==='string'&&/^data:image\/(png|jpeg|webp);base64,/.test(i.data),'Only PNG/JPEG/WebP images supported')}
+ for(const a of s.annotations){check(typeof a.id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(a.id)&&!annotations.has(a.id),'Duplicate annotation ID');annotations.set(a.id,a);check(images.has(a.image_id),'Missing image');check(['landmark','region','connection'].includes(a.kind),'Invalid kind');check(['human','ai'].includes(a.author)&&['accepted','proposed','rejected'].includes(a.status),'Invalid review metadata');check(a.author!=='ai'||a.method&&a.method!=='manual','AI method required');check(typeof a.label==='string'&&a.label.trim().length>0&&a.label.length<=200,'Invalid label');check(a.part_id===null||typeof a.part_id==='string','Invalid part link');check(a.confidence===null||typeof a.confidence==='number'&&a.confidence>=0&&a.confidence<=1,'Invalid confidence');check(Array.isArray(a.points)&&a.points.length<1000,'Invalid points');check(a.kind==='landmark'?a.points.length===1:a.kind==='region'?a.points.length>=3:a.points.length===0,'Wrong geometry');const i=images.get(a.image_id);for(const p of a.points)check(Array.isArray(p)&&p.length===2&&p.every(Number.isFinite)&&p[0]>=0&&p[0]<=i.width&&p[1]>=0&&p[1]<=i.height,'Point outside source image');check(a.kind!=='connection'||Array.isArray(a.ends)&&a.ends.length===2&&a.ends[0]!==a.ends[1],'Invalid connection')}
+ for(const a of s.annotations)if(a.kind==='connection')for(const id of a.ends){const e=annotations.get(id);check(e&&e.kind==='landmark'&&e.image_id===a.image_id,'Connection requires same-image landmarks')}
+ return s;
+}
+async function verify(project){check(project&&project.format==='AURELIA-ANNOTATIONS-001'&&Array.isArray(project.events)&&project.events.length<=10000,'Invalid checkpoint');let prior=null;let last={version:1,images:[],annotations:[]};for(let n=0;n<project.events.length;n++){const e=project.events[n];check(e.seq===n+1&&e.previous===prior,'Broken event order');valid(e.state);check(e.hash===await hash({seq:e.seq,previous:e.previous,action:e.action,utc:e.utc,state:e.state}),'Event hash mismatch');prior=e.hash;last=e.state}valid(project.state);check(stable(last)===stable(project.state),'State differs from event history');return clone(project)}
+class Ledger{
+ constructor(){this.project={format:'AURELIA-ANNOTATIONS-001',state:{version:1,images:[],annotations:[]},events:[]}}
+ async append(action,state){valid(state);const events=this.project.events;const body={seq:events.length+1,previous:events.length?events.at(-1).hash:null,action,utc:new Date().toISOString(),state:clone(state)};const e={...body,hash:await hash(body)};events.push(e);this.project.state=clone(state);return e}
+ async load(p){this.project=await verify(p)}
+ async undo(){check(this.project.events.length,'Nothing to undo');const events=this.project.events;const previous=events.length>1?events.at(-2).state:{version:1,images:[],annotations:[]};return this.append('undo: restore prior snapshot',previous)}
+}
+// Storage envelope deduplicates raster bytes without changing original event hashes.
+function pack(project){
+ const assets=Object.create(null);
+ function state(s){return {...s,images:s.images.map(i=>{if(i.data===null)return {...i};check(!assets[i.sha256]||assets[i.sha256]===i.data,'Conflicting bytes for source hash');assets[i.sha256]=i.data;return {...i,data:{$asset:i.sha256}}})}}
+ return {format:'AURELIA-CHECKPOINT-TRANSPORT-002',assets,project:{...project,state:state(project.state),events:project.events.map(e=>({...e,state:state(e.state)}))}};
+}
+async function unpack(input){
+ if(input?.format!=='AURELIA-CHECKPOINT-TRANSPORT-002')return input;
+ check(input.assets&&typeof input.assets==='object'&&!Array.isArray(input.assets),'Invalid asset table');
+ const keys=Object.keys(input.assets);check(keys.length<=300,'Too many historical assets');
+ for(const k of keys){const data=input.assets[k];check(/^[a-f0-9]{64}$/.test(k)&&typeof data==='string'&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]*={0,2}$/.test(data),'Invalid embedded asset');const b=Uint8Array.from(atob(data.split(',')[1]),c=>c.charCodeAt(0));const actual=[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(v=>v.toString(16).padStart(2,'0')).join('');check(actual===k,'Embedded asset hash mismatch')}
+ const p=input.project;check(p&&Array.isArray(p.events)&&p.events.length<=10000,'Invalid transport project');
+ let total=0;const used=new Set();
+ function state(s){check(s&&Array.isArray(s.images)&&s.images.length<=30,'Invalid transport state');return {...s,images:s.images.map(i=>{if(i.data===null)return {...i};check(i.data&&typeof i.data==='object'&&i.data.$asset===i.sha256&&Object.hasOwn(input.assets,i.sha256),'Missing or inconsistent asset reference');used.add(i.sha256);const data=input.assets[i.sha256];total+=data.length;check(total<=512*1024*1024,'Expanded history exceeds 512 MiB; split long sessions');return {...i,data}})}}
+ const output={...p,state:state(p.state),events:p.events.map(e=>({...e,state:state(e.state)}))};check(used.size===keys.length,'Unreferenced assets in checkpoint');return output;
+}
+const api={Ledger,valid,verify,stable,hash,clone,pack,unpack};if(typeof module!=='undefined')module.exports=api;else root.AnnotationModel=api;
+})(globalThis);
+</script><script>
+'use strict';const M=AnnotationModel,ledger=new M.Ledger(),scaffold={
+  "format_version": 1,
+  "model_status": "proposed scaffold, not calibrated anatomy",
+  "coordinates": {
+    "units": "SVG viewBox units",
+    "view": "front",
+    "subject_left": "viewer right",
+    "physical_scale_m_per_unit": null
+  },
+  "source": {
+    "locator": "Aurelia_restored.zip::Aurelia_restored/generated/living_atomic_atlas.json",
+    "archive_sha256": "cf0df51da85b53f327db1550dd4f35c1aa640f81496ee1b3e8ecaa43431db876",
+    "member_sha256": "71ed454fda2eadc4de41a04df2aac7a3718fef269fdc4e106423813b383b0649",
+    "version": "7.4_Persistent_Atlas_Visual_References",
+    "evidence": "user-restored artifact; not independently validated physics"
+  },
+  "parts": [
+    {
+      "id": "aurelia.part.pelvis",
+      "name": "pelvis",
+      "parent": null,
+      "anchor": {
+        "id": "aurelia.anchor.pelvis",
+        "xy": [
+          300,
+          340
+        ]
+      },
+      "atlas_region_proposal": "pelvic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.abdomen",
+      "name": "abdomen",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.abdomen",
+        "xy": [
+          300,
+          280
+        ]
+      },
+      "atlas_region_proposal": "thoracic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.thorax",
+      "name": "thorax",
+      "parent": "aurelia.part.abdomen",
+      "anchor": {
+        "id": "aurelia.anchor.thorax",
+        "xy": [
+          300,
+          210
+        ]
+      },
+      "atlas_region_proposal": "thoracic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.neck",
+      "name": "neck",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.neck",
+        "xy": [
+          300,
+          150
+        ]
+      },
+      "atlas_region_proposal": "cervical",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.head",
+      "name": "head",
+      "parent": "aurelia.part.neck",
+      "anchor": {
+        "id": "aurelia.anchor.head",
+        "xy": [
+          300,
+          90
+        ]
+      },
+      "atlas_region_proposal": "crown",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_upper_arm",
+      "name": "left upper arm",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.left_upper_arm",
+        "xy": [
+          385,
+          215
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_forearm",
+      "name": "left forearm",
+      "parent": "aurelia.part.left_upper_arm",
+      "anchor": {
+        "id": "aurelia.anchor.left_forearm",
+        "xy": [
+          420,
+          285
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_hand",
+      "name": "left hand",
+      "parent": "aurelia.part.left_forearm",
+      "anchor": {
+        "id": "aurelia.anchor.left_hand",
+        "xy": [
+          435,
+          345
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_thigh",
+      "name": "left thigh",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.left_thigh",
+        "xy": [
+          345,
+          420
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_shin",
+      "name": "left shin",
+      "parent": "aurelia.part.left_thigh",
+      "anchor": {
+        "id": "aurelia.anchor.left_shin",
+        "xy": [
+          350,
+          515
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_foot",
+      "name": "left foot",
+      "parent": "aurelia.part.left_shin",
+      "anchor": {
+        "id": "aurelia.anchor.left_foot",
+        "xy": [
+          365,
+          590
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_upper_arm",
+      "name": "right upper arm",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.right_upper_arm",
+        "xy": [
+          215,
+          215
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_forearm",
+      "name": "right forearm",
+      "parent": "aurelia.part.right_upper_arm",
+      "anchor": {
+        "id": "aurelia.anchor.right_forearm",
+        "xy": [
+          180,
+          285
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_hand",
+      "name": "right hand",
+      "parent": "aurelia.part.right_forearm",
+      "anchor": {
+        "id": "aurelia.anchor.right_hand",
+        "xy": [
+          165,
+          345
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_thigh",
+      "name": "right thigh",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.right_thigh",
+        "xy": [
+          255,
+          420
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_shin",
+      "name": "right shin",
+      "parent": "aurelia.part.right_thigh",
+      "anchor": {
+        "id": "aurelia.anchor.right_shin",
+        "xy": [
+          250,
+          515
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_foot",
+      "name": "right foot",
+      "parent": "aurelia.part.right_shin",
+      "anchor": {
+        "id": "aurelia.anchor.right_foot",
+        "xy": [
+          235,
+          590
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    }
+  ],
+  "pockets": [
+    {
+      "id": "aurelia.pocket.pelvis",
+      "part_id": "aurelia.part.pelvis",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.abdomen",
+      "part_id": "aurelia.part.abdomen",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.thorax",
+      "part_id": "aurelia.part.thorax",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_upper_arm",
+      "part_id": "aurelia.part.left_upper_arm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_forearm",
+      "part_id": "aurelia.part.left_forearm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_thigh",
+      "part_id": "aurelia.part.left_thigh",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_shin",
+      "part_id": "aurelia.part.left_shin",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_upper_arm",
+      "part_id": "aurelia.part.right_upper_arm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_forearm",
+      "part_id": "aurelia.part.right_forearm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_thigh",
+      "part_id": "aurelia.part.right_thigh",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_shin",
+      "part_id": "aurelia.part.right_shin",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    }
+  ],
+  "energy": {
+    "initial_J": null,
+    "input_J": null,
+    "mechanical_output_J": null,
+    "heat_loss_J": null,
+    "stored_change_J": null
+  }
+};const $=id=>document.getElementById(id),svg=$('svg');let active=null,selected=null,tool='select',draft=[],drag=null,busy=false;const NS='http://www.w3.org/2000/svg';
+function say(s){$('status').textContent=s}function current(){return ledger.project.state.images.find(i=>i.id===active)}function node(tag,attrs){const e=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);svg.append(e);return e}function pos(e){const i=current(),p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());return [Math.max(0,Math.min(i.width,p.x)),Math.max(0,Math.min(i.height,p.y))]}
+async function action(label,fn){if(busy)return;busy=true;try{const state=M.clone(ledger.project.state);await fn(state);await ledger.append(label,state);render();say('Saved in this session: '+label+'. Export to keep it.')}catch(e){say(e.message)}finally{busy=false}}
+function metadata(){const v=$('confidence').value;return {label:$('label').value.trim(),part_id:$('object').value.trim()||$('part').value||null,confidence:v===''?null:Number(v)}}
+function annotation(kind,points,ends){return {id:crypto.randomUUID(),image_id:active,kind,points,ends:ends||null,...metadata(),author:'human',method:'manual',status:'accepted'}}
+function inspect(){const a=ledger.project.state.annotations.find(a=>a.id===selected);$('details').textContent=a?JSON.stringify(a,null,2):'No annotation selected.';if(a){$('label').value=a.label;$('part').value=a.part_id||'';$('object').value=a.part_id&&!scaffold.parts.some(p=>p.id===a.part_id)?a.part_id:'';$('confidence').value=a.confidence===null?'':a.confidence}}
+function render(){const state=ledger.project.state;if(!state.images.some(i=>i.id===active)){active=state.images[0]?.id||null;selected=null}const source=$('sources');source.replaceChildren();for(const i of state.images){const o=document.createElement('option');o.value=i.id;o.textContent=i.name+' · '+i.view;source.append(o)}source.value=active||'';svg.replaceChildren();const i=current();if(!i){svg.setAttribute('viewBox','0 0 600 650');return}svg.setAttribute('viewBox',`0 0 ${i.width} ${i.height}`);svg.style.width=i.width*Number($('zoom').value)/100+'px';svg.style.height=i.height*Number($('zoom').value)/100+'px';if(i.data)node('image',{href:i.data,width:i.width,height:i.height,opacity:Number($('opacity').value)/100});$('view').value=i.view;$('sourceInfo').textContent=`${i.width} × ${i.height} pixels · SHA-256 ${i.sha256.slice(0,16)}…`;const scale=Math.max(i.width,i.height)/600;
+if($('cage').checked){const by=Object.fromEntries(scaffold.parts.map(p=>[p.id,p]));for(const p of scaffold.parts)if(p.parent){const a=by[p.parent].anchor.xy,b=p.anchor.xy;node('line',{x1:a[0]/600*i.width,y1:a[1]/650*i.height,x2:b[0]/600*i.width,y2:b[1]/650*i.height,stroke:'#aa97ee','stroke-width':scale*2,'stroke-dasharray':scale*6,opacity:.45})}}
+const all=state.annotations.filter(a=>a.image_id===active),by=Object.fromEntries(all.map(a=>[a.id,a]));for(const a of all){if(a.status==='rejected')continue;const attrs={stroke:a.id===selected?'#ffda78':a.status==='proposed'?'#eaa4ff':'#76ebcc','stroke-width':scale*2,fill:'none','data-id':a.id};if(a.status==='proposed')attrs['stroke-dasharray']=scale*6;let e;if(a.kind==='landmark')e=node('circle',{...attrs,cx:a.points[0][0],cy:a.points[0][1],r:scale*7,fill:'#173d46'});if(a.kind==='region')e=node('polygon',{...attrs,points:a.points.map(p=>p.join(',')).join(' '),fill:'#76ebcc22'});if(a.kind==='connection'){const p=by[a.ends[0]].points[0],q=by[a.ends[1]].points[0];e=node('line',{...attrs,x1:p[0],y1:p[1],x2:q[0],y2:q[1]})}e.style.cursor='pointer';const p=a.kind==='connection'?by[a.ends[0]].points[0]:a.points[0];node('text',{x:p[0]+scale*10,y:p[1]-scale*10,fill:'#fff','font-size':scale*13,'pointer-events':'none'}).textContent=a.label}
+if(draft.length&&tool==='region')node('polyline',{points:draft.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#ffda78','stroke-width':scale*2});$('list').replaceChildren();for(const a of all){const b=document.createElement('button');b.textContent=`${a.label} · ${a.kind} · ${a.status}`;b.onclick=()=>{selected=a.id;inspect();render()};$('list').append(b)}inspect();$('log').replaceChildren();for(const e of ledger.project.events.slice(-20)){const p=document.createElement('div');p.textContent=`${e.seq} · ${e.utc} · ${e.action} · ${e.hash.slice(0,12)}`;$('log').append(p)}}
+for(const p of scaffold.parts){const o=document.createElement('option');o.value=p.id;o.textContent=p.name;$('part').append(o)}
+$('image').onchange=async()=>{const f=$('image').files[0];if(!f)return;if(f.size>8*1024*1024){say('Image limit: 8 MiB');return}if(!['image/png','image/jpeg','image/webp'].includes(f.type)){say('Use PNG, JPEG or WebP');return}if(busy)return;busy=true;try{const bytes=await f.arrayBuffer(),sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(v=>v.toString(16).padStart(2,'0')).join('');if(ledger.project.state.images.some(i=>i.sha256===sha)){active=ledger.project.state.images.find(i=>i.sha256===sha).id;say('Existing image selected');render();return}const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(f)});const im=new Image();im.src=data;await im.decode();const state=M.clone(ledger.project.state),id=crypto.randomUUID();state.images.push({id,name:f.name,sha256:sha,width:im.naturalWidth,height:im.naturalHeight,view:'unspecified',data});await ledger.append('upload source image',state);active=id;draft=[];render();say('Image loaded locally. Choose its view and mark regions.')}catch(e){say(e.message)}finally{busy=false;$('image').value=''}};
+$('sources').onchange=()=>{active=$('sources').value;selected=null;draft=[];render()};$('view').onchange=()=>action('set source view',s=>{s.images.find(i=>i.id===active).view=$('view').value});$('zoom').oninput=$('opacity').oninput=$('cage').onchange=render;
+document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>{tool=b.dataset.tool;draft=[];document.querySelectorAll('[data-tool]').forEach(x=>x.classList.toggle('active',x===b));render()});
+svg.onpointerdown=e=>{if(!current()||busy)return;const id=e.target.getAttribute('data-id'),a=ledger.project.state.annotations.find(a=>a.id===id);if(tool==='select'){selected=id;inspect();if(a?.kind==='landmark'&&a.author==='human'){drag={id,point:pos(e)};svg.setPointerCapture(e.pointerId)}render()}else if(tool==='landmark')action('add landmark',s=>s.annotations.push(annotation('landmark',[pos(e)])));else if(tool==='region'){draft.push(pos(e));render()}else if(tool==='connection'&&a?.kind==='landmark'&&a.status==='accepted'){draft.push(id);if(draft.length===2){const ends=[...draft];draft=[];action('connect landmarks',s=>s.annotations.push(annotation('connection',[],ends)))}}};svg.onpointermove=e=>{if(drag){drag.point=pos(e);const circle=svg.querySelector(`[data-id="${drag.id}"]`);if(circle){circle.setAttribute('cx',drag.point[0]);circle.setAttribute('cy',drag.point[1])}}};svg.onpointerup=()=>{if(!drag)return;const d=drag;drag=null;action('move landmark',s=>{s.annotations.find(a=>a.id===d.id).points=[d.point]})};svg.onpointercancel=()=>{drag=null;render()};
+$('finish').onclick=()=>{if(tool!=='region'||draft.length<3){say('Region needs at least three vertices');return}const points=M.clone(draft);action('add region',s=>s.annotations.push(annotation('region',points))).then(()=>{draft=[];render()})};$('cancel').onclick=()=>{draft=[];render()};$('apply').onclick=()=>action('edit annotation metadata',s=>{const a=s.annotations.find(a=>a.id===selected);if(!a)throw Error('Select a mark');Object.assign(a,metadata())});for(const status of ['accepted','rejected'])$(status==='accepted'?'accept':'reject').onclick=()=>action('review '+status,s=>{const a=s.annotations.find(a=>a.id===selected);if(!a||a.author!=='ai')throw Error('Select an AI proposal');a.status=status;a.reviewed_by='human';a.reviewed_utc=new Date().toISOString()});$('remove').onclick=()=>action('remove annotation and dependent connections',s=>{s.annotations=s.annotations.filter(a=>a.id!==selected&&!(a.kind==='connection'&&a.ends.includes(selected)));selected=null});$('undo').onclick=async()=>{if(busy)return;busy=true;try{await ledger.undo();render();say('Restoration event appended')}catch(e){say(e.message)}finally{busy=false}};
+$('export').onclick=()=>{if(busy)return;const data=JSON.stringify(M.pack(ledger.project));if(new Blob([data]).size>256*1024*1024){say('Compact checkpoint exceeds 256 MiB; split this session');return}const u=URL.createObjectURL(new Blob([data],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='aurelia-annotation-checkpoint.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);say('Compact checkpoint downloaded: each source image stored once, full history retained')};
+$('import').onchange=async()=>{const f=$('import').files[0];if(!f||busy)return;if(f.size>256*1024*1024){say('Checkpoint limit: 256 MiB');return}busy=true;try{const p=await M.unpack(JSON.parse(await f.text()));await M.verify(p);for(const i of p.state.images){if(!i.data)continue;const bytes=Uint8Array.from(atob(i.data.split(',')[1]),c=>c.charCodeAt(0));const h=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');if(h!==i.sha256)throw Error('Image bytes do not match source hash');const image=new Image();image.src=i.data;await image.decode();if(image.naturalWidth!==i.width||image.naturalHeight!==i.height)throw Error('Image dimensions do not match')}if(ledger.project.events.length&&!confirm('Replace this session with the verified checkpoint? Export current work first.'))return;await ledger.load(p);active=null;selected=null;draft=[];render();say('Verified checkpoint loaded')}catch(e){say('Import rejected: '+e.message)}finally{busy=false;$('import').value=''}};
+render();if(!globalThis.crypto?.subtle)say('This browser does not expose SHA-256 here. Open through localhost using the README instructions.');
+</script></html>

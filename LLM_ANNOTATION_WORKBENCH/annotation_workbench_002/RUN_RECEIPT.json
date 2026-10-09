@@ -1,0 +1,17 @@
+{
+  "step": "ANNOTATION-WORKBENCH-002",
+  "recorded_utc": "2026-10-09T00:47:08.338703+00:00",
+  "tests_passed": 20,
+  "javascript_syntax_checks": "two scripts passed",
+  "browser_verification": "not performed: Chromium unavailable",
+  "compact_export_limit_MiB": 256,
+  "expanded_image_text_limit_MiB": 512,
+  "regression_original_bytes": 46152982,
+  "regression_compact_bytes": 1415562,
+  "historical_hashes_preserved": true,
+  "legacy_import_test": "passed",
+  "source_screenshot": "unavailable; source-code diagnosis",
+  "session_rescue_instructions_included": true,
+  "body_cage": "retained optional",
+  "custom_object_ids": true
+}

@@ -1,0 +1,12 @@
+test_append_recover_deduplicate_and_packet (test_adapter.AdapterTests.test_append_recover_deduplicate_and_packet) ... ok
+test_bad_graphs (test_adapter.AdapterTests.test_bad_graphs) ... ok
+test_bad_pocket (test_adapter.AdapterTests.test_bad_pocket) ... ok
+test_connected_legs (test_adapter.AdapterTests.test_connected_legs) ... ok
+test_known_work_and_balance (test_adapter.AdapterTests.test_known_work_and_balance) ... ok
+test_reject_before_database_creation (test_adapter.AdapterTests.test_reject_before_database_creation) ... ok
+test_unknowns_stay_unknown (test_adapter.AdapterTests.test_unknowns_stay_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.007s
+
+OK

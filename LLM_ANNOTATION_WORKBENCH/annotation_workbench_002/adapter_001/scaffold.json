@@ -1,0 +1,443 @@
+{
+  "format_version": 1,
+  "model_status": "proposed scaffold, not calibrated anatomy",
+  "coordinates": {
+    "units": "SVG viewBox units",
+    "view": "front",
+    "subject_left": "viewer right",
+    "physical_scale_m_per_unit": null
+  },
+  "source": {
+    "locator": "Aurelia_restored.zip::Aurelia_restored/generated/living_atomic_atlas.json",
+    "archive_sha256": "cf0df51da85b53f327db1550dd4f35c1aa640f81496ee1b3e8ecaa43431db876",
+    "member_sha256": "71ed454fda2eadc4de41a04df2aac7a3718fef269fdc4e106423813b383b0649",
+    "version": "7.4_Persistent_Atlas_Visual_References",
+    "evidence": "user-restored artifact; not independently validated physics"
+  },
+  "parts": [
+    {
+      "id": "aurelia.part.pelvis",
+      "name": "pelvis",
+      "parent": null,
+      "anchor": {
+        "id": "aurelia.anchor.pelvis",
+        "xy": [
+          300,
+          340
+        ]
+      },
+      "atlas_region_proposal": "pelvic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.abdomen",
+      "name": "abdomen",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.abdomen",
+        "xy": [
+          300,
+          280
+        ]
+      },
+      "atlas_region_proposal": "thoracic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.thorax",
+      "name": "thorax",
+      "parent": "aurelia.part.abdomen",
+      "anchor": {
+        "id": "aurelia.anchor.thorax",
+        "xy": [
+          300,
+          210
+        ]
+      },
+      "atlas_region_proposal": "thoracic",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.neck",
+      "name": "neck",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.neck",
+        "xy": [
+          300,
+          150
+        ]
+      },
+      "atlas_region_proposal": "cervical",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.head",
+      "name": "head",
+      "parent": "aurelia.part.neck",
+      "anchor": {
+        "id": "aurelia.anchor.head",
+        "xy": [
+          300,
+          90
+        ]
+      },
+      "atlas_region_proposal": "crown",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_upper_arm",
+      "name": "left upper arm",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.left_upper_arm",
+        "xy": [
+          385,
+          215
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_forearm",
+      "name": "left forearm",
+      "parent": "aurelia.part.left_upper_arm",
+      "anchor": {
+        "id": "aurelia.anchor.left_forearm",
+        "xy": [
+          420,
+          285
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_hand",
+      "name": "left hand",
+      "parent": "aurelia.part.left_forearm",
+      "anchor": {
+        "id": "aurelia.anchor.left_hand",
+        "xy": [
+          435,
+          345
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_thigh",
+      "name": "left thigh",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.left_thigh",
+        "xy": [
+          345,
+          420
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_shin",
+      "name": "left shin",
+      "parent": "aurelia.part.left_thigh",
+      "anchor": {
+        "id": "aurelia.anchor.left_shin",
+        "xy": [
+          350,
+          515
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.left_foot",
+      "name": "left foot",
+      "parent": "aurelia.part.left_shin",
+      "anchor": {
+        "id": "aurelia.anchor.left_foot",
+        "xy": [
+          365,
+          590
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_upper_arm",
+      "name": "right upper arm",
+      "parent": "aurelia.part.thorax",
+      "anchor": {
+        "id": "aurelia.anchor.right_upper_arm",
+        "xy": [
+          215,
+          215
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_forearm",
+      "name": "right forearm",
+      "parent": "aurelia.part.right_upper_arm",
+      "anchor": {
+        "id": "aurelia.anchor.right_forearm",
+        "xy": [
+          180,
+          285
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_hand",
+      "name": "right hand",
+      "parent": "aurelia.part.right_forearm",
+      "anchor": {
+        "id": "aurelia.anchor.right_hand",
+        "xy": [
+          165,
+          345
+        ]
+      },
+      "atlas_region_proposal": "arms",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_thigh",
+      "name": "right thigh",
+      "parent": "aurelia.part.pelvis",
+      "anchor": {
+        "id": "aurelia.anchor.right_thigh",
+        "xy": [
+          255,
+          420
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_shin",
+      "name": "right shin",
+      "parent": "aurelia.part.right_thigh",
+      "anchor": {
+        "id": "aurelia.anchor.right_shin",
+        "xy": [
+          250,
+          515
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    },
+    {
+      "id": "aurelia.part.right_foot",
+      "name": "right foot",
+      "parent": "aurelia.part.right_shin",
+      "anchor": {
+        "id": "aurelia.anchor.right_foot",
+        "xy": [
+          235,
+          590
+        ]
+      },
+      "atlas_region_proposal": "legs",
+      "atlas_binding_status": "unconfirmed semantic proposal",
+      "image_binding": null,
+      "motion_limits_rad": null
+    }
+  ],
+  "pockets": [
+    {
+      "id": "aurelia.pocket.pelvis",
+      "part_id": "aurelia.part.pelvis",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.abdomen",
+      "part_id": "aurelia.part.abdomen",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.thorax",
+      "part_id": "aurelia.part.thorax",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_upper_arm",
+      "part_id": "aurelia.part.left_upper_arm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_forearm",
+      "part_id": "aurelia.part.left_forearm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_thigh",
+      "part_id": "aurelia.part.left_thigh",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.left_shin",
+      "part_id": "aurelia.part.left_shin",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_upper_arm",
+      "part_id": "aurelia.part.right_upper_arm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_forearm",
+      "part_id": "aurelia.part.right_forearm",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_thigh",
+      "part_id": "aurelia.part.right_thigh",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    },
+    {
+      "id": "aurelia.pocket.right_shin",
+      "part_id": "aurelia.part.right_shin",
+      "water_volume_m3": null,
+      "water_pressure_gauge_Pa": null,
+      "gas_volume_m3": null,
+      "gas_pressure_absolute_Pa": null,
+      "ambient_pressure_Pa": null,
+      "compliance_m3_per_Pa": null,
+      "actuator_area_m2": null,
+      "coupling": "proposed gas-driven water chamber; coupling law unspecified",
+      "evidence": "hypothesis"
+    }
+  ],
+  "energy": {
+    "initial_J": null,
+    "input_J": null,
+    "mechanical_output_J": null,
+    "heat_loss_J": null,
+    "stored_change_J": null
+  }
+}

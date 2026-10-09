@@ -1,0 +1,23 @@
+PASS valid geometry
+PASS out of bounds
+PASS duplicate ID
+PASS missing source
+PASS invalid confidence
+PASS unsafe image MIME
+PASS invalid AI provenance
+PASS region minimum vertices
+PASS connection references
+PASS append-only restoration
+PASS fresh file recovery
+PASS tampered historical state
+PASS reordered history
+PASS mismatched current state
+14 tests passed
+
+PASS repeated-image regression: 46152982 bytes → 1415562 bytes
+PASS exact history and independent hash-anchor recovery
+PASS legacy checkpoint compatibility
+PASS missing asset rejected
+PASS tampered asset rejected
+PASS historical edit rejected
+6 compact checkpoint tests passed; fixture bytes test storage only, not image decoding

@@ -1,0 +1,11 @@
+{
+  "workbench.html": "28cd98b33567905e1bec8f05d9f097dd4a019121f55b208ba8199c6702697f28",
+  "adapter.py": "5e6313cc48be27ad53d9edb3ca42013fe977a81c5c5b82ef054889c02c1868b1",
+  "test_adapter.py": "1d031fe906174334cffa1622e7483e03fbc331fad9ea7043bc60148b5316e4df",
+  "bridge.py": "17ea14018a0e48107d5e3a6b59263ee9cb5faf51105f845d31ed52b20b0e0acb",
+  "README.md": "bd678863cc2ade79f04278eb328d83302e62ff9c2c8e2572d5d044b4b2dad233",
+  "TEST_OUTPUT.txt": "cfba0e168bdfe01d6a521df215d9f60f3e86cd1ccd07a9ed3dbc04f54f0629ef",
+  "atlas_store.py": "954ac7117b918db56da69fb2f75adfffd33a22602994aacc4f655e80a02ea0fc",
+  "RUN_RECEIPT.json": "9b8ffa9857d1af7f2fbaa8affe057499e0efd51f6137821a55d655e3747b2b98",
+  "scaffold.json": "b6ea9a87b248da78ca9776839a59a80f5419cf674aa28cf44a3fd1b05c810f6f"
+}
